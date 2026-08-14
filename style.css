@@ -43,9 +43,7 @@
 * {
 
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
 
 }
@@ -102,22 +100,16 @@ body {
 .header {
 
     position: sticky;
-
     top: 0;
-
     z-index: 100;
 
     width: 100%;
-
     height: 74px;
 
-    padding:
-        0 5%;
+    padding: 0 5%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     background:
@@ -139,11 +131,8 @@ body {
 .logo {
 
     font-size: 28px;
-
     font-weight: bold;
-
     letter-spacing: 0.5px;
-
     color: var(--brown);
 
 }
@@ -163,9 +152,7 @@ body {
 .header-actions {
 
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
 }
@@ -175,11 +162,9 @@ body {
 .hamburger {
 
     width: 45px;
-
     height: 45px;
 
     border: none;
-
     border-radius: 15px;
 
     cursor: pointer;
@@ -187,7 +172,8 @@ body {
     background:
         var(--cream-2);
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     transition:
         transform .2s ease,
@@ -224,11 +210,9 @@ body {
     position: absolute;
 
     top: -5px;
-
     left: -5px;
 
     min-width: 20px;
-
     height: 20px;
 
     padding: 2px 5px;
@@ -256,9 +240,7 @@ body {
     display: flex;
 
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
 
     gap: 5px;
@@ -269,7 +251,6 @@ body {
 .hamburger span {
 
     width: 22px;
-
     height: 2px;
 
     border-radius: 5px;
@@ -316,7 +297,6 @@ body {
 .menu-overlay {
 
     position: fixed;
-
     inset: 0;
 
     z-index: 110;
@@ -325,7 +305,6 @@ body {
         rgba(62,35,42,0.4);
 
     opacity: 0;
-
     visibility: hidden;
 
     transition:
@@ -338,7 +317,6 @@ body {
 .menu-overlay.show {
 
     opacity: 1;
-
     visibility: visible;
 
 }
@@ -353,7 +331,6 @@ body {
     position: fixed;
 
     top: 0;
-
     right: 0;
 
     z-index: 120;
@@ -407,7 +384,6 @@ body {
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding-bottom: 22px;
@@ -429,7 +405,6 @@ body {
 .menu-header h2 {
 
     margin-top: 5px;
-
     font-size: 26px;
 
 }
@@ -438,11 +413,9 @@ body {
 .close-menu {
 
     width: 40px;
-
     height: 40px;
 
     border: none;
-
     border-radius: 13px;
 
     background:
@@ -472,7 +445,6 @@ body {
 .menu-item {
 
     width: 100%;
-
     min-height: 56px;
 
     margin-bottom: 9px;
@@ -480,7 +452,6 @@ body {
     padding: 13px 16px;
 
     border: none;
-
     border-radius: 17px;
 
     background:
@@ -490,13 +461,11 @@ body {
         var(--brown);
 
     font-family: inherit;
-
     font-size: 16px;
 
     text-align: right;
 
     display: flex;
-
     align-items: center;
 
     gap: 13px;
@@ -539,7 +508,6 @@ body {
 .menu-line {
 
     width: 100%;
-
     height: 1px;
 
     margin:
@@ -573,7 +541,6 @@ body {
     height: 58px;
 
     display: flex;
-
     align-items: center;
 
     gap: 10px;
@@ -606,11 +573,9 @@ body {
 .search-box input {
 
     width: 100%;
-
     height: 100%;
 
     border: none;
-
     outline: none;
 
     background: transparent;
@@ -619,7 +584,6 @@ body {
         var(--brown);
 
     font-family: inherit;
-
     font-size: 16px;
 
 }
@@ -628,7 +592,6 @@ body {
 .clear-search {
 
     border: none;
-
     background: transparent;
 
     color:
@@ -650,9 +613,7 @@ body {
     position: absolute;
 
     top: 67px;
-
     right: 0;
-
     left: 0;
 
     z-index: 80;
@@ -694,7 +655,6 @@ body {
     background: transparent;
 
     display: flex;
-
     align-items: center;
 
     gap: 13px;
@@ -722,7 +682,6 @@ body {
 .search-result img {
 
     width: 55px;
-
     height: 55px;
 
     object-fit: cover;
@@ -735,7 +694,6 @@ body {
 .search-result-info {
 
     display: flex;
-
     flex-direction: column;
 
     gap: 5px;
@@ -1192,7 +1150,6 @@ body {
 .product-image img {
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -1223,7 +1180,6 @@ body {
     position: absolute;
 
     top: 10px;
-
     right: 10px;
 
     z-index: 5;
@@ -1238,11 +1194,9 @@ body {
 .product-action {
 
     width: 35px;
-
     height: 35px;
 
     border: none;
-
     border-radius: 12px;
 
     background:
@@ -1281,7 +1235,6 @@ body {
     position: absolute;
 
     top: 10px;
-
     left: 10px;
 
     z-index: 5;
@@ -1734,17 +1687,14 @@ body {
     position: absolute;
 
     top: 10px;
-
     left: 10px;
 
     z-index: 5;
 
     width: 38px;
-
     height: 38px;
 
     border: none;
-
     border-radius: 12px;
 
     background:
@@ -1788,7 +1738,6 @@ body {
     position: fixed;
 
     right: 50%;
-
     bottom: 25px;
 
     z-index: 500;
@@ -1912,7 +1861,6 @@ footer {
     .hamburger {
 
         width: 40px;
-
         height: 40px;
 
         border-radius: 12px;
