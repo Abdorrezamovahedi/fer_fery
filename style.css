@@ -1,9 +1,15 @@
 /* =====================================================
-   FER FERY
+   MAISON ROSE
    STYLE.CSS
    ===================================================== */
 
+
+/* =========================
+   VARIABLES
+   ========================= */
+
 :root {
+
     --cream: #fff4e8;
     --cream-2: #ffe8dc;
     --cream-3: #f9d8cb;
@@ -21,27 +27,39 @@
 
     --white: #fffdfb;
 
-    --shadow: 0 12px 35px rgba(116, 67, 74, 0.14);
-    --shadow-hover: 0 18px 45px rgba(116, 67, 74, 0.22);
+    --shadow:
+        0 12px 35px rgba(116, 67, 74, 0.14);
+
+    --shadow-hover:
+        0 18px 45px rgba(116, 67, 74, 0.22);
+
 }
 
 
-/* =====================================================
+/* =========================
    RESET
-   ===================================================== */
+   ========================= */
 
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
+
 
 html {
+
     scroll-behavior: smooth;
+
 }
 
+
 body {
+
     min-height: 100vh;
+
     overflow-x: hidden;
 
     color: var(--brown);
@@ -52,39 +70,35 @@ body {
         serif;
 
     background:
+
         radial-gradient(
             circle at 10% 10%,
-            rgba(216,137,154,.18),
+            rgba(216,137,154,0.18),
             transparent 25%
         ),
+
         radial-gradient(
             circle at 90% 25%,
-            rgba(201,155,82,.12),
+            rgba(201,155,82,0.12),
             transparent 25%
         ),
+
         linear-gradient(
             135deg,
             #fff5eb,
             #ffe9df 45%,
             #f9d9d3
         );
-}
 
-button,
-input {
-    font: inherit;
-}
-
-button {
-    -webkit-tap-highlight-color: transparent;
 }
 
 
-/* =====================================================
+/* =========================
    HEADER
-   ===================================================== */
+   ========================= */
 
 .header {
+
     position: sticky;
     top: 0;
     z-index: 100;
@@ -98,36 +112,55 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    background: rgba(255,244,232,.94);
+    background:
+        rgba(255,244,232,0.94);
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter:
+        blur(14px);
 
-    border-bottom: 1px solid rgba(184,95,117,.18);
+    border-bottom:
+        1px solid rgba(184,95,117,0.18);
 
     box-shadow:
-        0 5px 20px rgba(100,50,60,.06);
+        0 5px 20px
+        rgba(100,50,60,0.06);
+
 }
+
 
 .logo {
+
     font-size: 28px;
     font-weight: bold;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     color: var(--brown);
+
 }
+
 
 .logo span {
+
     color: var(--pink-dark);
+
 }
 
+
+/* =========================
+   HEADER ACTIONS
+   ========================= */
+
 .header-actions {
+
     display: flex;
     align-items: center;
     gap: 10px;
+
 }
+
 
 .header-button,
 .hamburger {
+
     width: 45px;
     height: 45px;
 
@@ -136,30 +169,44 @@ button {
 
     cursor: pointer;
 
-    background: var(--cream-2);
-    color: var(--brown);
+    background:
+        var(--cream-2);
+
+    color:
+        var(--brown);
 
     transition:
         transform .2s ease,
         background .2s ease;
+
 }
+
 
 .header-button:hover,
 .hamburger:hover {
-    transform: translateY(-2px);
-    background: var(--pink-light);
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--pink-light);
+
 }
 
 
-/* =====================================================
+/* =========================
    CART COUNT
-   ===================================================== */
+   ========================= */
 
 .cart-header {
+
     position: relative;
+
 }
 
+
 #cartCount {
+
     position: absolute;
 
     top: -5px;
@@ -170,25 +217,26 @@ button {
 
     padding: 2px 5px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border-radius: 50px;
 
-    background: var(--pink-dark);
+    background:
+        var(--pink-dark);
+
     color: white;
 
     font-family: Arial, sans-serif;
+
     font-size: 11px;
+
 }
 
 
-/* =====================================================
+/* =========================
    HAMBURGER
-   ===================================================== */
+   ========================= */
 
 .hamburger {
+
     display: flex;
 
     flex-direction: column;
@@ -196,49 +244,65 @@ button {
     align-items: center;
 
     gap: 5px;
+
 }
 
+
 .hamburger span {
+
     width: 22px;
     height: 2px;
 
     border-radius: 5px;
 
-    background: var(--brown);
+    background:
+        var(--brown);
 
     transition:
         transform .3s ease,
         opacity .2s ease;
+
 }
 
+
 .hamburger.open span:nth-child(1) {
+
     transform:
         translateY(7px)
         rotate(45deg);
+
 }
+
 
 .hamburger.open span:nth-child(2) {
+
     opacity: 0;
+
 }
 
+
 .hamburger.open span:nth-child(3) {
+
     transform:
         translateY(-7px)
         rotate(-45deg);
+
 }
 
 
-/* =====================================================
-   SIDE MENU
-   ===================================================== */
+/* =========================
+   OVERLAY
+   ========================= */
 
 .menu-overlay {
+
     position: fixed;
     inset: 0;
 
     z-index: 110;
 
-    background: rgba(62,35,42,.4);
+    background:
+        rgba(62,35,42,0.4);
 
     opacity: 0;
     visibility: hidden;
@@ -246,14 +310,24 @@ button {
     transition:
         opacity .3s ease,
         visibility .3s ease;
+
 }
+
 
 .menu-overlay.show {
+
     opacity: 1;
     visibility: visible;
+
 }
 
+
+/* =========================
+   SIDE MENU
+   ========================= */
+
 .side-menu {
+
     position: fixed;
 
     top: 0;
@@ -261,7 +335,9 @@ button {
 
     z-index: 120;
 
-    width: min(370px, 88vw);
+    width:
+        min(370px, 88vw);
+
     height: 100vh;
 
     overflow-y: auto;
@@ -269,6 +345,7 @@ button {
     padding: 28px 22px;
 
     background:
+
         linear-gradient(
             160deg,
             #fff2e7,
@@ -277,22 +354,35 @@ button {
         );
 
     box-shadow:
-        -20px 0 50px rgba(73,38,46,.2);
+        -20px 0 50px
+        rgba(73,38,46,0.2);
 
-    transform: translateX(105%);
+    transform:
+        translateX(105%);
 
     transition:
-        transform .4s cubic-bezier(.22,.61,.36,1);
+        transform .4s
+        cubic-bezier(.22,.61,.36,1);
 
-    -webkit-overflow-scrolling: touch;
 }
+
 
 .side-menu.show {
-    transform: translateX(0);
+
+    transform:
+        translateX(0);
+
 }
 
+
+/* =========================
+   MENU HEADER
+   ========================= */
+
 .menu-header {
+
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
@@ -300,50 +390,75 @@ button {
 
     border-bottom:
         1px solid rgba(159,82,101,.2);
+
 }
+
 
 .menu-header small {
-    color: var(--pink-dark);
+
+    color:
+        var(--pink-dark);
+
 }
+
 
 .menu-header h2 {
+
     margin-top: 5px;
     font-size: 26px;
+
 }
 
+
 .close-menu {
+
     width: 40px;
     height: 40px;
 
     border: none;
     border-radius: 13px;
 
-    background: rgba(255,255,255,.5);
+    background:
+        rgba(255,255,255,.5);
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     font-size: 25px;
 
     cursor: pointer;
+
 }
+
+
+/* =========================
+   MENU ITEMS
+   ========================= */
 
 .menu-list {
+
     margin-top: 25px;
+
 }
 
+
 .menu-item {
+
     width: 100%;
     min-height: 56px;
 
     margin-bottom: 9px;
+
     padding: 13px 16px;
 
     border: none;
     border-radius: 17px;
 
-    background: rgba(255,255,255,.48);
+    background:
+        rgba(255,255,255,.48);
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     font-family: inherit;
     font-size: 16px;
@@ -361,48 +476,68 @@ button {
         transform .2s ease,
         background .2s ease,
         box-shadow .2s ease;
+
 }
+
 
 .menu-item:hover {
-    transform: translateX(-5px);
 
-    background: rgba(255,255,255,.8);
+    transform:
+        translateX(-5px);
 
-    box-shadow: var(--shadow);
+    background:
+        rgba(255,255,255,.8);
+
+    box-shadow:
+        var(--shadow);
+
 }
 
+
 .menu-item span {
+
     width: 28px;
 
     text-align: center;
 
     font-size: 18px;
+
 }
 
+
 .menu-line {
+
     width: 100%;
     height: 1px;
 
-    margin: 22px 0;
+    margin:
+        22px 0;
 
     background:
         rgba(159,82,101,.2);
+
 }
 
 
-/* =====================================================
-   SEARCH
-   ===================================================== */
+/* =========================
+   SEARCH AREA
+   ========================= */
 
 .search-area {
-    width: min(850px, 90%);
 
-    margin: 30px auto 0;
+    width:
+        min(850px, 90%);
+
+    margin:
+        30px auto 0;
 
     position: relative;
+
 }
 
+
 .search-box {
+
     height: 58px;
 
     display: flex;
@@ -410,9 +545,11 @@ button {
 
     gap: 10px;
 
-    padding: 0 17px;
+    padding:
+        0 17px;
 
-    background: rgba(255,253,251,.85);
+    background:
+        rgba(255,253,251,.85);
 
     border:
         1px solid
@@ -420,14 +557,21 @@ button {
 
     border-radius: 20px;
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
+
 }
+
 
 .search-icon {
+
     font-size: 18px;
+
 }
 
+
 .search-box input {
+
     width: 100%;
     height: 100%;
 
@@ -436,24 +580,36 @@ button {
 
     background: transparent;
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     font-family: inherit;
     font-size: 16px;
+
 }
 
+
 .clear-search {
+
     border: none;
     background: transparent;
 
-    color: var(--brown-light);
+    color:
+        var(--brown-light);
 
     font-size: 22px;
 
     cursor: pointer;
+
 }
 
+
+/* =========================
+   SEARCH RESULTS
+   ========================= */
+
 .search-results {
+
     position: absolute;
 
     top: 67px;
@@ -466,22 +622,30 @@ button {
 
     border-radius: 18px;
 
-    background: var(--white);
+    background:
+        var(--white);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
     border:
         1px solid
         rgba(184,95,117,.18);
 
     display: none;
+
 }
+
 
 .search-results.show {
+
     display: block;
+
 }
 
+
 .search-result {
+
     width: 100%;
 
     padding: 12px 15px;
@@ -500,114 +664,172 @@ button {
     cursor: pointer;
 
     font-family: inherit;
+
+    transition:
+        background .2s ease;
+
 }
+
 
 .search-result:hover {
-    background: var(--cream-2);
+
+    background:
+        var(--cream-2);
+
 }
 
+
 .search-result img {
+
     width: 55px;
     height: 55px;
 
     object-fit: cover;
 
     border-radius: 12px;
+
 }
 
+
 .search-result-info {
+
     display: flex;
     flex-direction: column;
 
     gap: 5px;
+
 }
+
 
 .search-result-info strong {
-    color: var(--brown);
+
+    color:
+        var(--brown);
+
 }
+
 
 .search-result-info span {
+
     font-size: 12px;
-    color: var(--pink-dark);
+
+    color:
+        var(--pink-dark);
+
 }
 
 
-/* =====================================================
+/* =========================
    HERO
-   ===================================================== */
+   ========================= */
 
 .hero {
-    width: min(1050px, 92%);
 
-    margin: 0 auto;
+    width:
+        min(1050px, 92%);
 
-    padding: 90px 20px 80px;
+    margin:
+        0 auto;
+
+    padding:
+        90px 20px 80px;
 
     text-align: center;
+
 }
 
+
 .hero-decoration {
+
     font-size: 35px;
 
-    color: var(--gold);
+    color:
+        var(--gold);
 
     animation:
         floatDecoration
         3s ease-in-out
         infinite alternate;
+
 }
 
+
 @keyframes floatDecoration {
+
     from {
+
         transform:
             translateY(0)
             rotate(0);
+
     }
 
     to {
+
         transform:
             translateY(-9px)
             rotate(8deg);
+
     }
+
 }
 
+
 .hero h1 {
+
     margin-top: 15px;
 
     font-size:
-        clamp(50px, 9vw, 95px);
+        clamp(
+            50px,
+            9vw,
+            95px
+        );
 
     line-height: 1;
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     text-shadow:
         3px 4px 0
         rgba(216,137,154,.18);
+
 }
 
+
 .hero p {
+
     margin-top: 22px;
 
     font-size: 19px;
 
-    color: var(--rose);
+    color:
+        var(--rose);
+
 }
 
+
 .hero-buttons {
+
     margin-top: 35px;
 
     display: flex;
+
     justify-content: center;
 
     gap: 12px;
 
     flex-wrap: wrap;
+
 }
+
 
 .primary-button,
 .secondary-button {
-    padding: 14px 25px;
+
+    padding:
+        14px 25px;
 
     border-radius: 17px;
 
@@ -620,9 +842,12 @@ button {
     transition:
         transform .2s ease,
         box-shadow .2s ease;
+
 }
 
+
 .primary-button {
+
     border: none;
 
     background:
@@ -633,9 +858,12 @@ button {
         );
 
     color: white;
+
 }
 
+
 .secondary-button {
+
     border:
         1px solid
         var(--pink);
@@ -643,66 +871,93 @@ button {
     background:
         rgba(255,255,255,.45);
 
-    color: var(--pink-dark);
+    color:
+        var(--pink-dark);
+
 }
+
 
 .primary-button:hover,
 .secondary-button:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        var(--shadow);
+
 }
 
 
-/* =====================================================
+/* =========================
    SECTIONS
-   ===================================================== */
+   ========================= */
 
 .categories,
 .products,
 .saved-area,
 .cart-area {
-    width: min(1200px, 92%);
 
-    margin: 0 auto 90px;
+    width:
+        min(1200px, 92%);
+
+    margin:
+        0 auto 90px;
 
     scroll-margin-top: 95px;
+
 }
 
+
 .section-title {
+
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 15px;
 
     margin-bottom: 35px;
+
 }
+
 
 .section-title h2 {
+
     font-size:
         clamp(29px, 5vw, 40px);
+
 }
+
 
 .section-title span {
-    color: var(--gold);
+
+    color:
+        var(--gold);
+
 }
 
 
-/* =====================================================
-   CATEGORIES
-   ===================================================== */
+/* =========================
+   CATEGORY CARDS
+   ========================= */
 
 .category-cards {
+
     display: grid;
 
     grid-template-columns:
         repeat(4, 1fr);
 
     gap: 18px;
+
 }
 
+
 .category-card {
+
     min-height: 190px;
 
     padding: 25px 15px;
@@ -714,97 +969,134 @@ button {
     border-radius: 25px;
 
     background:
+
         linear-gradient(
             145deg,
             rgba(255,255,255,.82),
             rgba(255,226,217,.85)
         );
 
-    color: var(--brown);
+    color:
+        var(--brown);
 
     font-family: inherit;
 
     cursor: pointer;
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
     transition:
         transform .25s ease,
         box-shadow .25s ease;
+
 }
+
 
 .category-card:hover {
-    transform: translateY(-7px);
 
-    box-shadow: var(--shadow-hover);
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-hover);
+
 }
+
 
 .category-card > div {
+
     font-size: 38px;
+
     margin-bottom: 15px;
+
 }
+
 
 .category-card h3 {
+
     font-size: 23px;
+
 }
 
+
 .category-card p {
+
     margin-top: 7px;
 
     font-size: 13px;
 
-    color: var(--brown-light);
+    color:
+        var(--brown-light);
+
 }
 
 
-/* =====================================================
-   PRODUCT CATEGORIES
-   ===================================================== */
+/* =========================
+   PRODUCT CATEGORY
+   ========================= */
 
 .product-category {
+
     margin-bottom: 75px;
 
     scroll-margin-top: 95px;
+
 }
 
+
 .category-heading {
+
     display: flex;
 
     align-items: end;
+
     justify-content: space-between;
 
     margin-bottom: 20px;
+
 }
+
 
 .category-heading h3 {
+
     font-size: 31px;
+
 }
+
 
 .category-heading span {
-    color: var(--pink-dark);
+
+    color:
+        var(--pink-dark);
+
     font-size: 13px;
+
 }
 
 
-/* =====================================================
-   PRODUCT GRID DESKTOP
-   ===================================================== */
+/* =========================
+   PRODUCT GRID
+   ========================= */
 
 .product-grid {
+
     display: grid;
 
     grid-template-columns:
         repeat(4, 1fr);
 
     gap: 20px;
+
 }
 
 
-/* =====================================================
+/* =========================
    PRODUCT CARD
-   ===================================================== */
+   ========================= */
 
 .product-card {
+
     min-width: 0;
 
     overflow: hidden;
@@ -818,20 +1110,29 @@ button {
     background:
         rgba(255,253,251,.92);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
     transition:
         transform .25s ease,
         box-shadow .25s ease;
+
 }
+
 
 .product-card:hover {
-    transform: translateY(-6px);
 
-    box-shadow: var(--shadow-hover);
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        var(--shadow-hover);
+
 }
 
+
 .product-image {
+
     position: relative;
 
     width: 100%;
@@ -840,10 +1141,14 @@ button {
 
     overflow: hidden;
 
-    background: var(--cream-3);
+    background:
+        var(--cream-3);
+
 }
 
+
 .product-image img {
+
     width: 100%;
     height: 100%;
 
@@ -853,19 +1158,25 @@ button {
 
     transition:
         transform .4s ease;
+
 }
+
 
 .product-card:hover
 .product-image img {
-    transform: scale(1.05);
+
+    transform:
+        scale(1.05);
+
 }
 
 
-/* =====================================================
+/* =========================
    PRODUCT ACTIONS
-   ===================================================== */
+   ========================= */
 
 .product-actions {
+
     position: absolute;
 
     top: 10px;
@@ -876,9 +1187,12 @@ button {
     display: flex;
 
     gap: 7px;
+
 }
 
+
 .product-action {
+
     width: 35px;
     height: 35px;
 
@@ -892,17 +1206,32 @@ button {
 
     transition:
         transform .2s ease;
+
 }
+
 
 .product-action:hover {
-    transform: scale(1.08);
+
+    transform:
+        scale(1.08);
+
 }
+
 
 .product-action.active {
-    background: var(--pink-light);
+
+    background:
+        var(--pink-light);
+
 }
 
+
+/* =========================
+   SALE
+   ========================= */
+
 .sale-badge {
+
     position: absolute;
 
     top: 10px;
@@ -910,55 +1239,72 @@ button {
 
     z-index: 5;
 
-    padding: 6px 10px;
+    padding:
+        6px 10px;
 
     border-radius: 10px;
 
-    background: var(--pink-dark);
+    background:
+        var(--pink-dark);
 
     color: white;
 
     font-size: 11px;
+
 }
 
 
-/* =====================================================
+/* =========================
    PRODUCT INFO
-   ===================================================== */
+   ========================= */
 
 .product-info {
-    padding: 17px;
+
+    padding:
+        17px;
+
 }
 
+
 .product-info h4 {
+
     font-size: 18px;
 
     min-height: 45px;
+
 }
+
 
 .product-price {
-    margin: 10px 0;
 
-    color: var(--pink-dark);
+    margin:
+        10px 0;
+
+    color:
+        var(--pink-dark);
 
     font-weight: bold;
+
 }
 
 
-/* =====================================================
-   CART BUTTON
-   ===================================================== */
+/* =========================
+   ADD CART
+   ========================= */
 
 .add-to-cart {
+
     width: 100%;
 
-    padding: 11px;
+    padding:
+        11px;
 
     border: none;
 
     border-radius: 13px;
 
-    background: var(--brown);
+    background:
+        var(--brown);
 
     color: white;
 
@@ -968,13 +1314,20 @@ button {
 
     transition:
         background .2s ease;
+
 }
+
 
 .add-to-cart:hover {
-    background: var(--pink-dark);
+
+    background:
+        var(--pink-dark);
+
 }
 
+
 .quick-view {
+
     width: 100%;
 
     margin-top: 7px;
@@ -989,50 +1342,66 @@ button {
 
     background: transparent;
 
-    color: var(--pink-dark);
+    color:
+        var(--pink-dark);
 
     font-family: inherit;
 
     cursor: pointer;
+
 }
 
 
-/* =====================================================
-   PINNED + FAVORITES
-   ===================================================== */
+/* =========================
+   SAVED
+   ========================= */
 
 .saved-title {
+
     margin-bottom: 20px;
+
 }
+
 
 .saved-title h2 {
+
     font-size: 31px;
+
 }
 
+
 .saved-grid {
+
     display: grid;
 
     grid-template-columns:
         repeat(4, 1fr);
 
     gap: 18px;
+
 }
 
+
 .empty-message {
+
     padding: 30px;
 
     text-align: center;
 
-    color: var(--brown-light);
+    color:
+        var(--brown-light);
+
 }
 
 
-/* =====================================================
+/* =========================
    CART
-   ===================================================== */
+   ========================= */
 
 .cart-area {
-    padding: 35px;
+
+    padding:
+        35px;
 
     border-radius: 28px;
 
@@ -1043,21 +1412,29 @@ button {
         1px solid
         rgba(184,95,117,.18);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
+
 }
 
+
 .cart-list {
+
     display: flex;
 
     flex-direction: column;
 
     gap: 10px;
+
 }
 
+
 .cart-item {
+
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 15px;
@@ -1068,30 +1445,41 @@ button {
 
     background:
         rgba(255,232,220,.65);
+
 }
 
+
 .cart-controls {
+
     display: flex;
 
     align-items: center;
 
     gap: 8px;
+
 }
 
+
 .cart-controls button {
+
     min-width: 32px;
+
     height: 32px;
 
     border: none;
 
     border-radius: 9px;
 
-    background: var(--pink-light);
+    background:
+        var(--pink-light);
 
     cursor: pointer;
+
 }
 
+
 .cart-footer {
+
     display: flex;
 
     justify-content: space-between;
@@ -1105,65 +1493,93 @@ button {
         rgba(184,95,117,.18);
 
     font-size: 19px;
+
 }
+
 
 .cart-footer strong {
-    color: var(--pink-dark);
+
+    color:
+        var(--pink-dark);
+
 }
 
 
-/* =====================================================
+/* =========================
    CONTACT
-   ===================================================== */
+   ========================= */
 
 .contact {
-    padding: 85px 20px;
+
+    padding:
+        85px 20px;
 
     text-align: center;
 
     background:
+
         linear-gradient(
             135deg,
             #f4c5cb,
             #edabb9,
             #e8c88c
         );
+
 }
+
 
 .contact > div {
+
     font-size: 28px;
-    color: white;
+
+    color:
+        white;
+
 }
+
 
 .contact h2 {
+
     margin-top: 10px;
+
     font-size: 38px;
+
 }
+
 
 .contact p {
-    margin: 12px auto 25px;
+
+    margin:
+        12px auto 25px;
+
 }
 
+
 .contact-button {
+
     display: inline-block;
 
-    padding: 13px 28px;
+    padding:
+        13px 28px;
 
     border-radius: 15px;
 
-    background: var(--brown);
+    background:
+        var(--brown);
 
     color: white;
 
     text-decoration: none;
+
 }
 
 
-/* =====================================================
+/* =========================
    MODAL
-   ===================================================== */
+   ========================= */
 
 .modal {
+
     position: fixed;
 
     inset: 0;
@@ -1173,6 +1589,7 @@ button {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
@@ -1181,21 +1598,30 @@ button {
         rgba(60,35,42,.55);
 
     opacity: 0;
+
     visibility: hidden;
 
     transition:
         opacity .25s ease;
+
 }
+
 
 .modal.show {
+
     opacity: 1;
+
     visibility: visible;
+
 }
 
+
 .modal-box {
+
     position: relative;
 
-    width: min(500px, 100%);
+    width:
+        min(500px, 100%);
 
     max-height: 90vh;
 
@@ -1205,10 +1631,14 @@ button {
 
     border-radius: 25px;
 
-    background: var(--cream);
+    background:
+        var(--cream);
+
 }
 
+
 .modal-box img {
+
     width: 100%;
 
     max-height: 380px;
@@ -1216,29 +1646,44 @@ button {
     object-fit: cover;
 
     border-radius: 18px;
+
 }
+
 
 .modal-box h2 {
+
     margin-top: 18px;
+
 }
+
 
 .modal-box p {
+
     margin-top: 8px;
 
-    color: var(--brown-light);
+    color:
+        var(--brown-light);
+
 }
+
 
 .modal-box strong {
+
     display: block;
 
-    margin: 15px 0;
+    margin:
+        15px 0;
 
-    color: var(--pink-dark);
+    color:
+        var(--pink-dark);
 
     font-size: 19px;
+
 }
 
+
 .modal-close {
+
     position: absolute;
 
     top: 10px;
@@ -1250,7 +1695,6 @@ button {
     height: 38px;
 
     border: none;
-
     border-radius: 12px;
 
     background:
@@ -1259,9 +1703,12 @@ button {
     font-size: 23px;
 
     cursor: pointer;
+
 }
 
+
 .modal-cart {
+
     width: 100%;
 
     padding: 13px;
@@ -1270,21 +1717,24 @@ button {
 
     border-radius: 14px;
 
-    background: var(--brown);
+    background:
+        var(--brown);
 
     color: white;
 
     font-family: inherit;
 
     cursor: pointer;
+
 }
 
 
-/* =====================================================
+/* =========================
    TOAST
-   ===================================================== */
+   ========================= */
 
 .toast {
+
     position: fixed;
 
     right: 50%;
@@ -1293,13 +1743,15 @@ button {
     z-index: 500;
 
     transform:
-        translate(50%,20px);
+        translate(50%, 20px);
 
-    padding: 12px 20px;
+    padding:
+        12px 20px;
 
     border-radius: 14px;
 
-    background: var(--brown);
+    background:
+        var(--brown);
 
     color: white;
 
@@ -1310,28 +1762,36 @@ button {
     transition:
         opacity .25s ease,
         transform .25s ease;
+
 }
 
+
 .toast.show {
+
     opacity: 1;
 
     transform:
-        translate(50%,0);
+        translate(50%, 0);
+
 }
 
 
-/* =====================================================
+/* =========================
    FOOTER
-   ===================================================== */
+   ========================= */
 
 footer {
+
     padding: 30px;
 
     text-align: center;
 
-    color: var(--brown-light);
+    color:
+        var(--brown-light);
 
-    background: #f4d5cd;
+    background:
+        #f4d5cd;
+
 }
 
 
@@ -1342,41 +1802,30 @@ footer {
 @media (max-width: 950px) {
 
     .category-cards {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
+
 
     .product-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
+
     .saved-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
+
 }
 
 
 /* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 600px) {
-
-    body {
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    .header {
-        height: 66px;
-        padding: 0 14px;
-    }
-
-    .logo {
-        font-size: 23px;
-    }
-
-    .header-actions {
-      
+   MOBI
