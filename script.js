@@ -105,6 +105,8 @@ let toastTimer;
 
 function showToast(message) {
 
+    if (!toast) return;
+
     toast.textContent = message;
 
     toast.classList.add("show");
@@ -136,9 +138,11 @@ function imageError(img) {
                  height="750"
                  viewBox="0 0 600 750">
 
-                <rect width="600"
-                      height="750"
-                      fill="#f3d2ce"/>
+                <rect
+                    width="600"
+                    height="750"
+                    fill="#f3d2ce"
+                />
 
                 <text
                     x="300"
@@ -208,7 +212,6 @@ function createProductCard(product) {
                         📌
                     </button>
 
-
                     <button
                         class="product-action favorite-button ${
                             isFavorite ? "active" : ""
@@ -227,20 +230,15 @@ function createProductCard(product) {
 
             </div>
 
-
             <div class="product-info">
 
                 <h4>
                     ${product.name}
                 </h4>
 
-
                 <div class="product-price">
-
                     ${formatPrice(product.price)}
-
                 </div>
-
 
                 <button
                     class="add-to-cart"
@@ -248,7 +246,6 @@ function createProductCard(product) {
                 >
                     افزودن به سبد خرید
                 </button>
-
 
                 <button
                     class="quick-view"
@@ -271,6 +268,14 @@ function createProductCard(product) {
    ===================================================== */
 
 function renderProducts() {
+
+    if (typeof products === "undefined") {
+        console.error(
+            "products پیدا نشد."
+        );
+        return;
+    }
+
 
     document
         .querySelectorAll(".product-grid")
@@ -300,6 +305,15 @@ function renderProducts() {
    ===================================================== */
 
 function renderSavedProducts() {
+
+    if (
+        !pinnedProducts ||
+        !favoriteProducts ||
+        typeof products === "undefined"
+    ) {
+        return;
+    }
+
 
     const pinnedItems =
         products.filter(
@@ -435,6 +449,11 @@ function toggleFavorite(id) {
 
 function addToCart(id) {
 
+    if (typeof products === "undefined") {
+        return;
+    }
+
+
     const product =
         products.find(
             item => item.id === id
@@ -541,6 +560,15 @@ function changeQuantity(id, amount) {
    ===================================================== */
 
 function renderCart() {
+
+    if (
+        !cartList ||
+        !cartTotal ||
+        typeof products === "undefined"
+    ) {
+        return;
+    }
+
 
     if (cart.length === 0) {
 
@@ -653,6 +681,9 @@ function renderCart() {
 
 function updateCartCount() {
 
+    if (!cartCount) return;
+
+
     const count =
         cart.reduce(
             (sum, item) =>
@@ -675,6 +706,14 @@ function updateCartCount() {
 
 function openProductModal(id) {
 
+    if (
+        typeof products === "undefined" ||
+        !productModal
+    ) {
+        return;
+    }
+
+
     const product =
         products.find(
             item => item.id === id
@@ -687,30 +726,46 @@ function openProductModal(id) {
         product;
 
 
-    modalImage.src =
-        product.image;
+    if (modalImage) {
 
-    modalImage.alt =
-        product.name;
+        modalImage.src =
+            product.image;
 
-    modalImage.onerror =
-        function () {
+        modalImage.alt =
+            product.name;
 
-            imageError(this);
+        modalImage.onerror =
+            function () {
 
-        };
+                imageError(this);
 
+            };
 
-    modalName.textContent =
-        product.name;
-
-
-    modalCategory.textContent =
-        `دسته‌بندی: ${product.category}`;
+    }
 
 
-    modalPrice.textContent =
-        formatPrice(product.price);
+    if (modalName) {
+
+        modalName.textContent =
+            product.name;
+
+    }
+
+
+    if (modalCategory) {
+
+        modalCategory.textContent =
+            `دسته‌بندی: ${product.category}`;
+
+    }
+
+
+    if (modalPrice) {
+
+        modalPrice.textContent =
+            formatPrice(product.price);
+
+    }
 
 
     productModal.classList.add("show");
@@ -727,13 +782,14 @@ function openProductModal(id) {
 
 function closeProductModal() {
 
+    if (!productModal) return;
+
+
     productModal.classList.remove("show");
 
-    /*
-       اگر سایدمنو باز نیست، اسکرول body آزاد باشد.
-    */
 
     if (
+        !sideMenu ||
         !sideMenu.classList.contains("show")
     ) {
 
@@ -750,18 +806,16 @@ function closeProductModal() {
 
 function openMenu() {
 
+    if (!hamburger || !sideMenu || !menuOverlay) {
+        return;
+    }
+
+
     hamburger.classList.add("open");
 
     sideMenu.classList.add("show");
 
     menuOverlay.classList.add("show");
-
-    /*
-       مهم:
-       اسکرول body را قفل نمی‌کنیم.
-
-       خود sideMenu باید اسکرول شود.
-    */
 
 }
 
@@ -772,17 +826,20 @@ function openMenu() {
 
 function closeSideMenu() {
 
+    if (!hamburger || !sideMenu || !menuOverlay) {
+        return;
+    }
+
+
     hamburger.classList.remove("open");
 
     sideMenu.classList.remove("show");
 
     menuOverlay.classList.remove("show");
 
-    /*
-       اگر مودال باز نیست، body را آزاد می‌کنیم.
-    */
 
     if (
+        !productModal ||
         !productModal.classList.contains("show")
     ) {
 
@@ -796,13 +853,6 @@ function closeSideMenu() {
 /* =====================================================
    SIDE MENU TOUCH / SCROLL
    ===================================================== */
-
-/*
-   این قسمت مخصوص موبایل است.
-
-   وقتی انگشت روی خود سایدمنو حرکت می‌کند،
-   اجازه می‌دهیم اسکرول عمودی داخل منو انجام شود.
-*/
 
 if (sideMenu) {
 
@@ -851,46 +901,67 @@ if (sideMenu) {
    MENU EVENTS
    ===================================================== */
 
-hamburger.addEventListener(
-    "click",
-    () => {
+if (hamburger) {
 
-        if (
-            sideMenu.classList.contains("show")
-        ) {
+    hamburger.addEventListener(
+        "click",
+        () => {
 
-            closeSideMenu();
+            if (
+                sideMenu &&
+                sideMenu.classList.contains("show")
+            ) {
 
-        } else {
+                closeSideMenu();
 
-            openMenu();
+            } else {
+
+                openMenu();
+
+            }
 
         }
+    );
 
-    }
-);
-
-
-closeMenu.addEventListener(
-    "click",
-    closeSideMenu
-);
+}
 
 
-menuOverlay.addEventListener(
-    "click",
-    closeSideMenu
-);
+if (closeMenu) {
+
+    closeMenu.addEventListener(
+        "click",
+        closeSideMenu
+    );
+
+}
+
+
+if (menuOverlay) {
+
+    menuOverlay.addEventListener(
+        "click",
+        closeSideMenu
+    );
+
+}
 
 
 /* =====================================================
    CATEGORY MENU
    ===================================================== */
 
+/*
+   منوی محصولات:
+   مجلسی
+   روزمره
+   کودک
+   پاپیون
+
+   هر دکمه باید data-category داشته باشد.
+*/
+
 document
-    .querySelectorAll(
-        ".menu-item[data-category]"
-    )
+    .querySelectorAll(".menu-item[data-category]")
     .forEach(button => {
 
         button.addEventListener(
@@ -899,6 +970,8 @@ document
 
                 const category =
                     button.dataset.category;
+
+                if (!category) return;
 
 
                 closeSideMenu();
@@ -912,13 +985,17 @@ document
 
                 if (section) {
 
-                    section.scrollIntoView({
+                    setTimeout(() => {
 
-                        behavior: "smooth",
+                        section.scrollIntoView({
 
-                        block: "start"
+                            behavior: "smooth",
 
-                    });
+                            block: "start"
+
+                        });
+
+                    }, 250);
 
                 }
 
@@ -933,9 +1010,7 @@ document
    ===================================================== */
 
 document
-    .querySelectorAll(
-        ".category-card"
-    )
+    .querySelectorAll(".category-card")
     .forEach(button => {
 
         button.addEventListener(
@@ -944,6 +1019,8 @@ document
 
                 const category =
                     button.dataset.category;
+
+                if (!category) return;
 
 
                 const section =
@@ -978,83 +1055,10 @@ document.addEventListener(
     "click",
     event => {
 
+
+        /* ADD TO CART */
+
         const addButton =
             event.target.closest(
                 ".add-to-cart"
-            );
-
-
-        if (addButton) {
-
-            const id =
-                Number(
-                    addButton.dataset.id
-                );
-
-            addToCart(id);
-
-            return;
-
-        }
-
-
-        const pinButton =
-            event.target.closest(
-                ".pin-button"
-            );
-
-
-        if (pinButton) {
-
-            const id =
-                Number(
-                    pinButton.dataset.id
-                );
-
-            togglePin(id);
-
-            return;
-
-        }
-
-
-        const favoriteButton =
-            event.target.closest(
-                ".favorite-button"
-            );
-
-
-        if (favoriteButton) {
-
-            const id =
-                Number(
-                    favoriteButton.dataset.id
-                );
-
-            toggleFavorite(id);
-
-            return;
-
-        }
-
-
-        const quickView =
-            event.target.closest(
-                ".quick-view"
-            );
-
-
-        if (quickView) {
-
-            const id =
-                Number(
-                    quickView.dataset.id
-                );
-
-            openProductModal(id);
-
-        }
-
-    }
-);
-
+                
