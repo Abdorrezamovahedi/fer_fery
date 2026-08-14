@@ -729,8 +729,17 @@ function closeProductModal() {
 
     productModal.classList.remove("show");
 
-    document.body.style.overflow =
-        "";
+    /*
+       اگر سایدمنو باز نیست، اسکرول body آزاد باشد.
+    */
+
+    if (
+        !sideMenu.classList.contains("show")
+    ) {
+
+        document.body.style.overflow = "";
+
+    }
 
 }
 
@@ -747,6 +756,13 @@ function openMenu() {
 
     menuOverlay.classList.add("show");
 
+    /*
+       مهم:
+       اسکرول body را قفل نمی‌کنیم.
+
+       خود sideMenu باید اسکرول شود.
+    */
+
 }
 
 
@@ -761,6 +777,72 @@ function closeSideMenu() {
     sideMenu.classList.remove("show");
 
     menuOverlay.classList.remove("show");
+
+    /*
+       اگر مودال باز نیست، body را آزاد می‌کنیم.
+    */
+
+    if (
+        !productModal.classList.contains("show")
+    ) {
+
+        document.body.style.overflow = "";
+
+    }
+
+}
+
+
+/* =====================================================
+   SIDE MENU TOUCH / SCROLL
+   ===================================================== */
+
+/*
+   این قسمت مخصوص موبایل است.
+
+   وقتی انگشت روی خود سایدمنو حرکت می‌کند،
+   اجازه می‌دهیم اسکرول عمودی داخل منو انجام شود.
+*/
+
+if (sideMenu) {
+
+    sideMenu.addEventListener(
+        "touchstart",
+        event => {
+
+            event.stopPropagation();
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    sideMenu.addEventListener(
+        "touchmove",
+        event => {
+
+            event.stopPropagation();
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    sideMenu.addEventListener(
+        "wheel",
+        event => {
+
+            event.stopPropagation();
+
+        },
+        {
+            passive: true
+        }
+    );
 
 }
 
@@ -976,522 +1058,3 @@ document.addEventListener(
     }
 );
 
-
-/* =====================================================
-   CART EVENTS
-   ===================================================== */
-
-cartList.addEventListener(
-    "click",
-    event => {
-
-        const button =
-            event.target.closest(
-                "button[data-action]"
-            );
-
-
-        if (!button) return;
-
-
-        const id =
-            Number(
-                button.dataset.id
-            );
-
-
-        const action =
-            button.dataset.action;
-
-
-        if (action === "increase") {
-
-            changeQuantity(id, 1);
-
-        }
-
-
-        if (action === "decrease") {
-
-            changeQuantity(id, -1);
-
-        }
-
-
-        if (action === "remove") {
-
-            removeFromCart(id);
-
-            showToast(
-                "محصول حذف شد"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   MODAL EVENTS
-   ===================================================== */
-
-modalClose.addEventListener(
-    "click",
-    closeProductModal
-);
-
-
-productModal.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target === productModal
-        ) {
-
-            closeProductModal();
-
-        }
-
-    }
-);
-
-
-modalAddCart.addEventListener(
-    "click",
-    () => {
-
-        if (!currentModalProduct)
-            return;
-
-
-        addToCart(
-            currentModalProduct.id
-        );
-
-        closeProductModal();
-
-    }
-);
-
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
-
-searchButton.addEventListener(
-    "click",
-    () => {
-
-        searchArea.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "center"
-
-        });
-
-
-        setTimeout(() => {
-
-            searchInput.focus();
-
-        }, 400);
-
-    }
-);
-
-
-/* =====================================================
-   SEARCH ENGINE
-   ===================================================== */
-
-function searchProducts(query) {
-
-    const text =
-        query
-            .trim()
-            .toLowerCase();
-
-
-    if (!text) {
-
-        searchResults.innerHTML = "";
-
-        searchResults.classList.remove(
-            "show"
-        );
-
-        return;
-
-    }
-
-
-    const results =
-        products.filter(product => {
-
-            return (
-
-                product.name
-                    .toLowerCase()
-                    .includes(text)
-
-                ||
-
-                product.category
-                    .toLowerCase()
-                    .includes(text)
-
-            );
-
-        });
-
-
-    if (results.length === 0) {
-
-        searchResults.innerHTML = `
-
-            <div class="empty-message">
-
-                محصولی پیدا نشد.
-
-            </div>
-
-        `;
-
-        searchResults.classList.add(
-            "show"
-        );
-
-        return;
-
-    }
-
-
-    searchResults.innerHTML =
-        results
-            .slice(0, 8)
-            .map(product => `
-
-                <button
-                    class="search-result"
-                    data-id="${product.id}"
-                >
-
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}"
-                        onerror="imageError(this)"
-                    >
-
-
-                    <span class="search-result-info">
-
-                        <strong>
-                            ${product.name}
-                        </strong>
-
-                        <span>
-                            ${formatPrice(product.price)}
-                        </span>
-
-                    </span>
-
-                </button>
-
-            `)
-            .join("");
-
-
-    searchResults.classList.add(
-        "show"
-    );
-
-}
-
-
-/* =====================================================
-   SEARCH INPUT
-   ===================================================== */
-
-searchInput.addEventListener(
-    "input",
-    event => {
-
-        searchProducts(
-            event.target.value
-        );
-
-    }
-);
-
-
-/* =====================================================
-   SEARCH RESULT CLICK
-   ===================================================== */
-
-searchResults.addEventListener(
-    "click",
-    event => {
-
-        const result =
-            event.target.closest(
-                ".search-result"
-            );
-
-
-        if (!result) return;
-
-
-        const id =
-            Number(
-                result.dataset.id
-            );
-
-
-        openProductModal(id);
-
-
-        searchResults.classList.remove(
-            "show"
-        );
-
-        searchInput.blur();
-
-    }
-);
-
-
-/* =====================================================
-   CLEAR SEARCH
-   ===================================================== */
-
-clearSearch.addEventListener(
-    "click",
-    () => {
-
-        searchInput.value = "";
-
-        searchResults.innerHTML = "";
-
-        searchResults.classList.remove(
-            "show"
-        );
-
-        searchInput.focus();
-
-    }
-);
-
-
-/* =====================================================
-   CLOSE SEARCH WHEN CLICK OUTSIDE
-   ===================================================== */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        if (
-            !searchArea.contains(event.target)
-            &&
-            !searchButton.contains(event.target)
-        ) {
-
-            searchResults.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   CART BUTTON
-   ===================================================== */
-
-function scrollToCart() {
-
-    const section =
-        document.getElementById(
-            "cartSection"
-        );
-
-
-    section.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
-    });
-
-}
-
-
-cartButton.addEventListener(
-    "click",
-    scrollToCart
-);
-
-
-menuCartButton.addEventListener(
-    "click",
-    () => {
-
-        closeSideMenu();
-
-        setTimeout(
-            scrollToCart,
-            250
-        );
-
-    }
-);
-
-
-/* =====================================================
-   PINNED BUTTON
-   ===================================================== */
-
-pinnedButton.addEventListener(
-    "click",
-    () => {
-
-        closeSideMenu();
-
-        setTimeout(() => {
-
-            document
-                .getElementById(
-                    "pinnedSection"
-                )
-                .scrollIntoView({
-
-                    behavior: "smooth",
-
-                    block: "start"
-
-                });
-
-        }, 250);
-
-    }
-);
-
-
-/* =====================================================
-   FAVORITES BUTTON
-   ===================================================== */
-
-favoritesButton.addEventListener(
-    "click",
-    () => {
-
-        closeSideMenu();
-
-        setTimeout(() => {
-
-            document
-                .getElementById(
-                    "favoritesSection"
-                )
-                .scrollIntoView({
-
-                    behavior: "smooth",
-
-                    block: "start"
-
-                });
-
-        }, 250);
-
-    }
-);
-
-
-/* =====================================================
-   HERO BUTTONS
-   ===================================================== */
-
-document
-    .querySelectorAll(
-        "[data-scroll]"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const id =
-                    button.dataset.scroll;
-
-
-                const element =
-                    document.getElementById(id);
-
-
-                if (element) {
-
-                    element.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-/* =====================================================
-   ESCAPE KEY
-   ===================================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key === "Escape") {
-
-            closeSideMenu();
-
-            closeProductModal();
-
-            searchResults.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   INITIALIZE
-   ===================================================== */
-
-function initializeSite() {
-
-    renderProducts();
-
-    renderSavedProducts();
-
-    renderCart();
-
-    updateCartCount();
-
-}
-
-
-initializeSite();
