@@ -51,18 +51,15 @@ let cart =
         localStorage.getItem("ferFeryCart")
     ) || [];
 
-
 let pinned =
     JSON.parse(
         localStorage.getItem("ferFeryPinned")
     ) || [];
 
-
 let favorites =
     JSON.parse(
         localStorage.getItem("ferFeryFavorites")
     ) || [];
-
 
 let currentModalProduct = null;
 
@@ -160,9 +157,10 @@ function imageError(img) {
                     y="350"
                     text-anchor="middle"
                     font-size="34"
-                    fill="#9f5265"
-                >
+                    fill="#9f5265">
+
                     Fer Fery
+
                 </text>
 
                 <text
@@ -170,9 +168,10 @@ function imageError(img) {
                     y="400"
                     text-anchor="middle"
                     font-size="20"
-                    fill="#806265"
-                >
+                    fill="#806265">
+
                     تصویر محصول
+
                 </text>
 
             </svg>
@@ -193,7 +192,6 @@ function createProductCard(product) {
     const isFavorite =
         favorites.includes(product.id);
 
-
     return `
 
         <article
@@ -209,7 +207,6 @@ function createProductCard(product) {
                     onerror="imageError(this)"
                 >
 
-
                 <div class="product-actions">
 
                     <button
@@ -221,7 +218,6 @@ function createProductCard(product) {
                     >
                         📌
                     </button>
-
 
                     <button
                         class="product-action favorite-button ${
@@ -239,6 +235,16 @@ function createProductCard(product) {
 
                 </div>
 
+                ${
+                    product.sale
+                    ? `
+                        <span class="sale-badge">
+                            ویژه
+                        </span>
+                    `
+                    : ""
+                }
+
             </div>
 
 
@@ -248,13 +254,9 @@ function createProductCard(product) {
                     ${product.name}
                 </h4>
 
-
                 <div class="product-price">
-
                     ${formatPrice(product.price)}
-
                 </div>
-
 
                 <button
                     class="add-to-cart"
@@ -262,7 +264,6 @@ function createProductCard(product) {
                 >
                     افزودن به سبد خرید
                 </button>
-
 
                 <button
                     class="quick-view"
@@ -298,7 +299,6 @@ function renderProducts() {
                     product =>
                         product.category === category
                 );
-
 
             grid.innerHTML =
                 categoryProducts
@@ -400,7 +400,6 @@ function togglePin(id) {
 
     }
 
-
     saveData();
 
     renderProducts();
@@ -438,7 +437,6 @@ function toggleFavorite(id) {
 
     }
 
-
     saveData();
 
     renderProducts();
@@ -458,7 +456,6 @@ function addToCart(id) {
         products.find(
             item => item.id === id
         );
-
 
     if (!product) return;
 
@@ -510,7 +507,6 @@ function removeFromCart(id) {
             item =>
                 item.id !== id
         );
-
 
     saveData();
 
@@ -966,6 +962,46 @@ document
 
 
 /* =====================================================
+   SCROLL BUTTONS
+   ===================================================== */
+
+document
+    .querySelectorAll(
+        "[data-scroll]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const targetId =
+                    button.dataset.scroll;
+
+                const target =
+                    document.getElementById(
+                        targetId
+                    );
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "start"
+
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
    PRODUCT EVENTS
    ===================================================== */
 
@@ -995,65 +1031,4 @@ document.addEventListener(
 
         const pinButton =
             event.target.closest(
-                ".pin-button"
-            );
-
-
-        if (pinButton) {
-
-            const id =
-                Number(
-                    pinButton.dataset.id
-                );
-
-            togglePin(id);
-
-            return;
-
-        }
-
-
-        const favoriteButton =
-            event.target.closest(
-                ".favorite-button"
-            );
-
-
-        if (favoriteButton) {
-
-            const id =
-                Number(
-                    favoriteButton.dataset.id
-                );
-
-            toggleFavorite(id);
-
-            return;
-
-        }
-
-
-        const quickView =
-            event.target.closest(
-                ".quick-view"
-            );
-
-
-        if (quickView) {
-
-            const id =
-                Number(
-                    quickView.dataset.id
-                );
-
-            openProductModal(id);
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   CART EVENTS
-   ==============================
+           
