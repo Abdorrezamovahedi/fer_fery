@@ -1,5 +1,5 @@
 /* =====================================================
-   MAISON ROSE
+   FER FERY
    SCRIPT.JS
    ===================================================== */
 
@@ -46,17 +46,23 @@ const toast = document.getElementById("toast");
    DATA
    ===================================================== */
 
-let cart = JSON.parse(
-    localStorage.getItem("maisonRoseCart")
-) || [];
+let cart =
+    JSON.parse(
+        localStorage.getItem("ferFeryCart")
+    ) || [];
 
-let pinned = JSON.parse(
-    localStorage.getItem("maisonRosePinned")
-) || [];
 
-let favorites = JSON.parse(
-    localStorage.getItem("maisonRoseFavorites")
-) || [];
+let pinned =
+    JSON.parse(
+        localStorage.getItem("ferFeryPinned")
+    ) || [];
+
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("ferFeryFavorites")
+    ) || [];
+
 
 let currentModalProduct = null;
 
@@ -68,17 +74,17 @@ let currentModalProduct = null;
 function saveData() {
 
     localStorage.setItem(
-        "maisonRoseCart",
+        "ferFeryCart",
         JSON.stringify(cart)
     );
 
     localStorage.setItem(
-        "maisonRosePinned",
+        "ferFeryPinned",
         JSON.stringify(pinned)
     );
 
     localStorage.setItem(
-        "maisonRoseFavorites",
+        "ferFeryFavorites",
         JSON.stringify(favorites)
     );
 
@@ -91,8 +97,11 @@ function saveData() {
 
 function formatPrice(price) {
 
-    return new Intl.NumberFormat("fa-IR").format(price)
-        + " تومان";
+    return (
+        new Intl.NumberFormat("fa-IR")
+            .format(price)
+        + " تومان"
+    );
 
 }
 
@@ -128,6 +137,8 @@ function showToast(message) {
 
 function imageError(img) {
 
+    if (!img) return;
+
     img.onerror = null;
 
     img.src =
@@ -149,10 +160,9 @@ function imageError(img) {
                     y="350"
                     text-anchor="middle"
                     font-size="34"
-                    fill="#9f5265">
-
-                    Maison Rose
-
+                    fill="#9f5265"
+                >
+                    Fer Fery
                 </text>
 
                 <text
@@ -160,10 +170,9 @@ function imageError(img) {
                     y="400"
                     text-anchor="middle"
                     font-size="20"
-                    fill="#806265">
-
+                    fill="#806265"
+                >
                     تصویر محصول
-
                 </text>
 
             </svg>
@@ -200,6 +209,7 @@ function createProductCard(product) {
                     onerror="imageError(this)"
                 >
 
+
                 <div class="product-actions">
 
                     <button
@@ -211,6 +221,7 @@ function createProductCard(product) {
                     >
                         📌
                     </button>
+
 
                     <button
                         class="product-action favorite-button ${
@@ -230,15 +241,20 @@ function createProductCard(product) {
 
             </div>
 
+
             <div class="product-info">
 
                 <h4>
                     ${product.name}
                 </h4>
 
+
                 <div class="product-price">
+
                     ${formatPrice(product.price)}
+
                 </div>
+
 
                 <button
                     class="add-to-cart"
@@ -246,6 +262,7 @@ function createProductCard(product) {
                 >
                     افزودن به سبد خرید
                 </button>
+
 
                 <button
                     class="quick-view"
@@ -269,14 +286,6 @@ function createProductCard(product) {
 
 function renderProducts() {
 
-    if (typeof products === "undefined") {
-        console.error(
-            "products پیدا نشد."
-        );
-        return;
-    }
-
-
     document
         .querySelectorAll(".product-grid")
         .forEach(grid => {
@@ -289,6 +298,7 @@ function renderProducts() {
                     product =>
                         product.category === category
                 );
+
 
             grid.innerHTML =
                 categoryProducts
@@ -306,13 +316,8 @@ function renderProducts() {
 
 function renderSavedProducts() {
 
-    if (
-        !pinnedProducts ||
-        !favoriteProducts ||
-        typeof products === "undefined"
-    ) {
+    if (!pinnedProducts || !favoriteProducts)
         return;
-    }
 
 
     const pinnedItems =
@@ -449,15 +454,11 @@ function toggleFavorite(id) {
 
 function addToCart(id) {
 
-    if (typeof products === "undefined") {
-        return;
-    }
-
-
     const product =
         products.find(
             item => item.id === id
         );
+
 
     if (!product) return;
 
@@ -510,6 +511,7 @@ function removeFromCart(id) {
                 item.id !== id
         );
 
+
     saveData();
 
     renderCart();
@@ -530,6 +532,7 @@ function changeQuantity(id, amount) {
             cartItem =>
                 cartItem.id === id
         );
+
 
     if (!item) return;
 
@@ -561,13 +564,8 @@ function changeQuantity(id, amount) {
 
 function renderCart() {
 
-    if (
-        !cartList ||
-        !cartTotal ||
-        typeof products === "undefined"
-    ) {
+    if (!cartList || !cartTotal)
         return;
-    }
 
 
     if (cart.length === 0) {
@@ -590,83 +588,86 @@ function renderCart() {
 
 
     cartList.innerHTML =
-        cart.map(item => {
+        cart
+            .map(item => {
 
-            const product =
-                products.find(
-                    p =>
-                        p.id === item.id
-                );
-
-
-            if (!product) return "";
+                const product =
+                    products.find(
+                        p =>
+                            p.id === item.id
+                    );
 
 
-            const itemTotal =
-                product.price *
-                item.quantity;
+                if (!product)
+                    return "";
 
 
-            total += itemTotal;
+                const itemTotal =
+                    product.price *
+                    item.quantity;
 
 
-            return `
+                total += itemTotal;
 
-                <div
-                    class="cart-item"
-                    data-id="${product.id}"
-                >
 
-                    <div>
+                return `
 
-                        <strong>
-                            ${product.name}
-                        </strong>
+                    <div
+                        class="cart-item"
+                        data-id="${product.id}"
+                    >
 
                         <div>
-                            ${formatPrice(product.price)}
+
+                            <strong>
+                                ${product.name}
+                            </strong>
+
+                            <div>
+                                ${formatPrice(product.price)}
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart-controls">
+
+                            <button
+                                data-action="increase"
+                                data-id="${product.id}"
+                            >
+                                +
+                            </button>
+
+
+                            <span>
+                                ${item.quantity}
+                            </span>
+
+
+                            <button
+                                data-action="decrease"
+                                data-id="${product.id}"
+                            >
+                                −
+                            </button>
+
+
+                            <button
+                                data-action="remove"
+                                data-id="${product.id}"
+                            >
+                                🗑️
+                            </button>
+
                         </div>
 
                     </div>
 
+                `;
 
-                    <div class="cart-controls">
-
-                        <button
-                            data-action="increase"
-                            data-id="${product.id}"
-                        >
-                            +
-                        </button>
-
-
-                        <span>
-                            ${item.quantity}
-                        </span>
-
-
-                        <button
-                            data-action="decrease"
-                            data-id="${product.id}"
-                        >
-                            −
-                        </button>
-
-
-                        <button
-                            data-action="remove"
-                            data-id="${product.id}"
-                        >
-                            🗑️
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
+            })
+            .join("");
 
 
     cartTotal.textContent =
@@ -681,7 +682,8 @@ function renderCart() {
 
 function updateCartCount() {
 
-    if (!cartCount) return;
+    if (!cartCount)
+        return;
 
 
     const count =
@@ -706,18 +708,11 @@ function updateCartCount() {
 
 function openProductModal(id) {
 
-    if (
-        typeof products === "undefined" ||
-        !productModal
-    ) {
-        return;
-    }
-
-
     const product =
         products.find(
             item => item.id === id
         );
+
 
     if (!product) return;
 
@@ -768,10 +763,14 @@ function openProductModal(id) {
     }
 
 
-    productModal.classList.add("show");
+    if (productModal) {
 
-    document.body.style.overflow =
-        "hidden";
+        productModal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
 
 }
 
@@ -782,20 +781,14 @@ function openProductModal(id) {
 
 function closeProductModal() {
 
-    if (!productModal) return;
+    if (!productModal)
+        return;
 
 
     productModal.classList.remove("show");
 
-
-    if (
-        !sideMenu ||
-        !sideMenu.classList.contains("show")
-    ) {
-
-        document.body.style.overflow = "";
-
-    }
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -806,16 +799,14 @@ function closeProductModal() {
 
 function openMenu() {
 
-    if (!hamburger || !sideMenu || !menuOverlay) {
-        return;
-    }
+    if (hamburger)
+        hamburger.classList.add("open");
 
+    if (sideMenu)
+        sideMenu.classList.add("show");
 
-    hamburger.classList.add("open");
-
-    sideMenu.classList.add("show");
-
-    menuOverlay.classList.add("show");
+    if (menuOverlay)
+        menuOverlay.classList.add("show");
 
 }
 
@@ -826,73 +817,14 @@ function openMenu() {
 
 function closeSideMenu() {
 
-    if (!hamburger || !sideMenu || !menuOverlay) {
-        return;
-    }
+    if (hamburger)
+        hamburger.classList.remove("open");
 
+    if (sideMenu)
+        sideMenu.classList.remove("show");
 
-    hamburger.classList.remove("open");
-
-    sideMenu.classList.remove("show");
-
-    menuOverlay.classList.remove("show");
-
-
-    if (
-        !productModal ||
-        !productModal.classList.contains("show")
-    ) {
-
-        document.body.style.overflow = "";
-
-    }
-
-}
-
-
-/* =====================================================
-   SIDE MENU TOUCH / SCROLL
-   ===================================================== */
-
-if (sideMenu) {
-
-    sideMenu.addEventListener(
-        "touchstart",
-        event => {
-
-            event.stopPropagation();
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    sideMenu.addEventListener(
-        "touchmove",
-        event => {
-
-            event.stopPropagation();
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    sideMenu.addEventListener(
-        "wheel",
-        event => {
-
-            event.stopPropagation();
-
-        },
-        {
-            passive: true
-        }
-    );
+    if (menuOverlay)
+        menuOverlay.classList.remove("show");
 
 }
 
@@ -950,18 +882,10 @@ if (menuOverlay) {
    CATEGORY MENU
    ===================================================== */
 
-/*
-   منوی محصولات:
-   مجلسی
-   روزمره
-   کودک
-   پاپیون
-
-   هر دکمه باید data-category داشته باشد.
-*/
-
 document
-    .querySelectorAll(".menu-item[data-category]")
+    .querySelectorAll(
+        ".menu-item[data-category]"
+    )
     .forEach(button => {
 
         button.addEventListener(
@@ -970,8 +894,6 @@ document
 
                 const category =
                     button.dataset.category;
-
-                if (!category) return;
 
 
                 closeSideMenu();
@@ -985,17 +907,13 @@ document
 
                 if (section) {
 
-                    setTimeout(() => {
+                    section.scrollIntoView({
 
-                        section.scrollIntoView({
+                        behavior: "smooth",
 
-                            behavior: "smooth",
+                        block: "start"
 
-                            block: "start"
-
-                        });
-
-                    }, 250);
+                    });
 
                 }
 
@@ -1010,7 +928,9 @@ document
    ===================================================== */
 
 document
-    .querySelectorAll(".category-card")
+    .querySelectorAll(
+        ".category-card"
+    )
     .forEach(button => {
 
         button.addEventListener(
@@ -1019,8 +939,6 @@ document
 
                 const category =
                     button.dataset.category;
-
-                if (!category) return;
 
 
                 const section =
@@ -1055,10 +973,87 @@ document.addEventListener(
     "click",
     event => {
 
-
-        /* ADD TO CART */
-
         const addButton =
             event.target.closest(
                 ".add-to-cart"
-                
+            );
+
+
+        if (addButton) {
+
+            const id =
+                Number(
+                    addButton.dataset.id
+                );
+
+            addToCart(id);
+
+            return;
+
+        }
+
+
+        const pinButton =
+            event.target.closest(
+                ".pin-button"
+            );
+
+
+        if (pinButton) {
+
+            const id =
+                Number(
+                    pinButton.dataset.id
+                );
+
+            togglePin(id);
+
+            return;
+
+        }
+
+
+        const favoriteButton =
+            event.target.closest(
+                ".favorite-button"
+            );
+
+
+        if (favoriteButton) {
+
+            const id =
+                Number(
+                    favoriteButton.dataset.id
+                );
+
+            toggleFavorite(id);
+
+            return;
+
+        }
+
+
+        const quickView =
+            event.target.closest(
+                ".quick-view"
+            );
+
+
+        if (quickView) {
+
+            const id =
+                Number(
+                    quickView.dataset.id
+                );
+
+            openProductModal(id);
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CART EVENTS
+   ==============================
