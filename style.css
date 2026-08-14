@@ -1923,12 +1923,57 @@ footer {
     }
 
 
+    /* ==========================================
+       PRODUCTS - MOBILE HORIZONTAL SCROLL
+       ========================================== */
+
     .product-grid {
 
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        display: flex;
 
-        gap: 12px;
+        flex-direction: row;
+
+        flex-wrap: nowrap;
+
+        gap: 14px;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        padding:
+            5px 4px 15px;
+
+        scroll-snap-type: x mandatory;
+
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+
+        touch-action: pan-x;
+
+    }
+
+
+    .product-grid::-webkit-scrollbar {
+
+        display: none;
+
+    }
+
+
+    .product-card {
+
+        flex:
+            0 0 78%;
+
+        min-width: 78%;
+
+        width: 78%;
+
+        scroll-snap-align: start;
 
     }
 
@@ -2023,10 +2068,34 @@ footer {
 
 @media (max-width: 380px) {
 
+    /*
+       در موبایل خیلی کوچک هم اسکرول افقی محصولات
+       حفظ می‌شود و محصولات زیر هم نمی‌روند.
+    */
+
     .product-grid {
 
-        grid-template-columns:
-            1fr;
+        display: flex;
+
+        flex-direction: row;
+
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+    }
+
+
+    .product-card {
+
+        flex:
+            0 0 84%;
+
+        min-width: 84%;
+
+        width: 84%;
 
     }
 
