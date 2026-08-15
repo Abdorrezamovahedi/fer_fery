@@ -1,171 +1,203 @@
-/* =====================================================
-   MAISON ROSE
-   PRODUCTS.JS
-   ===================================================== */
+// ==========================================
+// FER FERY
+// اطلاعات محصولات
+// ==========================================
 
 const products = [
 
-    /* =========================
-       مجلسی
-       ========================= */
-
-    {
-        id: 1,
-        name: "abdorreza",
-        category: "مجلسی",
-        price: 10000000000,
-        image: "Annotation 2026-08-03 152429.png",
-        sale: true
-    },
-
-    {
-        id: 2,
-        name: "pass",
-        category: "مجلسی",
-        price: 0,
-        image: "#",
-        sale: false
-    },
-
-    {
-        id: 3,
-        name: "pass",
-        category: "مجلسی",
-        price: 0,
-        image: "#",
-        sale: true
-    },
-
-    {
-        id: 4,
-        name: "pass",
-        category: "مجلسی",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  // ================= مجلسی =================
 
 
-    /* =========================
-       روزمره
-       ========================= */
 
-    {
-        id: 5,
-        name: "pass",
-        category: "روزمره",
-        price: 0,
-        image: "#",
-        sale: false
-    },
-
-    {
-        id: 6,
-        name: "pass",
-        category: "روزمره",
-        price: 0,
-        image: "#",
-        sale: false
-    },
-
-    {
-        id: 7,
-        name: "pass",
-        category: "روزمره",
-        price: 0,
-        image: "#",
-        sale: true
-    },
-
-    {
-        id: 8,
-        name: "pass",
-        category: "روزمره",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  {
+    id: 1,
+    name: "pass",
+    category: "مجلسی",
+    categoryId: "majlesi",
+    price: 0,
+    image: ""
+  },
 
 
-    /* =========================
-       کودک
-       ========================= */
+  {
+    id: 2,
+    name: "pass",
+    category: "مجلسی",
+    categoryId: "majlesi",
+    price: 0,
+    image: ""
+  },
 
-    {
-        id: 9,
-        name: "pass",
-        category: "کودک",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  {
+    id: 3,
+    name: "pass",
+    category: "مجلسی",
+    categoryId: "majlesi",
+    price: 0,
+    image: ""
+  },
 
-    {
-        id: 10,
-        name: "pass",
-        category: "کودک",
-        price: 0,
-        image: "#",
-        sale: true
-    },
-
-    {
-        id: 11,
-        name: "pass",
-        category: "کودک",
-        price: 0,
-        image: "#",
-        sale: false
-    },
-
-    {
-        id: 12,
-        name: "pass",
-        category: "کودک",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  {
+    id: 4,
+    name: "pass",
+    category: "مجلسی",
+    categoryId: "majlesi",
+    price: 0,
+    image: ""
+  },
 
 
-    /* =========================
-       پاپیون
-       ========================= */
+  // ================= روزمره =================
 
-    {
-        id: 13,
-        name: "pass",
-        category: "پاپیون",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  {
+    id: 5,
+    name: "pass",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: ""
+  },
 
-    {
-        id: 14,
-        name: "pass",
-        category: "پاپیون",
-        price: 0,
-        image: "#",
-        sale: true
-    },
+  {
+    id: 6,
+    name: "pass",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: ""
+  },
 
-    {
-        id: 15,
-        name: "pass",
-        category: "پاپیون",
-        price: 0,
-        image: "#",
-        sale: false
-    },
+  {
+    id: 7,
+    name: "pass",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: ""
+  },
 
-    {
-        id: 16,
-        name: "pass",
-        category: "پاپیون",
-        price: 0,
-        image: "#",
-        sale: false
-    }
+  {
+    id: 8,
+    name: "pass",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: ""
+  },
+
+
+  // ================= کودک =================
+
+  {
+    id: 9,
+    name: "pass",
+    category: "کودک",
+    categoryId: "koodak",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 10,
+    name: "pass",
+    category: "کودک",
+    categoryId: "koodak",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 11,
+    name: "pass",
+    category: "کودک",
+    categoryId: "koodak",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 12,
+    name: "pass",
+    category: "کودک",
+    categoryId: "koodak",
+    price: 0,
+    image: ""
+  },
+
+
+  // ================= پاپیون =================
+
+  {
+    id: 13,
+    name: "pass",
+    category: "پاپیون",
+    categoryId: "papion",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 14,
+    name: "pass",
+    category: "پاپیون",
+    categoryId: "papion",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 15,
+    name: "pass",
+    category: "پاپیون",
+    categoryId: "papion",
+    price: 0,
+    image: ""
+  },
+
+  {
+    id: 16,
+    name: "pass",
+    category: "پاپیون",
+    categoryId: "papion",
+    price: 0,
+    image: ""
+  }
 
 ];
+
+
+// ==========================================
+// تبدیل قیمت به فرمت فارسی
+// ==========================================
+
+function formatPrice(price){
+
+  return Number(price).toLocaleString("fa-IR") + " تومان";
+
+}
+
+
+// ==========================================
+// گرفتن محصولات یک دسته
+// ==========================================
+
+function getProductsByCategory(categoryId){
+
+  return products.filter(
+    product => product.categoryId === categoryId
+  );
+
+}
+
+
+// ==========================================
+// پیدا کردن محصول با ID
+// ==========================================
+
+function getProductById(id){
+
+  return products.find(
+    product => product.id === Number(id)
+  );
+
+     }
