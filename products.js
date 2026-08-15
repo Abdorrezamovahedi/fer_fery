@@ -7,161 +7,204 @@ const products = [
 
   // ================= مجلسی =================
 
-
-
   {
     id: 1,
-    name: "pass",
+    name: "کلیپس پاپیون",
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/majlesy/m_1.jpg"
   },
-
 
   {
     id: 2,
-    name: "pass",
+    name: "کلیپس مجلسی",
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/majlesy/m_2.jpg"
   },
 
   {
     id: 3,
-    name: "pass",
+    name: "چفتی پروانه",
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/majlesy/m_3.jpg"
   },
 
   {
     id: 4,
-    name: "pass",
+    name: "تاج کودک",
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/majlesy/m_4.jpg"
+  },
+
+  {
+    id: 5,
+    name: "کلیپس زربان",
+    category: "مجلسی",
+    categoryId: "majlesi",
+    price: 0,
+    image: "inges/mahsols/majlesy/m_5.jpg"
   },
 
 
   // ================= روزمره =================
 
   {
-    id: 5,
-    name: "pass",
-    category: "روزمره",
-    categoryId: "rozmarre",
-    price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
-  },
-
-  {
     id: 6,
-    name: "pass",
+    name: "کش کودک",
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/roozmare/r_1.jpg"
   },
 
   {
     id: 7,
-    name: "pass",
+    name: "کلیپس بابونه",
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/roozmare/r_2.jpg"
   },
 
   {
     id: 8,
-    name: "pass",
+    name: "کلیپس گل",
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/roozmare/r_3.jpg"
+  },
+
+  {
+    id: 9,
+    name: "کلیپس پاپیون",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: "inges/mahsols/roozmare/r_4.jpg"
+  },
+
+  {
+    id: 10,
+    name: "کش کودک",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: "inges/mahsols/roozmare/r_5.jpg"
+  },
+
+  {
+    id: 11,
+    name: "کلیپس با کییفیت",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: "inges/mahsols/roozmare/r_6.jpg"
+  },
+
+  {
+    id: 12,
+    name: "کلیپس اکرولیک",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: "inges/mahsols/roozmare/r_7.jpg"
+  },
+
+  {
+    id: 13,
+    name: "کلیپس ماه",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    price: 0,
+    image: "inges/mahsols/roozmare/r_8.jpg"
   },
 
 
   // ================= کودک =================
 
   {
-    id: 9,
-    name: "pass",
+    id: 14,
+    name: "انبری آفتاب گردان",
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/koodak/k_1.jpg"
   },
 
   {
-    id: 10,
-    name: "pass",
+    id: 15,
+    name: "انبری پاپیون",
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/koodak/k_2.jpg"
   },
 
   {
-    id: 11,
-    name: "pass",
+    id: 16,
+    name: "کلیپس موی رنگی",
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/koodak/k_3.jpg"
   },
 
   {
-    id: 12,
-    name: "pass",
+    id: 17,
+    name: "موی مصنوعی کرومی",
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/koodak/k_4.jpg"
   },
 
 
   // ================= پاپیون =================
 
   {
-    id: 13,
-    name: "pass",
+    id: 18,
+    name: "اسکرانچی پاپیون",
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/papioon/p_1.jpg"
   },
 
   {
-    id: 14,
-    name: "pass",
+    id: 19,
+    name: "فرانسوی کیسه ای",
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/papioon/p_2.jpg"
   },
 
   {
-    id: 15,
-    name: "pass",
+    id: 20,
+    name: "پاپیون انبری",
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/papioon/p_3.jpg"
   },
 
   {
-    id: 16,
-    name: "pass",
+    id: 21,
+    name: "پاپیون مخمل",
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: "inges/no_mahsols/bedone_mahsol.jpg"
+    image: "inges/mahsols/papioon/p_4.jpg"
   }
+
 
 ];
 
@@ -170,7 +213,7 @@ const products = [
 // تبدیل قیمت به فرمت فارسی
 // ==========================================
 
-function formatPrice(price){
+function formatPrice(price) {
 
   return Number(price).toLocaleString("fa-IR") + " تومان";
 
@@ -181,7 +224,7 @@ function formatPrice(price){
 // گرفتن محصولات یک دسته
 // ==========================================
 
-function getProductsByCategory(categoryId){
+function getProductsByCategory(categoryId) {
 
   return products.filter(
     product => product.categoryId === categoryId
@@ -194,10 +237,10 @@ function getProductsByCategory(categoryId){
 // پیدا کردن محصول با ID
 // ==========================================
 
-function getProductById(id){
+function getProductById(id) {
 
   return products.find(
     product => product.id === Number(id)
   );
 
-     }
+}

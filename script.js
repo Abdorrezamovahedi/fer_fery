@@ -67,14 +67,12 @@ function savePinned() {
 function openMenu() {
   sideMenu.classList.add("active");
   overlay.classList.add("active");
-
   document.body.style.overflow = "hidden";
 }
 
 function closeSideMenu() {
   sideMenu.classList.remove("active");
   overlay.classList.remove("active");
-
   document.body.style.overflow = "";
 }
 
@@ -94,18 +92,21 @@ document.querySelectorAll(".menu-link").forEach(link => {
     event.preventDefault();
 
     const targetId = link.getAttribute("href");
-
     const target = document.querySelector(targetId);
 
     closeSideMenu();
 
     if (target) {
+
       setTimeout(() => {
+
         target.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
+
       }, 150);
+
     }
 
   });
@@ -185,11 +186,19 @@ function createCard(product) {
 function renderProducts() {
 
   const categories = {
+
     "مجلسی": "majlesiGrid",
+
     "روزمره": "rozmarreGrid",
+
     "کودک": "koodakGrid",
-    "پاپییون": "papionGrid"
+
+    // اصلاح شد:
+    // پاپیون با products.js یکی است
+    "پاپیون": "papionGrid"
+
   };
+
 
   Object.entries(categories).forEach(
     ([category, elementId]) => {
@@ -197,11 +206,15 @@ function renderProducts() {
       const element =
         document.getElementById(elementId);
 
+      if (!element) return;
+
+
       const categoryProducts =
         products.filter(
           product =>
             product.category === category
         );
+
 
       element.innerHTML =
         categoryProducts
@@ -210,6 +223,7 @@ function renderProducts() {
 
     }
   );
+
 
   renderPinned();
 }
@@ -241,6 +255,7 @@ function togglePin(id) {
     showToast(
       "محصول به پین‌شده‌ها اضافه شد 📌"
     );
+
   }
 
   savePinned();
@@ -257,11 +272,13 @@ function renderPinned() {
   const empty =
     document.getElementById("emptyPinned");
 
+
   const pinnedProducts =
     products.filter(
       product =>
         state.pinned.includes(product.id)
     );
+
 
   if (pinnedProducts.length === 0) {
 
@@ -270,9 +287,12 @@ function renderPinned() {
     empty.style.display = "block";
 
     return;
+
   }
 
+
   empty.style.display = "none";
+
 
   grid.innerHTML =
     pinnedProducts
@@ -294,6 +314,7 @@ function addToCart(id) {
       item => item.id === id
     );
 
+
   if (existing) {
 
     existing.quantity++;
@@ -307,9 +328,11 @@ function addToCart(id) {
 
   }
 
+
   saveCart();
 
   renderCart();
+
   updateCartCount();
 
   showToast(
@@ -327,13 +350,16 @@ function increaseQuantity(id) {
       product => product.id === id
     );
 
+
   if (!item) return;
+
 
   item.quantity++;
 
   saveCart();
 
   renderCart();
+
   updateCartCount();
 }
 
@@ -347,9 +373,12 @@ function decreaseQuantity(id) {
       product => product.id === id
     );
 
+
   if (!item) return;
 
+
   item.quantity--;
+
 
   if (item.quantity <= 0) {
 
@@ -360,9 +389,11 @@ function decreaseQuantity(id) {
 
   }
 
+
   saveCart();
 
   renderCart();
+
   updateCartCount();
 }
 
@@ -376,9 +407,11 @@ function removeFromCart(id) {
       product => product.id !== id
     );
 
+
   saveCart();
 
   renderCart();
+
   updateCartCount();
 
   showToast("محصول حذف شد");
@@ -400,6 +433,7 @@ function renderCart() {
   const totalBox =
     document.getElementById("cartTotalBox");
 
+
   if (state.cart.length === 0) {
 
     container.innerHTML = "";
@@ -409,11 +443,14 @@ function renderCart() {
     totalBox.hidden = true;
 
     return;
+
   }
+
 
   empty.style.display = "none";
 
   totalBox.hidden = false;
+
 
   container.innerHTML =
     state.cart
@@ -425,9 +462,9 @@ function renderCart() {
               product.id === item.id
           );
 
-        if (!product) {
-          return "";
-        }
+
+        if (!product) return "";
+
 
         return `
           <div class="cart-item">
@@ -482,6 +519,7 @@ function renderCart() {
       })
       .join("");
 
+
   updateTotal();
 }
 
@@ -490,6 +528,7 @@ function updateTotal() {
 
   let total = 0;
 
+
   state.cart.forEach(item => {
 
     const product =
@@ -497,6 +536,7 @@ function updateTotal() {
         product =>
           product.id === item.id
       );
+
 
     if (product) {
 
@@ -507,6 +547,7 @@ function updateTotal() {
     }
 
   });
+
 
   document.getElementById(
     "cartTotal"
@@ -523,6 +564,7 @@ function updateCartCount() {
         sum + item.quantity,
       0
     );
+
 
   cartCount.textContent =
     count.toLocaleString("fa-IR");
@@ -542,6 +584,7 @@ search.addEventListener(
         .trim()
         .toLowerCase();
 
+
     if (!query) {
 
       searchResults.innerHTML = "";
@@ -552,6 +595,7 @@ search.addEventListener(
 
       return;
     }
+
 
     const results =
       products.filter(product => {
@@ -567,6 +611,7 @@ search.addEventListener(
         );
 
       });
+
 
     if (results.length === 0) {
 
@@ -606,11 +651,14 @@ search.addEventListener(
             </div>
           `)
           .join("");
+
     }
+
 
     searchResults.classList.add(
       "active"
     );
+
   }
 );
 
@@ -628,6 +676,7 @@ clearSearch.addEventListener(
     );
 
     search.focus();
+
   }
 );
 
@@ -640,14 +689,18 @@ function openProduct(id) {
 
   id = Number(id);
 
+
   const product =
     products.find(
       item => item.id === id
     );
 
+
   if (!product) return;
 
+
   state.currentProduct = product;
+
 
   modalImage.src =
     product.image;
@@ -664,14 +717,17 @@ function openProduct(id) {
   modalPrice.textContent =
     formatPrice(product.price);
 
+
   productModal.classList.add(
     "active"
   );
+
 
   productModal.setAttribute(
     "aria-hidden",
     "false"
   );
+
 
   document.body.style.overflow =
     "hidden";
@@ -684,10 +740,12 @@ function closeProduct() {
     "active"
   );
 
+
   productModal.setAttribute(
     "aria-hidden",
     "true"
   );
+
 
   document.body.style.overflow = "";
 
@@ -709,7 +767,9 @@ productModal.addEventListener(
       event.target ===
       productModal
     ) {
+
       closeProduct();
+
     }
 
   }
@@ -749,6 +809,7 @@ document.addEventListener(
         "[data-pin]"
       );
 
+
     if (pin) {
 
       togglePin(
@@ -763,6 +824,7 @@ document.addEventListener(
       event.target.closest(
         "[data-view]"
       );
+
 
     if (view) {
 
@@ -779,6 +841,7 @@ document.addEventListener(
         "[data-add]"
       );
 
+
     if (add) {
 
       addToCart(
@@ -793,6 +856,7 @@ document.addEventListener(
       event.target.closest(
         "[data-increase]"
       );
+
 
     if (increase) {
 
@@ -809,6 +873,7 @@ document.addEventListener(
         "[data-decrease]"
       );
 
+
     if (decrease) {
 
       decreaseQuantity(
@@ -824,6 +889,7 @@ document.addEventListener(
         "[data-remove]"
       );
 
+
     if (remove) {
 
       removeFromCart(
@@ -838,6 +904,7 @@ document.addEventListener(
       event.target.closest(
         "[data-search]"
       );
+
 
     if (searchItem) {
 
@@ -868,6 +935,7 @@ cartButton.addEventListener(
     const cartSection =
       document.getElementById("cart");
 
+
     cartSection.scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -895,10 +963,12 @@ document
 
         closeSideMenu();
 
+
         const contact =
           document.getElementById(
             "contact"
           );
+
 
         contact.scrollIntoView({
           behavior: "smooth",
@@ -917,13 +987,16 @@ document
 
 let toastTimer;
 
+
 function showToast(message) {
 
   toast.textContent = message;
 
   toast.classList.add("show");
 
+
   clearTimeout(toastTimer);
+
 
   toastTimer =
     setTimeout(() => {
@@ -933,6 +1006,7 @@ function showToast(message) {
       );
 
     }, 2200);
+
 }
 
 
@@ -947,6 +1021,7 @@ document.addEventListener(
     if (event.key === "Escape") {
 
       closeProduct();
+
       closeSideMenu();
 
     }
@@ -960,5 +1035,7 @@ document.addEventListener(
 ========================= */
 
 renderProducts();
+
 renderCart();
+
 updateCartCount();
