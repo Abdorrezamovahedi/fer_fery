@@ -1354,8 +1354,6 @@ footer {
 
 /* =========================
    MOBILE
-   ۲ محصول در هر لحظه
-   اسکرول افقی برای دیدن بقیه
 ========================= */
 
 @media (max-width: 700px) {
@@ -1402,35 +1400,43 @@ footer {
 
 
   /* =========================
-     PRODUCT HORIZONTAL SCROLL
+     MOBILE PRODUCT SLIDER
+     دو محصول در صفحه
   ========================= */
 
   .products-grid {
     display: flex;
 
-    flex-direction: row;
+    flex-wrap: nowrap;
 
     gap: 12px;
-
-    width: 100%;
 
     overflow-x: auto;
     overflow-y: hidden;
 
-    padding:
-      5px 2px 16px;
+    width: 100%;
 
-    margin: 0;
+    padding: 8px 2px 18px;
 
     scrollbar-width: none;
 
     -webkit-overflow-scrolling: touch;
 
+    scroll-behavior: smooth;
+
     scroll-snap-type: x mandatory;
 
     touch-action: pan-x;
 
-    overscroll-behavior-x: contain;
+    /*
+      حرکت کوتاه خودکار فقط برای
+      نشان دادن قابلیت اسکرول
+    */
+    animation:
+      mobileSliderHint
+      3.5s
+      ease-in-out
+      2;
   }
 
   .products-grid::-webkit-scrollbar {
@@ -1438,76 +1444,73 @@ footer {
   }
 
 
-  /* =========================
-     ۲ کارت در صفحه موبایل
-  ========================= */
+  /*
+    هر کارت تقریباً نصف صفحه را می‌گیرد
+    بنابراین دو محصول همزمان دیده می‌شوند
+  */
 
   .card {
-    flex: 0 0 calc((100% - 12px) / 2);
+    flex: 0 0
+      calc(
+        (100% - 12px) / 2
+      );
 
-    width: calc((100% - 12px) / 2);
+    min-width:
+      calc(
+        (100% - 12px) / 2
+      );
 
-    min-width: calc((100% - 12px) / 2);
+    width:
+      calc(
+        (100% - 12px) / 2
+      );
 
-    max-width: calc((100% - 12px) / 2);
+    border-radius: 15px;
 
-    border-radius: 16px;
-
-    padding: 7px;
+    padding: 6px;
 
     scroll-snap-align: start;
 
     scroll-snap-stop: always;
-
-    transform: none;
-  }
-
-  .card:hover {
-    transform: none;
   }
 
 
-  /* =========================
-     PRODUCT IMAGE
-  ========================= */
+  /*
+    انیمیشن راهنما
+    فقط چند بار اجرا می‌شود
+  */
 
-  .image-box {
-    width: 100%;
+  @keyframes mobileSliderHint {
 
-    border-radius: 12px;
+    0% {
+      transform: translateX(0);
+    }
 
-    overflow: hidden;
+    25% {
+      transform: translateX(-28px);
+    }
+
+    50% {
+      transform: translateX(0);
+    }
+
+    75% {
+      transform: translateX(28px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+
   }
 
-  .image-box img {
-    width: 100%;
-
-    height: auto;
-
-    aspect-ratio: 1 / 1;
-
-    object-fit: cover;
-
-    display: block;
-  }
-
-  .card:hover .image-box img {
-    transform: none;
-  }
-
-
-  /* =========================
-     PRODUCT INFO
-  ========================= */
 
   .product-info {
-    padding: 9px 3px 4px;
+    padding: 8px 3px 4px;
   }
 
   .product-name {
-    font-size: 12px;
-
-    line-height: 1.5;
+    font-size: 11px;
 
     white-space: nowrap;
 
@@ -1517,63 +1520,35 @@ footer {
   }
 
   .price {
-    font-size: 11px;
-
-    margin-top: 4px;
+    font-size: 10px;
   }
 
-
-  /* =========================
-     PRODUCT BUTTONS
-  ========================= */
-
   .product-actions {
-    display: grid;
-
-    grid-template-columns:
-      1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 5px;
 
-    margin-top: 8px;
+    margin-top: 7px;
   }
 
   .product-actions button {
-    padding: 8px 3px;
+    padding: 7px 2px;
 
-    font-size: 10px;
+    font-size: 8px;
 
     border-radius: 8px;
   }
 
-
-  /* =========================
-     PIN
-  ========================= */
-
   .pin {
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
 
-    font-size: 12px;
-
-    top: 7px;
-    left: 7px;
+    font-size: 11px;
   }
-
-
-  /* =========================
-     SECTION TITLE
-  ========================= */
 
   .section-title h2 {
     font-size: 26px;
   }
-
-
-  /* =========================
-     MODAL
-  ========================= */
 
   .modal-box {
     grid-template-columns: 1fr;
@@ -1599,11 +1574,6 @@ footer {
     font-size: 25px;
   }
 
-
-  /* =========================
-     CART
-  ========================= */
-
   .cart-item {
     flex-wrap: wrap;
   }
@@ -1613,42 +1583,6 @@ footer {
       calc(100% - 100px);
   }
 
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 380px) {
-
-  .products-grid {
-    gap: 10px;
-  }
-
-  .card {
-    flex: 0 0 calc((100% - 10px) / 2);
-
-    width: calc((100% - 10px) / 2);
-
-    min-width: calc((100% - 10px) / 2);
-
-    max-width: calc((100% - 10px) / 2);
-  }
-
-  .product-name {
-    font-size: 11px;
-  }
-
-  .price {
-    font-size: 10px;
-  }
-
-  .product-actions button {
-    font-size: 9px;
-
-    padding: 7px 2px;
-  }
 }
 
 
