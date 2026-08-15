@@ -780,7 +780,6 @@ main {
 
 /* =========================
    PRODUCT GRID
-   DESKTOP
 ========================= */
 
 .products-grid {
@@ -1355,6 +1354,8 @@ footer {
 
 /* =========================
    MOBILE
+   ۲ محصول در هر لحظه
+   اسکرول افقی برای دیدن بقیه
 ========================= */
 
 @media (max-width: 700px) {
@@ -1401,7 +1402,7 @@ footer {
 
 
   /* =========================
-     MOBILE PRODUCT SLIDER
+     PRODUCT HORIZONTAL SCROLL
   ========================= */
 
   .products-grid {
@@ -1409,7 +1410,7 @@ footer {
 
     flex-direction: row;
 
-    gap: 14px;
+    gap: 12px;
 
     width: 100%;
 
@@ -1438,23 +1439,23 @@ footer {
 
 
   /* =========================
-     MOBILE PRODUCT CARD
+     ۲ کارت در صفحه موبایل
   ========================= */
 
   .card {
-    flex: 0 0 78vw;
+    flex: 0 0 calc((100% - 12px) / 2);
 
-    width: 78vw;
+    width: calc((100% - 12px) / 2);
 
-    min-width: 78vw;
+    min-width: calc((100% - 12px) / 2);
 
-    max-width: 78vw;
+    max-width: calc((100% - 12px) / 2);
 
-    border-radius: 18px;
+    border-radius: 16px;
 
-    padding: 8px;
+    padding: 7px;
 
-    scroll-snap-align: center;
+    scroll-snap-align: start;
 
     scroll-snap-stop: always;
 
@@ -1467,13 +1468,13 @@ footer {
 
 
   /* =========================
-     MOBILE IMAGE
+     PRODUCT IMAGE
   ========================= */
 
   .image-box {
     width: 100%;
 
-    border-radius: 14px;
+    border-radius: 12px;
 
     overflow: hidden;
   }
@@ -1496,29 +1497,34 @@ footer {
 
 
   /* =========================
-     MOBILE PRODUCT INFO
+     PRODUCT INFO
   ========================= */
 
   .product-info {
-    padding:
-      11px 4px 5px;
+    padding: 9px 3px 4px;
   }
 
   .product-name {
-    font-size: 14px;
+    font-size: 12px;
 
-    line-height: 1.6;
+    line-height: 1.5;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
   }
 
   .price {
-    font-size: 13px;
+    font-size: 11px;
 
     margin-top: 4px;
   }
 
 
   /* =========================
-     MOBILE ACTIONS
+     PRODUCT BUTTONS
   ========================= */
 
   .product-actions {
@@ -1527,37 +1533,37 @@ footer {
     grid-template-columns:
       1fr 1fr;
 
-    gap: 7px;
+    gap: 5px;
 
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .product-actions button {
-    padding: 9px 5px;
+    padding: 8px 3px;
 
-    font-size: 12px;
+    font-size: 10px;
 
-    border-radius: 9px;
+    border-radius: 8px;
   }
 
 
   /* =========================
-     MOBILE PIN
+     PIN
   ========================= */
 
   .pin {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    top: 8px;
-    left: 8px;
+    top: 7px;
+    left: 7px;
   }
 
 
   /* =========================
-     MOBILE SECTION TITLE
+     SECTION TITLE
   ========================= */
 
   .section-title h2 {
@@ -1566,7 +1572,7 @@ footer {
 
 
   /* =========================
-     MOBILE MODAL
+     MODAL
   ========================= */
 
   .modal-box {
@@ -1595,7 +1601,7 @@ footer {
 
 
   /* =========================
-     MOBILE CART
+     CART
   ========================= */
 
   .cart-item {
@@ -1611,31 +1617,37 @@ footer {
 
 
 /* =========================
-   SMALL PHONES
+   SMALL MOBILE
 ========================= */
 
 @media (max-width: 380px) {
 
+  .products-grid {
+    gap: 10px;
+  }
+
   .card {
-    flex: 0 0 84vw;
+    flex: 0 0 calc((100% - 10px) / 2);
 
-    width: 84vw;
+    width: calc((100% - 10px) / 2);
 
-    min-width: 84vw;
+    min-width: calc((100% - 10px) / 2);
 
-    max-width: 84vw;
+    max-width: calc((100% - 10px) / 2);
   }
 
   .product-name {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .price {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .product-actions button {
-    font-size: 11px;
+    font-size: 9px;
+
+    padding: 7px 2px;
   }
 }
 
