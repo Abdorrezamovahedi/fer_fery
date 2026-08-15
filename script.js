@@ -4,56 +4,92 @@
    ===================================================== */
 
 
-/* =====================================================
-   ELEMENTS
-   ===================================================== */
+/* ================= ELEMENTS ================= */
 
-const hamburger = document.getElementById("hamburger");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-const closeMenu = document.getElementById("closeMenu");
+const hamburger =
+    document.getElementById("hamburger");
 
-const searchButton = document.getElementById("searchButton");
-const searchArea = document.getElementById("searchArea");
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-const clearSearch = document.getElementById("clearSearch");
+const sideMenu =
+    document.getElementById("sideMenu");
 
-const cartButton = document.getElementById("cartButton");
-const menuCartButton = document.getElementById("menuCartButton");
-const cartCount = document.getElementById("cartCount");
-const cartList = document.getElementById("cartList");
-const cartTotal = document.getElementById("cartTotal");
+const menuOverlay =
+    document.getElementById("menuOverlay");
 
-const pinnedButton = document.getElementById("pinnedButton");
-const favoritesButton = document.getElementById("favoritesButton");
+const closeMenu =
+    document.getElementById("closeMenu");
 
-const pinnedProducts = document.getElementById("pinnedProducts");
-const favoriteProducts = document.getElementById("favoriteProducts");
+const searchButton =
+    document.getElementById("searchButton");
 
-const productModal = document.getElementById("productModal");
-const modalClose = document.getElementById("modalClose");
-const modalImage = document.getElementById("modalImage");
-const modalName = document.getElementById("modalName");
-const modalCategory = document.getElementById("modalCategory");
-const modalPrice = document.getElementById("modalPrice");
-const modalAddCart = document.getElementById("modalAddCart");
+const searchArea =
+    document.getElementById("searchArea");
 
-const toast = document.getElementById("toast");
+const searchInput =
+    document.getElementById("searchInput");
+
+const searchResults =
+    document.getElementById("searchResults");
+
+const clearSearch =
+    document.getElementById("clearSearch");
+
+const cartButton =
+    document.getElementById("cartButton");
+
+const menuCartButton =
+    document.getElementById("menuCartButton");
+
+const cartCount =
+    document.getElementById("cartCount");
+
+const cartList =
+    document.getElementById("cartList");
+
+const cartTotal =
+    document.getElementById("cartTotal");
+
+const favoritesButton =
+    document.getElementById("favoritesButton");
+
+const pinnedButton =
+    document.getElementById("pinnedButton");
+
+const pinnedProducts =
+    document.getElementById("pinnedProducts");
+
+const favoriteProducts =
+    document.getElementById("favoriteProducts");
+
+const productModal =
+    document.getElementById("productModal");
+
+const modalClose =
+    document.getElementById("modalClose");
+
+const modalImage =
+    document.getElementById("modalImage");
+
+const modalName =
+    document.getElementById("modalName");
+
+const modalCategory =
+    document.getElementById("modalCategory");
+
+const modalPrice =
+    document.getElementById("modalPrice");
+
+const modalAddCart =
+    document.getElementById("modalAddCart");
+
+const toast =
+    document.getElementById("toast");
 
 
-/* =====================================================
-   DATA
-   ===================================================== */
+/* ================= DATA ================= */
 
 let cart =
     JSON.parse(
         localStorage.getItem("ferFeryCart")
-    ) || [];
-
-let pinned =
-    JSON.parse(
-        localStorage.getItem("ferFeryPinned")
     ) || [];
 
 let favorites =
@@ -61,12 +97,15 @@ let favorites =
         localStorage.getItem("ferFeryFavorites")
     ) || [];
 
+let pinned =
+    JSON.parse(
+        localStorage.getItem("ferFeryPinned")
+    ) || [];
+
 let currentModalProduct = null;
 
 
-/* =====================================================
-   SAVE DATA
-   ===================================================== */
+/* ================= SAVE ================= */
 
 function saveData() {
 
@@ -76,21 +115,19 @@ function saveData() {
     );
 
     localStorage.setItem(
-        "ferFeryPinned",
-        JSON.stringify(pinned)
+        "ferFeryFavorites",
+        JSON.stringify(favorites)
     );
 
     localStorage.setItem(
-        "ferFeryFavorites",
-        JSON.stringify(favorites)
+        "ferFeryPinned",
+        JSON.stringify(pinned)
     );
 
 }
 
 
-/* =====================================================
-   FORMAT PRICE
-   ===================================================== */
+/* ================= PRICE ================= */
 
 function formatPrice(price) {
 
@@ -103,9 +140,7 @@ function formatPrice(price) {
 }
 
 
-/* =====================================================
-   TOAST
-   ===================================================== */
+/* ================= TOAST ================= */
 
 let toastTimer;
 
@@ -119,18 +154,17 @@ function showToast(message) {
 
     clearTimeout(toastTimer);
 
-    toastTimer = setTimeout(() => {
+    toastTimer =
+        setTimeout(() => {
 
-        toast.classList.remove("show");
+            toast.classList.remove("show");
 
-    }, 2200);
+        }, 2200);
 
 }
 
 
-/* =====================================================
-   IMAGE FALLBACK
-   ===================================================== */
+/* ================= IMAGE FALLBACK ================= */
 
 function imageError(img) {
 
@@ -141,56 +175,57 @@ function imageError(img) {
     img.src =
         "data:image/svg+xml;charset=UTF-8," +
         encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 width="600"
-                 height="750"
-                 viewBox="0 0 600 750">
 
-                <rect
-                    width="600"
-                    height="750"
-                    fill="#f3d2ce"
-                />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="600"
+            height="750"
+        >
 
-                <text
-                    x="300"
-                    y="350"
-                    text-anchor="middle"
-                    font-size="34"
-                    fill="#9f5265">
+            <rect
+                width="100%"
+                height="100%"
+                fill="#f5ddd7"
+            />
 
-                    Fer Fery
+            <text
+                x="50%"
+                y="47%"
+                text-anchor="middle"
+                font-family="Georgia"
+                font-size="42"
+                fill="#a96070"
+            >
+                Fer Fery
+            </text>
 
-                </text>
+            <text
+                x="50%"
+                y="54%"
+                text-anchor="middle"
+                font-family="Arial"
+                font-size="20"
+                fill="#806466"
+            >
+                تصویر محصول
+            </text>
 
-                <text
-                    x="300"
-                    y="400"
-                    text-anchor="middle"
-                    font-size="20"
-                    fill="#806265">
+        </svg>
 
-                    تصویر محصول
-
-                </text>
-
-            </svg>
         `);
 
 }
 
 
-/* =====================================================
-   PRODUCT CARD
-   ===================================================== */
+/* ================= PRODUCT CARD ================= */
 
 function createProductCard(product) {
 
-    const isPinned =
-        pinned.includes(product.id);
-
     const isFavorite =
         favorites.includes(product.id);
+
+    const isPinned =
+        pinned.includes(product.id);
 
     return `
 
@@ -207,6 +242,16 @@ function createProductCard(product) {
                     onerror="imageError(this)"
                 >
 
+                ${
+                    product.sale
+                    ? `
+                        <div class="sale-badge">
+                            ویژه
+                        </div>
+                    `
+                    : ""
+                }
+
                 <div class="product-actions">
 
                     <button
@@ -214,7 +259,6 @@ function createProductCard(product) {
                             isPinned ? "active" : ""
                         }"
                         data-id="${product.id}"
-                        title="پین کردن"
                     >
                         📌
                     </button>
@@ -224,7 +268,6 @@ function createProductCard(product) {
                             isFavorite ? "active" : ""
                         }"
                         data-id="${product.id}"
-                        title="علاقه‌مندی"
                     >
                         ${
                             isFavorite
@@ -234,16 +277,6 @@ function createProductCard(product) {
                     </button>
 
                 </div>
-
-                ${
-                    product.sale
-                    ? `
-                        <span class="sale-badge">
-                            ویژه
-                        </span>
-                    `
-                    : ""
-                }
 
             </div>
 
@@ -281,9 +314,7 @@ function createProductCard(product) {
 }
 
 
-/* =====================================================
-   RENDER PRODUCTS
-   ===================================================== */
+/* ================= RENDER PRODUCTS ================= */
 
 function renderProducts() {
 
@@ -310,14 +341,12 @@ function renderProducts() {
 }
 
 
-/* =====================================================
-   RENDER SAVED PRODUCTS
-   ===================================================== */
+/* ================= SAVED PRODUCTS ================= */
 
 function renderSavedProducts() {
 
-    if (!pinnedProducts || !favoriteProducts)
-        return;
+    if (!pinnedProducts ||
+        !favoriteProducts) return;
 
 
     const pinnedItems =
@@ -334,47 +363,33 @@ function renderSavedProducts() {
         );
 
 
-    if (pinnedItems.length === 0) {
-
-        pinnedProducts.innerHTML = `
+    pinnedProducts.innerHTML =
+        pinnedItems.length
+        ? pinnedItems
+            .map(createProductCard)
+            .join("")
+        : `
             <div class="empty-message">
-                هنوز محصولی پین نکرده‌اید.
+                هنوز محصولی پین نشده است.
             </div>
         `;
 
-    } else {
 
-        pinnedProducts.innerHTML =
-            pinnedItems
-                .map(createProductCard)
-                .join("");
-
-    }
-
-
-    if (favoriteItems.length === 0) {
-
-        favoriteProducts.innerHTML = `
+    favoriteProducts.innerHTML =
+        favoriteItems.length
+        ? favoriteItems
+            .map(createProductCard)
+            .join("")
+        : `
             <div class="empty-message">
-                هنوز محصولی به علاقه‌مندی‌ها اضافه نشده.
+                هنوز محصولی به علاقه‌مندی‌ها اضافه نشده است.
             </div>
         `;
-
-    } else {
-
-        favoriteProducts.innerHTML =
-            favoriteItems
-                .map(createProductCard)
-                .join("");
-
-    }
 
 }
 
 
-/* =====================================================
-   PIN PRODUCT
-   ===================================================== */
+/* ================= PIN ================= */
 
 function togglePin(id) {
 
@@ -382,8 +397,7 @@ function togglePin(id) {
 
         pinned =
             pinned.filter(
-                productId =>
-                    productId !== id
+                item => item !== id
             );
 
         showToast(
@@ -409,9 +423,7 @@ function togglePin(id) {
 }
 
 
-/* =====================================================
-   FAVORITE PRODUCT
-   ===================================================== */
+/* ================= FAVORITE ================= */
 
 function toggleFavorite(id) {
 
@@ -419,12 +431,11 @@ function toggleFavorite(id) {
 
         favorites =
             favorites.filter(
-                productId =>
-                    productId !== id
+                item => item !== id
             );
 
         showToast(
-            "از علاقه‌مندی‌ها حذف شد"
+            "محصول از علاقه‌مندی‌ها حذف شد"
         );
 
     } else {
@@ -446,9 +457,7 @@ function toggleFavorite(id) {
 }
 
 
-/* =====================================================
-   ADD TO CART
-   ===================================================== */
+/* ================= CART ================= */
 
 function addToCart(id) {
 
@@ -474,7 +483,7 @@ function addToCart(id) {
 
         cart.push({
 
-            id: product.id,
+            id: id,
 
             quantity: 1
 
@@ -490,15 +499,11 @@ function addToCart(id) {
     updateCartCount();
 
     showToast(
-        `${product.name} به سبد خرید اضافه شد`
+        "محصول به سبد خرید اضافه شد 🛍️"
     );
 
 }
 
-
-/* =====================================================
-   REMOVE FROM CART
-   ===================================================== */
 
 function removeFromCart(id) {
 
@@ -517,10 +522,6 @@ function removeFromCart(id) {
 }
 
 
-/* =====================================================
-   CHANGE CART QUANTITY
-   ===================================================== */
-
 function changeQuantity(id, amount) {
 
     const item =
@@ -528,7 +529,6 @@ function changeQuantity(id, amount) {
             cartItem =>
                 cartItem.id === id
         );
-
 
     if (!item) return;
 
@@ -554,14 +554,12 @@ function changeQuantity(id, amount) {
 }
 
 
-/* =====================================================
-   RENDER CART
-   ===================================================== */
+/* ================= RENDER CART ================= */
 
 function renderCart() {
 
-    if (!cartList || !cartTotal)
-        return;
+    if (!cartList ||
+        !cartTotal) return;
 
 
     if (cart.length === 0) {
@@ -584,86 +582,80 @@ function renderCart() {
 
 
     cartList.innerHTML =
-        cart
-            .map(item => {
+        cart.map(item => {
 
-                const product =
-                    products.find(
-                        p =>
-                            p.id === item.id
-                    );
+            const product =
+                products.find(
+                    p =>
+                        p.id === item.id
+                );
 
-
-                if (!product)
-                    return "";
+            if (!product) return "";
 
 
-                const itemTotal =
-                    product.price *
-                    item.quantity;
+            const itemTotal =
+                product.price *
+                item.quantity;
 
 
-                total += itemTotal;
+            total += itemTotal;
 
 
-                return `
+            return `
 
-                    <div
-                        class="cart-item"
-                        data-id="${product.id}"
-                    >
+                <div
+                    class="cart-item"
+                    data-id="${product.id}"
+                >
+
+                    <div>
+
+                        <strong>
+                            ${product.name}
+                        </strong>
 
                         <div>
-
-                            <strong>
-                                ${product.name}
-                            </strong>
-
-                            <div>
-                                ${formatPrice(product.price)}
-                            </div>
-
-                        </div>
-
-
-                        <div class="cart-controls">
-
-                            <button
-                                data-action="increase"
-                                data-id="${product.id}"
-                            >
-                                +
-                            </button>
-
-
-                            <span>
-                                ${item.quantity}
-                            </span>
-
-
-                            <button
-                                data-action="decrease"
-                                data-id="${product.id}"
-                            >
-                                −
-                            </button>
-
-
-                            <button
-                                data-action="remove"
-                                data-id="${product.id}"
-                            >
-                                🗑️
-                            </button>
-
+                            ${formatPrice(product.price)}
                         </div>
 
                     </div>
 
-                `;
 
-            })
-            .join("");
+                    <div class="cart-controls">
+
+                        <button
+                            data-action="increase"
+                            data-id="${product.id}"
+                        >
+                            +
+                        </button>
+
+                        <span>
+                            ${new Intl.NumberFormat("fa-IR")
+                                .format(item.quantity)}
+                        </span>
+
+                        <button
+                            data-action="decrease"
+                            data-id="${product.id}"
+                        >
+                            −
+                        </button>
+
+                        <button
+                            data-action="remove"
+                            data-id="${product.id}"
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 
     cartTotal.textContent =
@@ -672,14 +664,11 @@ function renderCart() {
 }
 
 
-/* =====================================================
-   CART COUNT
-   ===================================================== */
+/* ================= CART COUNT ================= */
 
 function updateCartCount() {
 
-    if (!cartCount)
-        return;
+    if (!cartCount) return;
 
 
     const count =
@@ -691,16 +680,13 @@ function updateCartCount() {
 
 
     cartCount.textContent =
-        new Intl.NumberFormat(
-            "fa-IR"
-        ).format(count);
+        new Intl.NumberFormat("fa-IR")
+            .format(count);
 
 }
 
 
-/* =====================================================
-   OPEN PRODUCT MODAL
-   ===================================================== */
+/* ================= MODAL ================= */
 
 function openProductModal(id) {
 
@@ -709,7 +695,6 @@ function openProductModal(id) {
             item => item.id === id
         );
 
-
     if (!product) return;
 
 
@@ -717,170 +702,130 @@ function openProductModal(id) {
         product;
 
 
-    if (modalImage) {
+    modalImage.src =
+        product.image;
 
-        modalImage.src =
-            product.image;
+    modalImage.alt =
+        product.name;
 
-        modalImage.alt =
-            product.name;
-
-        modalImage.onerror =
-            function () {
-
-                imageError(this);
-
-            };
-
-    }
+    modalImage.onerror =
+        function () {
+            imageError(this);
+        };
 
 
-    if (modalName) {
+    modalName.textContent =
+        product.name;
 
-        modalName.textContent =
-            product.name;
+    modalCategory.textContent =
+        `دسته‌بندی: ${product.category}`;
 
-    }
-
-
-    if (modalCategory) {
-
-        modalCategory.textContent =
-            `دسته‌بندی: ${product.category}`;
-
-    }
+    modalPrice.textContent =
+        formatPrice(product.price);
 
 
-    if (modalPrice) {
+    productModal.classList.add("show");
 
-        modalPrice.textContent =
-            formatPrice(product.price);
-
-    }
-
-
-    if (productModal) {
-
-        productModal.classList.add("show");
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
+    document.body.style.overflow =
+        "hidden";
 
 }
 
-
-/* =====================================================
-   CLOSE MODAL
-   ===================================================== */
 
 function closeProductModal() {
 
-    if (!productModal)
-        return;
-
-
     productModal.classList.remove("show");
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 
 }
 
 
-/* =====================================================
-   OPEN MENU
-   ===================================================== */
+/* ================= MENU ================= */
 
 function openMenu() {
 
-    if (hamburger)
-        hamburger.classList.add("open");
+    hamburger.classList.add("open");
 
-    if (sideMenu)
-        sideMenu.classList.add("show");
+    sideMenu.classList.add("show");
 
-    if (menuOverlay)
-        menuOverlay.classList.add("show");
+    menuOverlay.classList.add("show");
 
 }
 
-
-/* =====================================================
-   CLOSE MENU
-   ===================================================== */
 
 function closeSideMenu() {
 
-    if (hamburger)
-        hamburger.classList.remove("open");
+    hamburger.classList.remove("open");
 
-    if (sideMenu)
-        sideMenu.classList.remove("show");
+    sideMenu.classList.remove("show");
 
-    if (menuOverlay)
-        menuOverlay.classList.remove("show");
+    menuOverlay.classList.remove("show");
 
 }
 
 
-/* =====================================================
-   MENU EVENTS
-   ===================================================== */
+hamburger.addEventListener(
+    "click",
+    () => {
 
-if (hamburger) {
+        if (
+            sideMenu.classList.contains("show")
+        ) {
 
-    hamburger.addEventListener(
-        "click",
-        () => {
+            closeSideMenu();
 
-            if (
-                sideMenu &&
-                sideMenu.classList.contains("show")
-            ) {
+        } else {
 
-                closeSideMenu();
-
-            } else {
-
-                openMenu();
-
-            }
+            openMenu();
 
         }
-    );
+
+    }
+);
+
+
+closeMenu.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+menuOverlay.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+/* ================= CATEGORY SCROLL ================= */
+
+function goToCategory(category) {
+
+    const section =
+        document.getElementById(
+            `category-${category}`
+        );
+
+    if (!section) return;
+
+
+    closeSideMenu();
+
+
+    section.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
 
 }
 
-
-if (closeMenu) {
-
-    closeMenu.addEventListener(
-        "click",
-        closeSideMenu
-    );
-
-}
-
-
-if (menuOverlay) {
-
-    menuOverlay.addEventListener(
-        "click",
-        closeSideMenu
-    );
-
-}
-
-
-/* =====================================================
-   CATEGORY MENU
-   ===================================================== */
 
 document
     .querySelectorAll(
-        ".menu-item[data-category]"
+        "[data-category]"
     )
     .forEach(button => {
 
@@ -888,30 +833,9 @@ document
             "click",
             () => {
 
-                const category =
-                    button.dataset.category;
-
-
-                closeSideMenu();
-
-
-                const section =
-                    document.getElementById(
-                        `category-${category}`
-                    );
-
-
-                if (section) {
-
-                    section.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
-                }
+                goToCategory(
+                    button.dataset.category
+                );
 
             }
         );
@@ -919,51 +843,7 @@ document
     });
 
 
-/* =====================================================
-   CATEGORY CARDS
-   ===================================================== */
-
-document
-    .querySelectorAll(
-        ".category-card"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const category =
-                    button.dataset.category;
-
-
-                const section =
-                    document.getElementById(
-                        `category-${category}`
-                    );
-
-
-                if (section) {
-
-                    section.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-/* =====================================================
-   SCROLL BUTTONS
-   ===================================================== */
+/* ================= SCROLL BUTTONS ================= */
 
 document
     .querySelectorAll(
@@ -975,12 +855,9 @@ document
             "click",
             () => {
 
-                const targetId =
-                    button.dataset.scroll;
-
                 const target =
                     document.getElementById(
-                        targetId
+                        button.dataset.scroll
                     );
 
                 if (target) {
@@ -1001,9 +878,124 @@ document
     });
 
 
-/* =====================================================
-   PRODUCT EVENTS
-   ===================================================== */
+/* ================= SEARCH ================= */
+
+searchButton.addEventListener(
+    "click",
+    () => {
+
+        searchArea.classList.toggle("show");
+
+        if (searchArea.classList.contains("show")) {
+
+            searchInput.focus();
+
+        } else {
+
+            searchResults.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const query =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        if (!query) {
+
+            searchResults.classList.remove("show");
+
+            searchResults.innerHTML = "";
+
+            return;
+
+        }
+
+
+        const results =
+            products.filter(
+                product =>
+                    product.name
+                        .toLowerCase()
+                        .includes(query)
+            );
+
+
+        if (!results.length) {
+
+            searchResults.innerHTML = `
+                <div class="empty-message">
+                    محصولی پیدا نشد.
+                </div>
+            `;
+
+        } else {
+
+            searchResults.innerHTML =
+                results.map(product => `
+
+                    <button
+                        class="search-result"
+                        data-id="${product.id}"
+                    >
+
+                        <img
+                            src="${product.image}"
+                            alt=""
+                            onerror="imageError(this)"
+                        >
+
+                        <div>
+
+                            <strong>
+                                ${product.name}
+                            </strong>
+
+                            <div>
+                                ${formatPrice(product.price)}
+                            </div>
+
+                        </div>
+
+                    </button>
+
+                `).join("");
+
+        }
+
+
+        searchResults.classList.add("show");
+
+    }
+);
+
+
+clearSearch.addEventListener(
+    "click",
+    () => {
+
+        searchInput.value = "";
+
+        searchResults.innerHTML = "";
+
+        searchResults.classList.remove("show");
+
+        searchInput.focus();
+
+    }
+);
+
+
+/* ================= CLICK EVENTS ================= */
 
 document.addEventListener(
     "click",
@@ -1014,15 +1006,11 @@ document.addEventListener(
                 ".add-to-cart"
             );
 
-
         if (addButton) {
 
-            const id =
-                Number(
-                    addButton.dataset.id
-                );
-
-            addToCart(id);
+            addToCart(
+                Number(addButton.dataset.id)
+            );
 
             return;
 
@@ -1031,4 +1019,129 @@ document.addEventListener(
 
         const pinButton =
             event.target.closest(
-           
+                ".pin-button"
+            );
+
+        if (pinButton) {
+
+            togglePin(
+                Number(pinButton.dataset.id)
+            );
+
+            return;
+
+        }
+
+
+        const favoriteButton =
+            event.target.closest(
+                ".favorite-button"
+            );
+
+        if (favoriteButton) {
+
+            toggleFavorite(
+                Number(favoriteButton.dataset.id)
+            );
+
+            return;
+
+        }
+
+
+        const quickView =
+            event.target.closest(
+                ".quick-view"
+            );
+
+        if (quickView) {
+
+            openProductModal(
+                Number(quickView.dataset.id)
+            );
+
+            return;
+
+        }
+
+
+        const searchResult =
+            event.target.closest(
+                ".search-result"
+            );
+
+        if (searchResult) {
+
+            openProductModal(
+                Number(searchResult.dataset.id)
+            );
+
+            searchResults.classList.remove("show");
+
+            return;
+
+        }
+
+
+        const cartAction =
+            event.target.closest(
+                "[data-action]"
+            );
+
+        if (cartAction) {
+
+            const id =
+                Number(cartAction.dataset.id);
+
+            const action =
+                cartAction.dataset.action;
+
+
+            if (action === "increase") {
+
+                changeQuantity(id, 1);
+
+            }
+
+            if (action === "decrease") {
+
+                changeQuantity(id, -1);
+
+            }
+
+            if (action === "remove") {
+
+                removeFromCart(id);
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ================= CART BUTTONS ================= */
+
+cartButton.addEventListener(
+    "click",
+    () => {
+
+        document
+            .getElementById("cartSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+);
+
+
+menuCartButton.addEventListener(
+    "click",
+    () => {
+
+        closeSideMenu();
+
+        document
+            .getElementById("
