@@ -11,10 +11,10 @@ const products = [
 
     {
         id: 1,
-        name: "pass",
+        name: "abdorreza",
         category: "مجلسی",
-        price: 0,
-        image: "#",
+        price: 10000000000,
+        image: "Annotation 2026-08-03 152429.png",
         sale: true
     },
 

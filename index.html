@@ -1,755 +1,593 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
+  <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <title>fer fery | اکسسوری‌های دخترانه</title>
 
-    <title>fer fery</title>
+  <meta
+    name="description"
+    content="fer fery، فروشگاه اکسسوری‌های دخترانه در دسته‌های مجلسی، روزمره، کودک و پاپییون."
+  >
 
-    <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index, follow">
 
+  <meta name="theme-color" content="#ef6f9d">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-    <!-- ================= HEADER ================= -->
+  <header class="header">
 
-    <header class="header">
+    <nav class="nav">
 
-        <div class="logo">
-            fer <span>fery</span>
-        </div>
+      <div class="nav-buttons">
 
+        <button
+          class="icon-button hamburger"
+          id="hamburger"
+          aria-label="باز کردن منو"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-        <div class="header-actions">
+        <button
+          class="icon-button cart-button"
+          id="cartButton"
+          aria-label="سبد خرید"
+        >
+          🛍️
 
-            <!-- جستجو -->
+          <span
+            class="cart-count"
+            id="cartCount"
+          >
+            ۰
+          </span>
+        </button>
 
-            <button
-                class="header-button"
-                id="searchButton"
-                title="جستجو"
-            >
-                🔎
-            </button>
+      </div>
 
+      <div class="logo">
+        fer fery
+      </div>
 
-            <!-- سبد خرید -->
+    </nav>
 
-            <button
-                class="header-button cart-header"
-                id="cartButton"
-                title="سبد خرید"
-            >
-
-                🛍️
-
-                <span id="cartCount">
-                    0
-                </span>
-
-            </button>
-
-
-            <!-- همبرگری -->
-
-            <button
-                class="hamburger"
-                id="hamburger"
-                aria-label="منو"
-            >
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
-
-        </div>
-
-    </header>
+  </header>
 
 
+  <!-- =========================
+       SIDE MENU
+  ========================== -->
 
-    <!-- ================= MENU ================= -->
+  <div
+    class="overlay"
+    id="overlay"
+  ></div>
+
+  <aside
+    class="side-menu"
+    id="sideMenu"
+  >
+
+    <div class="menu-top">
+
+      <h2>
+        fer fery
+      </h2>
+
+      <button
+        class="close-menu"
+        id="closeMenu"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div class="menu-links">
+
+      <a
+        class="menu-link"
+        href="#majlesi"
+      >
+        🎀 مجلسی
+      </a>
+
+      <a
+        class="menu-link"
+        href="#rozmarre"
+      >
+        🌸 روزمره
+      </a>
+
+      <a
+        class="menu-link"
+        href="#koodak"
+      >
+        🧸 کودک
+      </a>
+
+      <a
+        class="menu-link"
+        href="#papion"
+      >
+        🎀 پاپییون
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a
+        class="menu-link"
+        href="#pinned"
+      >
+        📌 پین شده‌ها
+      </a>
+
+      <a
+        class="menu-link"
+        href="#cart"
+      >
+        🛍️ سبد خرید
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a
+        class="menu-link"
+        href="#contact"
+      >
+        💌 تماس با فروشنده
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="decor decor-one">
+      ✦
+    </div>
+
+    <div class="decor decor-two">
+      ♡
+    </div>
+
+    <div class="decor decor-three">
+      ✧
+    </div>
+
+    <div class="hero-content">
+
+      <span class="hero-small">
+        ✨ fer fery ✨
+      </span>
+
+      <h1>
+        زیبایی با سلیقه تو است
+      </h1>
+
+      <p>
+        اکسسوری‌های دخترانه برای
+        لحظه‌هایی که می‌خواهی خاص‌تر باشی.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          href="#majlesi"
+          class="hero-btn primary"
+        >
+          مشاهده محصولات
+        </a>
+
+        <a
+          href="#contact"
+          class="hero-btn secondary"
+        >
+          تماس با فروشنده
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SEARCH
+  ========================== -->
+
+  <section class="search-section">
+
+    <div class="search-box">
+
+      <span class="search-icon">
+        🔎
+      </span>
+
+      <input
+        id="search"
+        type="search"
+        placeholder="نام محصول یا دسته را جستجو کنید..."
+        autocomplete="off"
+      >
+
+      <button
+        class="clear-search"
+        id="clearSearch"
+        aria-label="پاک کردن جستجو"
+      >
+        ✕
+      </button>
+
+    </div>
 
     <div
-        class="menu-overlay"
-        id="menuOverlay"
+      class="search-results"
+      id="searchResults"
     ></div>
 
-
-    <aside
-        class="side-menu"
-        id="sideMenu"
-    >
-
-        <div class="menu-header">
-
-            <div>
-                <small>
-                    خوش آمدید
-                </small>
-
-                <h2>
-                    Maison Rose
-                </h2>
-            </div>
+  </section>
 
 
-            <button
-                id="closeMenu"
-                class="close-menu"
-            >
-                ×
-            </button>
+  <!-- =========================
+       MAIN
+  ========================== -->
 
-        </div>
+  <main>
 
-
-        <div class="menu-list">
-
-
-            <button
-                class="menu-item"
-                data-category="مجلسی"
-            >
-
-                <span>✦</span>
-                مجلسی
-
-            </button>
-
-
-            <button
-                class="menu-item"
-                data-category="روزمره"
-            >
-
-                <span>♡</span>
-                روزمره
-
-            </button>
-
-
-            <button
-                class="menu-item"
-                data-category="کودک"
-            >
-
-                <span>🧸</span>
-                کودک
-
-            </button>
-
-
-            <button
-                class="menu-item"
-                data-category="پاپیون"
-            >
-
-                <span>🎀</span>
-                پاپیون
-
-            </button>
-
-
-            <div class="menu-line"></div>
-
-
-            <button
-                class="menu-item"
-                id="pinnedButton"
-            >
-
-                <span>📌</span>
-                محصولات پین‌شده
-
-            </button>
-
-
-            <button
-                class="menu-item"
-                id="favoritesButton"
-            >
-
-                <span>❤️</span>
-                علاقه‌مندی‌ها
-
-            </button>
-
-
-            <button
-                class="menu-item"
-                id="menuCartButton"
-            >
-
-                <span>🛍️</span>
-                سبد خرید
-
-            </button>
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- ================= SEARCH ================= -->
+    <!-- مجلسی -->
 
     <section
-        class="search-area"
-        id="searchArea"
+      class="products-section"
+      id="majlesi"
     >
 
-        <div class="search-box">
+      <div class="section-title">
 
-            <span class="search-icon">
-                🔎
-            </span>
+        <small>
+          مجموعه اول
+        </small>
 
+        <h2>
+          مجلسی
+        </h2>
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="نام محصول را جستجو کنید..."
-                autocomplete="off"
-            >
+      </div>
 
-
-            <button
-                id="clearSearch"
-                class="clear-search"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <!-- پیشنهادهای جستجو -->
-
-        <div
-            class="search-results"
-            id="searchResults"
-        ></div>
+      <div
+        class="products-grid"
+        id="majlesiGrid"
+      ></div>
 
     </section>
 
 
-
-    <!-- ================= HERO ================= -->
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-decoration">
-                ✦
-            </div>
-
-
-            <h1>
-                Fer Fery
-            </h1>
-
-
-            <p>
-                زیبایی در جزئیات است
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <button
-                    class="primary-button"
-                    data-scroll="products"
-                >
-                    مشاهده محصولات
-                </button>
-
-                <button
-                    class="secondary-button"
-                    data-scroll="categories"
-                >
-                    دسته‌بندی‌ها
-                </button>
-
-                <button
-                    class="secondary-button"
-                    data-scroll="v"
-                >
-                    ارطبات با فروشنده
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= CATEGORIES ================= -->
-
-        <section
-            class="categories"
-            id="categories"
-        >
-
-            <div class="section-title">
-
-                <span>
-                    ✦
-                </span>
-
-                <h2>
-                    مجموعه‌ها
-                </h2>
-
-                <span>
-                    ✦
-                </span>
-
-            </div>
-
-
-            <div class="category-cards">
-
-
-                <button
-                    class="category-card"
-                    data-category="مجلسی"
-                >
-
-                    <div>
-                        ✦
-                    </div>
-
-                    <h3>
-                        مجلسی
-                    </h3>
-
-                    <p>
-                        انتخاب‌های خاص
-                    </p>
-
-                </button>
-
-
-                <button
-                    class="category-card"
-                    data-category="روزمره"
-                >
-
-                    <div>
-                        ♡
-                    </div>
-
-                    <h3>
-                        روزمره
-                    </h3>
-
-                    <p>
-                        ساده و دوست‌داشتنی
-                    </p>
-
-                </button>
-
-
-                <button
-                    class="category-card"
-                    data-category="کودک"
-                >
-
-                    <div>
-                        🧸
-                    </div>
-
-                    <h3>
-                        کودک
-                    </h3>
-
-                    <p>
-                        لطیف و فانتزی
-                    </p>
-
-                </button>
-
-
-                <button
-                    class="category-card"
-                    data-category="پاپیون"
-                >
-
-                    <div>
-                        🎀
-                    </div>
-
-                    <h3>
-                        پاپیون
-                    </h3>
-
-                    <p>
-                        کوچک اما خاص
-                    </p>
-
-                </button>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= PRODUCTS ================= -->
-
-        <section
-            class="products"
-            id="products"
-        >
-
-            <div class="section-title">
-
-                <span>
-                    ✦
-                </span>
-
-                <h2>
-                    محصولات
-                </h2>
-
-                <span>
-                    ✦
-                </span>
-
-            </div>
-
-
-            <!-- مجلسی -->
-
-            <section
-                class="product-category"
-                id="category-مجلسی"
-                data-category="مجلسی"
-            >
-
-                <div class="category-heading">
-
-                    <h3>
-                        مجلسی
-                    </h3>
-
-                    <span>
-                        انتخاب‌های خاص
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="product-grid"
-                    data-products="مجلسی"
-                ></div>
-
-            </section>
-
-
-
-            <!-- روزمره -->
-
-            <section
-                class="product-category"
-                id="category-روزمره"
-                data-category="روزمره"
-            >
-
-                <div class="category-heading">
-
-                    <h3>
-                        روزمره
-                    </h3>
-
-                    <span>
-                        برای هر روز
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="product-grid"
-                    data-products="روزمره"
-                ></div>
-
-            </section>
-
-
-
-            <!-- کودک -->
-
-            <section
-                class="product-category"
-                id="category-کودک"
-                data-category="کودک"
-            >
-
-                <div class="category-heading">
-
-                    <h3>
-                        کودک
-                    </h3>
-
-                    <span>
-                        فانتزی و دوست‌داشتنی
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="product-grid"
-                    data-products="کودک"
-                ></div>
-
-            </section>
-
-
-
-            <!-- پاپیون -->
-
-            <section
-                class="product-category"
-                id="category-پاپیون"
-                data-category="پاپیون"
-            >
-
-                <div class="category-heading">
-
-                    <h3>
-                        پاپیون
-                    </h3>
-
-                    <span>
-                        جزئیات کوچک
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="product-grid"
-                    data-products="پاپیون"
-                ></div>
-
-            </section>
-
-        </section>
-
-
-
-        <!-- ================= PINNED ================= -->
-
-        <section
-            class="saved-area"
-            id="pinnedSection"
-        >
-
-            <div class="saved-title">
-
-                <h2>
-                    📌 محصولات پین‌شده
-                </h2>
-
-            </div>
-
-
-            <div
-                class="saved-grid"
-                id="pinnedProducts"
-            ></div>
-
-        </section>
-
-
-
-        <!-- ================= FAVORITES ================= -->
-
-        <section
-            class="saved-area"
-            id="favoritesSection"
-        >
-
-            <div class="saved-title">
-
-                <h2>
-                    ❤️ علاقه‌مندی‌ها
-                </h2>
-
-            </div>
-
-
-            <div
-                class="saved-grid"
-                id="favoriteProducts"
-            ></div>
-
-        </section>
-
-
-
-        <!-- ================= CART ================= -->
-
-        <section
-            class="cart-area"
-            id="cartSection"
-        >
-
-            <div class="section-title">
-
-                <span>
-                    ✦
-                </span>
-
-                <h2>
-                    🛍️ سبد خرید
-                </h2>
-
-                <span>
-                    ✦
-                </span>
-
-            </div>
-
-
-            <div
-                class="cart-list"
-                id="cartList"
-            ></div>
-
-
-            <div class="cart-footer">
-
-                <span>
-                    مجموع:
-                </span>
-
-                <strong id="cartTotal">
-                    ۰ تومان
-                </strong>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= CONTACT ================= -->
-
-        <section class="contact">
-
-            <div>
-                ✦
-            </div>
-
-
-            <h2>
-                تماس با فروشنده
-            </h2>
-
-
-            <p>
-                برای سفارش و اطلاعات بیشتر
-                با ما در ارتباط باشید.
-            </p>
-
-
-            <a
-                href="tel:09120000000"
-                class="contact-button"
-                id="v"
-            >
-                تماس با فروشنده
-            </a>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ================= PRODUCT MODAL ================= -->
-
-    <div
-        class="modal"
-        id="productModal"
+    <!-- روزمره -->
+
+    <section
+      class="products-section"
+      id="rozmarre"
     >
 
-        <div class="modal-box">
+      <div class="section-title">
 
-            <button
-                class="modal-close"
-                id="modalClose"
-            >
-                ×
-            </button>
+        <small>
+          مجموعه دوم
+        </small>
 
+        <h2>
+          روزمره
+        </h2>
 
-            <img
-                id="modalImage"
-                src=""
-                alt=""
-            >
+      </div>
 
+      <div
+        class="products-grid"
+        id="rozmarreGrid"
+      ></div>
 
-            <h2 id="modalName"></h2>
-
-
-            <p id="modalCategory"></p>
+    </section>
 
 
-            <strong
-                id="modalPrice"
-            ></strong>
+    <!-- کودک -->
+
+    <section
+      class="products-section"
+      id="koodak"
+    >
+
+      <div class="section-title">
+
+        <small>
+          مجموعه سوم
+        </small>
+
+        <h2>
+          کودک
+        </h2>
+
+      </div>
+
+      <div
+        class="products-grid"
+        id="koodakGrid"
+      ></div>
+
+    </section>
 
 
-            <button
-                id="modalAddCart"
-                class="modal-cart"
-            >
-                افزودن به سبد خرید
-            </button>
+    <!-- پاپییون -->
 
+    <section
+      class="products-section"
+      id="papion"
+    >
+
+      <div class="section-title">
+
+        <small>
+          مجموعه چهارم
+        </small>
+
+        <h2>
+          پاپییون
+        </h2>
+
+      </div>
+
+      <div
+        class="products-grid"
+        id="papionGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         PINNED
+    ========================== -->
+
+    <section
+      class="special-section"
+      id="pinned"
+    >
+
+      <div class="section-title">
+
+        <small>
+          انتخاب‌های شما
+        </small>
+
+        <h2>
+          📌 پین شده‌ها
+        </h2>
+
+      </div>
+
+      <div
+        class="products-grid"
+        id="pinnedGrid"
+      ></div>
+
+      <div
+        class="empty"
+        id="emptyPinned"
+      >
+
+        <div class="empty-icon">
+          📌
         </div>
+
+        <p>
+          هنوز محصولی را پین نکرده‌اید.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CART
+    ========================== -->
+
+    <section
+      class="special-section"
+      id="cart"
+    >
+
+      <div class="section-title">
+
+        <small>
+          محصولات انتخابی
+        </small>
+
+        <h2>
+          🛍️ سبد خرید
+        </h2>
+
+      </div>
+
+      <div
+        class="cart-items"
+        id="cartItems"
+      ></div>
+
+      <div
+        class="empty"
+        id="emptyCart"
+      >
+
+        <div class="empty-icon">
+          🛍️
+        </div>
+
+        <p>
+          سبد خرید شما خالی است.
+        </p>
+
+      </div>
+
+      <div
+        class="cart-total"
+        id="cartTotalBox"
+        hidden
+      >
+
+        <span>
+          مجموع:
+        </span>
+
+        <strong id="cartTotal">
+          ۰ تومان
+        </strong>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+
+  <section
+    class="contact"
+    id="contact"
+  >
+
+    <span class="contact-small">
+      💌 ارتباط با ما
+    </span>
+
+    <h2>
+      ارتباط با فروشنده
+    </h2>
+
+    <p>
+      برای دریافت اطلاعات بیشتر درباره محصولات
+      با فروشنده در ارتباط باشید.
+    </p>
+
+    <a
+      class="contact-button"
+      href="mailto:example@example.com"
+    >
+      تماس با فروشنده
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+    fer fery
+  </footer>
+
+
+  <!-- =========================
+       PRODUCT MODAL
+  ========================== -->
+
+  <div
+    class="modal"
+    id="productModal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="بستن"
+      >
+        ✕
+      </button>
+
+      <div class="modal-image">
+
+        <img
+          id="modalImage"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+      <div class="modal-info">
+
+        <span
+          class="modal-category"
+          id="modalCategory"
+        ></span>
+
+        <h2 id="modalName">
+          pass
+        </h2>
+
+        <div
+          class="modal-price"
+          id="modalPrice"
+        >
+          ۰ تومان
+        </div>
+
+        <button
+          class="modal-add"
+          id="modalAdd"
+        >
+          افزودن به سبد خرید
+        </button>
+
+      </div>
 
     </div>
 
+  </div>
 
 
-    <!-- ================= TOAST ================= -->
+  <!-- =========================
+       TOAST
+  ========================== -->
 
-    <div
-        class="toast"
-        id="toast"
-    ></div>
-
-
-
-    <!-- ================= FOOTER ================= -->
+  <div
+    class="toast"
+    id="toast"
+  ></div>
 
 
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+  <script src="products.js"></script>
+  <script src="script.js"></script>
 
 </body>
-
 </html>
