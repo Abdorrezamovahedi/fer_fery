@@ -15,7 +15,7 @@ const products = [
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
 
@@ -25,7 +25,7 @@ const products = [
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -34,7 +34,7 @@ const products = [
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -43,7 +43,7 @@ const products = [
     category: "مجلسی",
     categoryId: "majlesi",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
 
@@ -55,7 +55,7 @@ const products = [
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -64,7 +64,7 @@ const products = [
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -73,7 +73,7 @@ const products = [
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -82,7 +82,7 @@ const products = [
     category: "روزمره",
     categoryId: "rozmarre",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
 
@@ -94,7 +94,7 @@ const products = [
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -103,7 +103,7 @@ const products = [
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -112,7 +112,7 @@ const products = [
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -121,7 +121,7 @@ const products = [
     category: "کودک",
     categoryId: "koodak",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
 
@@ -133,7 +133,7 @@ const products = [
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -142,7 +142,7 @@ const products = [
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -151,7 +151,7 @@ const products = [
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   },
 
   {
@@ -160,7 +160,7 @@ const products = [
     category: "پاپیون",
     categoryId: "papion",
     price: 0,
-    image: ""
+    image: "inges/no_mahsols/bedone_mahsol.jpg"
   }
 
 ];
