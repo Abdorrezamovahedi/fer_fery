@@ -1,1147 +1,1282 @@
-/* =====================================================
-   FER FERY
-   SCRIPT.JS
-   ===================================================== */
+// ==========================================
+// FER FERY
+// کنترل کامل سایت
+// ==========================================
 
 
-/* ================= ELEMENTS ================= */
+// ==========================================
+// متغیرهای اصلی
+// ==========================================
 
-const hamburger =
-    document.getElementById("hamburger");
+let cart = JSON.parse(localStorage.getItem("ferFeryCart")) || [];
 
-const sideMenu =
-    document.getElementById("sideMenu");
+let pinned = JSON.parse(
+  localStorage.getItem("ferFeryPinned")
+) || [];
 
-const menuOverlay =
-    document.getElementById("menuOverlay");
-
-const closeMenu =
-    document.getElementById("closeMenu");
-
-const searchButton =
-    document.getElementById("searchButton");
-
-const searchArea =
-    document.getElementById("searchArea");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const searchResults =
-    document.getElementById("searchResults");
-
-const clearSearch =
-    document.getElementById("clearSearch");
-
-const cartButton =
-    document.getElementById("cartButton");
-
-const menuCartButton =
-    document.getElementById("menuCartButton");
-
-const cartCount =
-    document.getElementById("cartCount");
-
-const cartList =
-    document.getElementById("cartList");
-
-const cartTotal =
-    document.getElementById("cartTotal");
-
-const favoritesButton =
-    document.getElementById("favoritesButton");
-
-const pinnedButton =
-    document.getElementById("pinnedButton");
-
-const pinnedProducts =
-    document.getElementById("pinnedProducts");
-
-const favoriteProducts =
-    document.getElementById("favoriteProducts");
-
-const productModal =
-    document.getElementById("productModal");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-const modalImage =
-    document.getElementById("modalImage");
-
-const modalName =
-    document.getElementById("modalName");
-
-const modalCategory =
-    document.getElementById("modalCategory");
-
-const modalPrice =
-    document.getElementById("modalPrice");
-
-const modalAddCart =
-    document.getElementById("modalAddCart");
-
-const toast =
-    document.getElementById("toast");
+let currentProduct = null;
 
 
-/* ================= DATA ================= */
+// ==========================================
+// المنت‌های اصلی
+// ==========================================
 
-let cart =
-    JSON.parse(
-        localStorage.getItem("ferFeryCart")
-    ) || [];
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+const closeMenu = document.getElementById("closeMenu");
 
-let favorites =
-    JSON.parse(
-        localStorage.getItem("ferFeryFavorites")
-    ) || [];
+const cartButton = document.getElementById("cartButton");
+const cartCount = document.getElementById("cartCount");
 
-let pinned =
-    JSON.parse(
-        localStorage.getItem("ferFeryPinned")
-    ) || [];
+const searchInput = document.getElementById("searchInput");
+const clearSearch = document.getElementById("clearSearch");
+const searchResults = document.getElementById("searchResults");
 
-let currentModalProduct = null;
+const pinnedProducts = document.getElementById("pinnedProducts");
+const emptyPinned = document.getElementById("emptyPinned");
+
+const cartItems = document.getElementById("cartItems");
+const emptyCart = document.getElementById("emptyCart");
+const cartTotalBox = document.getElementById("cartTotalBox");
+const cartTotal = document.getElementById("cartTotal");
+
+const productModal = document.getElementById("productModal");
+const closeModal = document.getElementById("closeModal");
+
+const modalImage = document.getElementById("modalImage");
+const modalName = document.getElementById("modalName");
+const modalCategory = document.getElementById("modalCategory");
+const modalPrice = document.getElementById("modalPrice");
+const modalAddCart = document.getElementById("modalAddCart");
+
+const openPinned = document.getElementById("openPinned");
+const openCart = document.getElementById("openCart");
+
+const clearPinned = document.getElementById("clearPinned");
+const clearCart = document.getElementById("clearCart");
 
 
-/* ================= SAVE ================= */
+// ==========================================
+// ذخیره اطلاعات
+// ==========================================
 
-function saveData() {
+function saveCart(){
 
-    localStorage.setItem(
-        "ferFeryCart",
-        JSON.stringify(cart)
-    );
-
-    localStorage.setItem(
-        "ferFeryFavorites",
-        JSON.stringify(favorites)
-    );
-
-    localStorage.setItem(
-        "ferFeryPinned",
-        JSON.stringify(pinned)
-    );
+  localStorage.setItem(
+    "ferFeryCart",
+    JSON.stringify(cart)
+  );
 
 }
 
 
-/* ================= PRICE ================= */
+function savePinned(){
 
-function formatPrice(price) {
-
-    return (
-        new Intl.NumberFormat("fa-IR")
-            .format(price)
-        + " تومان"
-    );
+  localStorage.setItem(
+    "ferFeryPinned",
+    JSON.stringify(pinned)
+  );
 
 }
 
 
-/* ================= TOAST ================= */
+// ==========================================
+// باز و بسته کردن منو
+// ==========================================
 
-let toastTimer;
+function openSideMenu(){
 
-function showToast(message) {
+  sideMenu.classList.add("active");
+  menuOverlay.classList.add("active");
 
-    if (!toast) return;
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 2200);
+  document.body.style.overflow = "hidden";
 
 }
 
 
-/* ================= IMAGE FALLBACK ================= */
+function closeSideMenu(){
 
-function imageError(img) {
+  sideMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
 
-    if (!img) return;
+  document.body.style.overflow = "";
 
-    img.onerror = null;
+}
 
-    img.src =
-        "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(`
 
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="600"
-            height="750"
+hamburgerBtn.addEventListener(
+  "click",
+  openSideMenu
+);
+
+
+closeMenu.addEventListener(
+  "click",
+  closeSideMenu
+);
+
+
+menuOverlay.addEventListener(
+  "click",
+  closeSideMenu
+);
+
+
+// ==========================================
+// انتقال نرم به بخش‌ها
+// ==========================================
+
+document.querySelectorAll(".menu-link").forEach(link => {
+
+  link.addEventListener("click", function(){
+
+    const target = this.getAttribute("href");
+
+    if(!target || !target.startsWith("#")){
+      return;
+    }
+
+    closeSideMenu();
+
+    setTimeout(() => {
+
+      const element =
+        document.querySelector(target);
+
+      if(element){
+
+        element.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      }
+
+    },150);
+
+  });
+
+});
+
+
+// ==========================================
+// ساخت کارت محصول
+// ==========================================
+
+function createProductCard(product){
+
+  const isPinned =
+    pinned.includes(product.id);
+
+  return `
+
+    <article
+      class="card"
+      data-product-id="${product.id}"
+    >
+
+      <div class="img-wrap">
+
+        <img
+          class="product-img"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          onerror="this.src='https://placehold.co/600x600/fff0f5/c63f73?text=fer+fery'"
         >
 
-            <rect
-                width="100%"
-                height="100%"
-                fill="#f5ddd7"
-            />
+        <button
+          class="pin ${isPinned ? "active" : ""}"
+          data-pin="${product.id}"
+          aria-label="پین کردن محصول"
+        >
+          ${isPinned ? "📌" : "♡"}
+        </button>
 
-            <text
-                x="50%"
-                y="47%"
-                text-anchor="middle"
-                font-family="Georgia"
-                font-size="42"
-                fill="#a96070"
-            >
-                Fer Fery
-            </text>
+      </div>
 
-            <text
-                x="50%"
-                y="54%"
-                text-anchor="middle"
-                font-family="Arial"
-                font-size="20"
-                fill="#806466"
-            >
-                تصویر محصول
-            </text>
 
-        </svg>
+      <div class="info">
 
-        `);
+        <div class="name">
+          ${product.name}
+        </div>
+
+        <div class="price">
+          ${formatPrice(product.price)}
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="view"
+            data-view="${product.id}"
+          >
+            مشاهده محصول
+          </button>
+
+          <button
+            class="add"
+            data-add="${product.id}"
+          >
+            افزودن به سبد
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
 
 }
 
 
-/* ================= PRODUCT CARD ================= */
+// ==========================================
+// نمایش محصولات
+// ==========================================
 
-function createProductCard(product) {
+function renderCategory(categoryId, elementId){
 
-    const isFavorite =
-        favorites.includes(product.id);
+  const container =
+    document.getElementById(elementId);
 
-    const isPinned =
-        pinned.includes(product.id);
+  if(!container){
+    return;
+  }
 
-    return `
+  const categoryProducts =
+    getProductsByCategory(categoryId);
 
-        <article
-            class="product-card"
-            data-id="${product.id}"
+  container.innerHTML =
+    categoryProducts
+      .map(createProductCard)
+      .join("");
+
+}
+
+
+// ==========================================
+// نمایش همه دسته‌ها
+// ==========================================
+
+function renderAllProducts(){
+
+  renderCategory(
+    "majlesi",
+    "majlesiProducts"
+  );
+
+  renderCategory(
+    "rozmarre",
+    "rozmarreProducts"
+  );
+
+  renderCategory(
+    "koodak",
+    "koodakProducts"
+  );
+
+  renderCategory(
+    "papion",
+    "papionProducts"
+  );
+
+  renderPinned();
+
+}
+
+
+// ==========================================
+// پین کردن محصول
+// ==========================================
+
+function togglePinned(id){
+
+  id = Number(id);
+
+  if(pinned.includes(id)){
+
+    pinned =
+      pinned.filter(
+        productId => productId !== id
+      );
+
+  }else{
+
+    pinned.push(id);
+
+  }
+
+  savePinned();
+
+  renderAllProducts();
+
+}
+
+
+// ==========================================
+// نمایش محصولات پین شده
+// ==========================================
+
+function renderPinned(){
+
+  if(!pinnedProducts){
+    return;
+  }
+
+  const pinnedList =
+    products.filter(
+      product => pinned.includes(product.id)
+    );
+
+  if(pinnedList.length === 0){
+
+    pinnedProducts.innerHTML = "";
+
+    emptyPinned.style.display = "block";
+
+    return;
+
+  }
+
+  emptyPinned.style.display = "none";
+
+  pinnedProducts.innerHTML =
+    pinnedList
+      .map(createProductCard)
+      .join("");
+
+}
+
+
+// ==========================================
+// افزودن به سبد خرید
+// ==========================================
+
+function addToCart(id){
+
+  id = Number(id);
+
+  const existing =
+    cart.find(
+      item => item.id === id
+    );
+
+  if(existing){
+
+    existing.quantity += 1;
+
+  }else{
+
+    cart.push({
+      id:id,
+      quantity:1
+    });
+
+  }
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+  showToast("محصول به سبد خرید اضافه شد 🛍️");
+
+}
+
+
+// ==========================================
+// کاهش تعداد
+// ==========================================
+
+function decreaseQuantity(id){
+
+  const item =
+    cart.find(
+      item => item.id === Number(id)
+    );
+
+  if(!item){
+    return;
+  }
+
+  item.quantity -= 1;
+
+  if(item.quantity <= 0){
+
+    cart =
+      cart.filter(
+        cartItem =>
+          cartItem.id !== Number(id)
+      );
+
+  }
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+// ==========================================
+// افزایش تعداد
+// ==========================================
+
+function increaseQuantity(id){
+
+  const item =
+    cart.find(
+      item => item.id === Number(id)
+    );
+
+  if(!item){
+    return;
+  }
+
+  item.quantity += 1;
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+// ==========================================
+// حذف از سبد خرید
+// ==========================================
+
+function removeFromCart(id){
+
+  cart =
+    cart.filter(
+      item =>
+        item.id !== Number(id)
+    );
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+// ==========================================
+// نمایش سبد خرید
+// ==========================================
+
+function renderCart(){
+
+  if(!cartItems){
+    return;
+  }
+
+  if(cart.length === 0){
+
+    cartItems.innerHTML = "";
+
+    emptyCart.style.display = "block";
+
+    cartTotalBox.style.display = "none";
+
+    return;
+
+  }
+
+  emptyCart.style.display = "none";
+
+  cartTotalBox.style.display = "flex";
+
+
+  cartItems.innerHTML =
+    cart.map(item => {
+
+      const product =
+        getProductById(item.id);
+
+      if(!product){
+        return "";
+      }
+
+      return `
+
+        <div
+          class="cart-item"
+          data-cart-id="${product.id}"
         >
 
-            <div class="product-image">
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            onerror="this.src='https://placehold.co/200x200/fff0f5/c63f73?text=fer+fery'"
+          >
 
-                <img
-                    src="${product.image}"
-                    alt="${product.name}"
-                    onerror="imageError(this)"
-                >
+          <div class="cart-info">
 
-                ${
-                    product.sale
-                    ? `
-                        <div class="sale-badge">
-                            ویژه
-                        </div>
-                    `
-                    : ""
-                }
-
-                <div class="product-actions">
-
-                    <button
-                        class="product-action pin-button ${
-                            isPinned ? "active" : ""
-                        }"
-                        data-id="${product.id}"
-                    >
-                        📌
-                    </button>
-
-                    <button
-                        class="product-action favorite-button ${
-                            isFavorite ? "active" : ""
-                        }"
-                        data-id="${product.id}"
-                    >
-                        ${
-                            isFavorite
-                            ? "❤️"
-                            : "♡"
-                        }
-                    </button>
-
-                </div>
-
+            <div class="cart-name">
+              ${product.name}
             </div>
 
-
-            <div class="product-info">
-
-                <h4>
-                    ${product.name}
-                </h4>
-
-                <div class="product-price">
-                    ${formatPrice(product.price)}
-                </div>
-
-                <button
-                    class="add-to-cart"
-                    data-id="${product.id}"
-                >
-                    افزودن به سبد خرید
-                </button>
-
-                <button
-                    class="quick-view"
-                    data-id="${product.id}"
-                >
-                    مشاهده محصول
-                </button>
-
+            <div class="cart-price">
+              ${formatPrice(product.price)}
             </div>
 
-        </article>
+          </div>
+
+
+          <div class="quantity-controls">
+
+            <button
+              data-increase="${product.id}"
+            >
+              +
+            </button>
+
+            <strong>
+              ${item.quantity}
+            </strong>
+
+            <button
+              data-decrease="${product.id}"
+            >
+              −
+            </button>
+
+          </div>
+
+
+          <button
+            class="remove-cart"
+            data-remove="${product.id}"
+          >
+            حذف
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  updateCartTotal();
+
+}
+
+
+// ==========================================
+// مجموع سبد خرید
+// ==========================================
+
+function updateCartTotal(){
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    const product =
+      getProductById(item.id);
+
+    if(product){
+
+      total +=
+        product.price *
+        item.quantity;
+
+    }
+
+  });
+
+  cartTotal.textContent =
+    formatPrice(total);
+
+}
+
+
+// ==========================================
+// تعداد کل محصولات سبد
+// ==========================================
+
+function updateCartCount(){
+
+  const total =
+    cart.reduce(
+      (sum,item) =>
+        sum + item.quantity,
+      0
+    );
+
+  cartCount.textContent =
+    total.toLocaleString("fa-IR");
+
+}
+
+
+// ==========================================
+// مشاهده محصول
+// ==========================================
+
+function openProductModal(id){
+
+  const product =
+    getProductById(id);
+
+  if(!product){
+    return;
+  }
+
+  currentProduct = product;
+
+  modalImage.src =
+    product.image;
+
+  modalImage.alt =
+    product.name;
+
+  modalName.textContent =
+    product.name;
+
+  modalCategory.textContent =
+    product.category;
+
+  modalPrice.textContent =
+    formatPrice(product.price);
+
+  productModal.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+function closeProductModal(){
+
+  productModal.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+  currentProduct = null;
+
+}
+
+
+closeModal.addEventListener(
+  "click",
+  closeProductModal
+);
+
+
+productModal.addEventListener(
+  "click",
+  event => {
+
+    if(event.target === productModal){
+
+      closeProductModal();
+
+    }
+
+  }
+);
+
+
+// ==========================================
+// افزودن محصول از داخل پنجره
+// ==========================================
+
+modalAddCart.addEventListener(
+  "click",
+  () => {
+
+    if(!currentProduct){
+      return;
+    }
+
+    addToCart(
+      currentProduct.id
+    );
+
+    closeProductModal();
+
+  }
+);
+
+
+// ==========================================
+// جستجوی محصولات
+// ==========================================
+
+function searchProducts(){
+
+  const query =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  if(query === ""){
+
+    searchResults.innerHTML = "";
+
+    searchResults.classList.remove("active");
+
+    return;
+
+  }
+
+
+  const results =
+    products.filter(product =>
+
+      product.name
+        .toLowerCase()
+        .includes(query)
+
+      ||
+
+      product.category
+        .toLowerCase()
+        .includes(query)
+
+    );
+
+
+  if(results.length === 0){
+
+    searchResults.innerHTML = `
+
+      <div class="search-result">
+
+        <span>
+          محصولی پیدا نشد.
+        </span>
+
+      </div>
 
     `;
 
+  }else{
+
+    searchResults.innerHTML =
+      results.map(product => `
+
+        <div
+          class="search-result"
+          data-search-product="${product.id}"
+        >
+
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            onerror="this.src='https://placehold.co/100x100/fff0f5/c63f73?text=fer+fery'"
+          >
+
+          <div>
+
+            <div class="search-result-name">
+              ${product.name}
+            </div>
+
+            <small>
+              ${product.category}
+            </small>
+
+          </div>
+
+        </div>
+
+      `).join("");
+
+  }
+
+  searchResults.classList.add("active");
+
 }
 
 
-/* ================= RENDER PRODUCTS ================= */
+searchInput.addEventListener(
+  "input",
+  searchProducts
+);
 
-function renderProducts() {
+
+// ==========================================
+// پاک کردن جستجو
+// ==========================================
+
+clearSearch.addEventListener(
+  "click",
+  () => {
+
+    searchInput.value = "";
+
+    searchResults.innerHTML = "";
+
+    searchResults.classList.remove(
+      "active"
+    );
+
+    searchInput.focus();
+
+  }
+);
+
+
+// ==========================================
+// کلیک روی نتایج جستجو
+// ==========================================
+
+searchResults.addEventListener(
+  "click",
+  event => {
+
+    const result =
+      event.target.closest(
+        "[data-search-product]"
+      );
+
+    if(!result){
+      return;
+    }
+
+    const id =
+      result.dataset.searchProduct;
+
+    searchResults.classList.remove(
+      "active"
+    );
+
+    searchInput.value = "";
+
+    openProductModal(id);
+
+  }
+);
+
+
+// ==========================================
+// کلیک‌های مربوط به محصولات
+// ==========================================
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const pinButton =
+      event.target.closest(
+        "[data-pin]"
+      );
+
+    if(pinButton){
+
+      togglePinned(
+        pinButton.dataset.pin
+      );
+
+      return;
+
+    }
+
+
+    const viewButton =
+      event.target.closest(
+        "[data-view]"
+      );
+
+    if(viewButton){
+
+      openProductModal(
+        viewButton.dataset.view
+      );
+
+      return;
+
+    }
+
+
+    const addButton =
+      event.target.closest(
+        "[data-add]"
+      );
+
+    if(addButton){
+
+      addToCart(
+        addButton.dataset.add
+      );
+
+      return;
+
+    }
+
+
+    const increaseButton =
+      event.target.closest(
+        "[data-increase]"
+      );
+
+    if(increaseButton){
+
+      increaseQuantity(
+        increaseButton.dataset.increase
+      );
+
+      return;
+
+    }
+
+
+    const decreaseButton =
+      event.target.closest(
+        "[data-decrease]"
+      );
+
+    if(decreaseButton){
+
+      decreaseQuantity(
+        decreaseButton.dataset.decrease
+      );
+
+      return;
+
+    }
+
+
+    const removeButton =
+      event.target.closest(
+        "[data-remove]"
+      );
+
+    if(removeButton){
+
+      removeFromCart(
+        removeButton.dataset.remove
+      );
+
+      return;
+
+    }
+
+  }
+);
+
+
+// ==========================================
+// دکمه سبد خرید بالای سایت
+// ==========================================
+
+cartButton.addEventListener(
+  "click",
+  () => {
 
     document
-        .querySelectorAll(".product-grid")
-        .forEach(grid => {
+      .getElementById("cartSection")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
 
-            const category =
-                grid.dataset.products;
+  }
+);
 
-            const categoryProducts =
-                products.filter(
-                    product =>
-                        product.category === category
-                );
 
-            grid.innerHTML =
-                categoryProducts
-                    .map(createProductCard)
-                    .join("");
+// ==========================================
+// منوی پین‌شده‌ها
+// ==========================================
 
+openPinned.addEventListener(
+  "click",
+  () => {
+
+    closeSideMenu();
+
+    setTimeout(() => {
+
+      document
+        .getElementById("pinnedSection")
+        .scrollIntoView({
+          behavior:"smooth"
         });
 
-}
+    },150);
+
+  }
+);
 
 
-/* ================= SAVED PRODUCTS ================= */
+// ==========================================
+// منوی سبد خرید
+// ==========================================
 
-function renderSavedProducts() {
+openCart.addEventListener(
+  "click",
+  () => {
 
-    if (!pinnedProducts ||
-        !favoriteProducts) return;
+    closeSideMenu();
 
+    setTimeout(() => {
 
-    const pinnedItems =
-        products.filter(
-            product =>
-                pinned.includes(product.id)
-        );
-
-
-    const favoriteItems =
-        products.filter(
-            product =>
-                favorites.includes(product.id)
-        );
-
-
-    pinnedProducts.innerHTML =
-        pinnedItems.length
-        ? pinnedItems
-            .map(createProductCard)
-            .join("")
-        : `
-            <div class="empty-message">
-                هنوز محصولی پین نشده است.
-            </div>
-        `;
-
-
-    favoriteProducts.innerHTML =
-        favoriteItems.length
-        ? favoriteItems
-            .map(createProductCard)
-            .join("")
-        : `
-            <div class="empty-message">
-                هنوز محصولی به علاقه‌مندی‌ها اضافه نشده است.
-            </div>
-        `;
-
-}
-
-
-/* ================= PIN ================= */
-
-function togglePin(id) {
-
-    if (pinned.includes(id)) {
-
-        pinned =
-            pinned.filter(
-                item => item !== id
-            );
-
-        showToast(
-            "محصول از پین‌ها حذف شد"
-        );
-
-    } else {
-
-        pinned.push(id);
-
-        showToast(
-            "محصول پین شد 📌"
-        );
-
-    }
-
-    saveData();
-
-    renderProducts();
-
-    renderSavedProducts();
-
-}
-
-
-/* ================= FAVORITE ================= */
-
-function toggleFavorite(id) {
-
-    if (favorites.includes(id)) {
-
-        favorites =
-            favorites.filter(
-                item => item !== id
-            );
-
-        showToast(
-            "محصول از علاقه‌مندی‌ها حذف شد"
-        );
-
-    } else {
-
-        favorites.push(id);
-
-        showToast(
-            "به علاقه‌مندی‌ها اضافه شد ❤️"
-        );
-
-    }
-
-    saveData();
-
-    renderProducts();
-
-    renderSavedProducts();
-
-}
-
-
-/* ================= CART ================= */
-
-function addToCart(id) {
-
-    const product =
-        products.find(
-            item => item.id === id
-        );
-
-    if (!product) return;
-
-
-    const existing =
-        cart.find(
-            item => item.id === id
-        );
-
-
-    if (existing) {
-
-        existing.quantity++;
-
-    } else {
-
-        cart.push({
-
-            id: id,
-
-            quantity: 1
-
+      document
+        .getElementById("cartSection")
+        .scrollIntoView({
+          behavior:"smooth"
         });
 
+    },150);
+
+  }
+);
+
+
+// ==========================================
+// خالی کردن پین‌ها
+// ==========================================
+
+clearPinned.addEventListener(
+  "click",
+  () => {
+
+    if(pinned.length === 0){
+      return;
     }
 
+    pinned = [];
 
-    saveData();
+    savePinned();
+
+    renderAllProducts();
+
+    showToast(
+      "پین‌شده‌ها پاک شدند"
+    );
+
+  }
+);
+
+
+// ==========================================
+// خالی کردن سبد
+// ==========================================
+
+clearCart.addEventListener(
+  "click",
+  () => {
+
+    if(cart.length === 0){
+      return;
+    }
+
+    cart = [];
+
+    saveCart();
 
     renderCart();
 
     updateCartCount();
 
     showToast(
-        "محصول به سبد خرید اضافه شد 🛍️"
+      "سبد خرید خالی شد"
     );
 
-}
-
-
-function removeFromCart(id) {
-
-    cart =
-        cart.filter(
-            item =>
-                item.id !== id
-        );
-
-    saveData();
-
-    renderCart();
-
-    updateCartCount();
-
-}
-
-
-function changeQuantity(id, amount) {
-
-    const item =
-        cart.find(
-            cartItem =>
-                cartItem.id === id
-        );
-
-    if (!item) return;
-
-
-    item.quantity += amount;
-
-
-    if (item.quantity <= 0) {
-
-        removeFromCart(id);
-
-        return;
-
-    }
-
-
-    saveData();
-
-    renderCart();
-
-    updateCartCount();
-
-}
-
-
-/* ================= RENDER CART ================= */
-
-function renderCart() {
-
-    if (!cartList ||
-        !cartTotal) return;
-
-
-    if (cart.length === 0) {
-
-        cartList.innerHTML = `
-            <div class="empty-message">
-                سبد خرید شما خالی است 🛍️
-            </div>
-        `;
-
-        cartTotal.textContent =
-            "۰ تومان";
-
-        return;
-
-    }
-
-
-    let total = 0;
-
-
-    cartList.innerHTML =
-        cart.map(item => {
-
-            const product =
-                products.find(
-                    p =>
-                        p.id === item.id
-                );
-
-            if (!product) return "";
-
-
-            const itemTotal =
-                product.price *
-                item.quantity;
-
-
-            total += itemTotal;
-
-
-            return `
-
-                <div
-                    class="cart-item"
-                    data-id="${product.id}"
-                >
-
-                    <div>
-
-                        <strong>
-                            ${product.name}
-                        </strong>
-
-                        <div>
-                            ${formatPrice(product.price)}
-                        </div>
-
-                    </div>
-
-
-                    <div class="cart-controls">
-
-                        <button
-                            data-action="increase"
-                            data-id="${product.id}"
-                        >
-                            +
-                        </button>
-
-                        <span>
-                            ${new Intl.NumberFormat("fa-IR")
-                                .format(item.quantity)}
-                        </span>
-
-                        <button
-                            data-action="decrease"
-                            data-id="${product.id}"
-                        >
-                            −
-                        </button>
-
-                        <button
-                            data-action="remove"
-                            data-id="${product.id}"
-                        >
-                            🗑️
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-
-    cartTotal.textContent =
-        formatPrice(total);
-
-}
-
-
-/* ================= CART COUNT ================= */
-
-function updateCartCount() {
-
-    if (!cartCount) return;
-
-
-    const count =
-        cart.reduce(
-            (sum, item) =>
-                sum + item.quantity,
-            0
-        );
-
-
-    cartCount.textContent =
-        new Intl.NumberFormat("fa-IR")
-            .format(count);
-
-}
-
-
-/* ================= MODAL ================= */
-
-function openProductModal(id) {
-
-    const product =
-        products.find(
-            item => item.id === id
-        );
-
-    if (!product) return;
-
-
-    currentModalProduct =
-        product;
-
-
-    modalImage.src =
-        product.image;
-
-    modalImage.alt =
-        product.name;
-
-    modalImage.onerror =
-        function () {
-            imageError(this);
-        };
-
-
-    modalName.textContent =
-        product.name;
-
-    modalCategory.textContent =
-        `دسته‌بندی: ${product.category}`;
-
-    modalPrice.textContent =
-        formatPrice(product.price);
-
-
-    productModal.classList.add("show");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-function closeProductModal() {
-
-    productModal.classList.remove("show");
-
-    document.body.style.overflow = "";
-
-}
-
-
-/* ================= MENU ================= */
-
-function openMenu() {
-
-    hamburger.classList.add("open");
-
-    sideMenu.classList.add("show");
-
-    menuOverlay.classList.add("show");
-
-}
-
-
-function closeSideMenu() {
-
-    hamburger.classList.remove("open");
-
-    sideMenu.classList.remove("show");
-
-    menuOverlay.classList.remove("show");
-
-}
-
-
-hamburger.addEventListener(
-    "click",
-    () => {
-
-        if (
-            sideMenu.classList.contains("show")
-        ) {
-
-            closeSideMenu();
-
-        } else {
-
-            openMenu();
-
-        }
-
-    }
+  }
 );
 
 
-closeMenu.addEventListener(
-    "click",
-    closeSideMenu
-);
-
-
-menuOverlay.addEventListener(
-    "click",
-    closeSideMenu
-);
-
-
-/* ================= CATEGORY SCROLL ================= */
-
-function goToCategory(category) {
-
-    const section =
-        document.getElementById(
-            `category-${category}`
-        );
-
-    if (!section) return;
-
-
-    closeSideMenu();
-
-
-    section.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
-    });
-
-}
-
-
-document
-    .querySelectorAll(
-        "[data-category]"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                goToCategory(
-                    button.dataset.category
-                );
-
-            }
-        );
-
-    });
-
-
-/* ================= SCROLL BUTTONS ================= */
-
-document
-    .querySelectorAll(
-        "[data-scroll]"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const target =
-                    document.getElementById(
-                        button.dataset.scroll
-                    );
-
-                if (target) {
-
-                    target.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-/* ================= SEARCH ================= */
-
-searchButton.addEventListener(
-    "click",
-    () => {
-
-        searchArea.classList.toggle("show");
-
-        if (searchArea.classList.contains("show")) {
-
-            searchInput.focus();
-
-        } else {
-
-            searchResults.classList.remove("show");
-
-        }
-
-    }
-);
-
-
-searchInput.addEventListener(
-    "input",
-    () => {
-
-        const query =
-            searchInput.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!query) {
-
-            searchResults.classList.remove("show");
-
-            searchResults.innerHTML = "";
-
-            return;
-
-        }
-
-
-        const results =
-            products.filter(
-                product =>
-                    product.name
-                        .toLowerCase()
-                        .includes(query)
-            );
-
-
-        if (!results.length) {
-
-            searchResults.innerHTML = `
-                <div class="empty-message">
-                    محصولی پیدا نشد.
-                </div>
-            `;
-
-        } else {
-
-            searchResults.innerHTML =
-                results.map(product => `
-
-                    <button
-                        class="search-result"
-                        data-id="${product.id}"
-                    >
-
-                        <img
-                            src="${product.image}"
-                            alt=""
-                            onerror="imageError(this)"
-                        >
-
-                        <div>
-
-                            <strong>
-                                ${product.name}
-                            </strong>
-
-                            <div>
-                                ${formatPrice(product.price)}
-                            </div>
-
-                        </div>
-
-                    </button>
-
-                `).join("");
-
-        }
-
-
-        searchResults.classList.add("show");
-
-    }
-);
-
-
-clearSearch.addEventListener(
-    "click",
-    () => {
-
-        searchInput.value = "";
-
-        searchResults.innerHTML = "";
-
-        searchResults.classList.remove("show");
-
-        searchInput.focus();
-
-    }
-);
-
-
-/* ================= CLICK EVENTS ================= */
-
-document.addEventListener(
+// ==========================================
+// تماس با فروشنده
+// فقط انتقال به بخش تماس
+// بدون alert
+// ==========================================
+
+const sellerContactButton =
+  document.getElementById(
+    "sellerContactButton"
+  );
+
+if(sellerContactButton){
+
+  sellerContactButton.addEventListener(
     "click",
     event => {
 
-        const addButton =
-            event.target.closest(
-                ".add-to-cart"
-            );
+      event.preventDefault();
 
-        if (addButton) {
-
-            addToCart(
-                Number(addButton.dataset.id)
-            );
-
-            return;
-
-        }
-
-
-        const pinButton =
-            event.target.closest(
-                ".pin-button"
-            );
-
-        if (pinButton) {
-
-            togglePin(
-                Number(pinButton.dataset.id)
-            );
-
-            return;
-
-        }
-
-
-        const favoriteButton =
-            event.target.closest(
-                ".favorite-button"
-            );
-
-        if (favoriteButton) {
-
-            toggleFavorite(
-                Number(favoriteButton.dataset.id)
-            );
-
-            return;
-
-        }
-
-
-        const quickView =
-            event.target.closest(
-                ".quick-view"
-            );
-
-        if (quickView) {
-
-            openProductModal(
-                Number(quickView.dataset.id)
-            );
-
-            return;
-
-        }
-
-
-        const searchResult =
-            event.target.closest(
-                ".search-result"
-            );
-
-        if (searchResult) {
-
-            openProductModal(
-                Number(searchResult.dataset.id)
-            );
-
-            searchResults.classList.remove("show");
-
-            return;
-
-        }
-
-
-        const cartAction =
-            event.target.closest(
-                "[data-action]"
-            );
-
-        if (cartAction) {
-
-            const id =
-                Number(cartAction.dataset.id);
-
-            const action =
-                cartAction.dataset.action;
-
-
-            if (action === "increase") {
-
-                changeQuantity(id, 1);
-
-            }
-
-            if (action === "decrease") {
-
-                changeQuantity(id, -1);
-
-            }
-
-            if (action === "remove") {
-
-                removeFromCart(id);
-
-            }
-
-        }
+      document
+        .getElementById("sellerContact")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
 
     }
+  );
+
+}
+
+
+// ==========================================
+// پیام کوچک پایین صفحه
+// ==========================================
+
+function showToast(message){
+
+  const oldToast =
+    document.querySelector(
+      ".fer-toast"
+    );
+
+  if(oldToast){
+    oldToast.remove();
+  }
+
+
+  const toast =
+    document.createElement("div");
+
+  toast.className =
+    "fer-toast";
+
+  toast.textContent =
+    message;
+
+
+  Object.assign(
+    toast.style,
+    {
+      position:"fixed",
+      bottom:"25px",
+      left:"50%",
+      transform:"translateX(-50%) translateY(20px)",
+      zIndex:"5000",
+      padding:"12px 20px",
+      borderRadius:"14px",
+      background:"linear-gradient(135deg,#ef6f9d,#c63f73)",
+      color:"#fff",
+      boxShadow:"0 12px 30px rgba(198,63,115,.25)",
+      opacity:"0",
+      transition:"all .35s ease",
+      fontSize:"14px"
+    }
+  );
+
+
+  document.body.appendChild(toast);
+
+
+  requestAnimationFrame(() => {
+
+    toast.style.opacity = "1";
+
+    toast.style.transform =
+      "translateX(-50%) translateY(0)";
+
+  });
+
+
+  setTimeout(() => {
+
+    toast.style.opacity = "0";
+
+    toast.style.transform =
+      "translateX(-50%) translateY(20px)";
+
+    setTimeout(
+      () => toast.remove(),
+      350
+    );
+
+  },2200);
+
+}
+
+
+// ==========================================
+// بستن مودال با کلید ESC
+// ==========================================
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Escape"){
+
+      closeProductModal();
+
+      closeSideMenu();
+
+    }
+
+  }
 );
 
 
-/* ================= CART BUTTONS ================= */
+// ==========================================
+// بستن نتایج جستجو با کلیک بیرون
+// ==========================================
 
-cartButton.addEventListener(
-    "click",
-    () => {
+document.addEventListener(
+  "click",
+  event => {
 
-        document
-            .getElementById("cartSection")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+    if(
+      !event.target.closest(
+        ".search-section"
+      )
+    ){
+
+      searchResults.classList.remove(
+        "active"
+      );
 
     }
+
+  }
 );
 
 
-menuCartButton.addEventListener(
-    "click",
-    () => {
+// ==========================================
+// اجرای اولیه سایت
+// ==========================================
 
-        closeSideMenu();
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-        document
-            .getElementById("
+    renderAllProducts();
+
+    renderCart();
+
+    updateCartCount();
+
+  }
+);
+
+
+// ==========================================
+// افکت ورود کارت‌ها هنگام اسکرول
+// ==========================================
+
+const observer =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.style.opacity = "1";
+
+          entry.target.style.transform =
+            "translateY(0)";
+
+          o
