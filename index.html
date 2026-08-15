@@ -2,7 +2,6 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,14 +9,21 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>fer fery</title>
+    <title>Fer Fery | فروشگاه</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-
 <body>
+
+    <!-- پس زمینه متحرک -->
+    <div class="animated-background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
 
     <!-- ================= HEADER ================= -->
@@ -25,52 +31,36 @@
     <header class="header">
 
         <div class="logo">
-            fer <span>fery</span>
+            Fer <span>Fery</span>
         </div>
 
-
         <div class="header-actions">
-
-            <!-- جستجو -->
 
             <button
                 class="header-button"
                 id="searchButton"
-                title="جستجو"
+                aria-label="جستجو"
             >
                 🔎
             </button>
 
-
-            <!-- سبد خرید -->
-
             <button
-                class="header-button cart-header"
+                class="header-button cart-button"
                 id="cartButton"
-                title="سبد خرید"
+                aria-label="سبد خرید"
             >
-
                 🛍️
-
-                <span id="cartCount">
-                    0
-                </span>
-
+                <span id="cartCount">۰</span>
             </button>
-
-
-            <!-- همبرگری -->
 
             <button
                 class="hamburger"
                 id="hamburger"
-                aria-label="منو"
+                aria-label="باز کردن منو"
             >
-
                 <span></span>
                 <span></span>
                 <span></span>
-
             </button>
 
         </div>
@@ -78,14 +68,15 @@
     </header>
 
 
-
-    <!-- ================= MENU ================= -->
+    <!-- ================= OVERLAY ================= -->
 
     <div
         class="menu-overlay"
         id="menuOverlay"
     ></div>
 
+
+    <!-- ================= SIDE MENU ================= -->
 
     <aside
         class="side-menu"
@@ -95,19 +86,13 @@
         <div class="menu-header">
 
             <div>
-                <small>
-                    خوش آمدید
-                </small>
-
-                <h2>
-                    Maison Rose
-                </h2>
+                <small>خوش آمدید</small>
+                <h2>Fer Fery</h2>
             </div>
 
-
             <button
-                id="closeMenu"
                 class="close-menu"
+                id="closeMenu"
             >
                 ×
             </button>
@@ -117,90 +102,67 @@
 
         <div class="menu-list">
 
-
             <button
                 class="menu-item"
                 data-category="مجلسی"
             >
-
                 <span>✦</span>
                 مجلسی
-
             </button>
-
 
             <button
                 class="menu-item"
                 data-category="روزمره"
             >
-
                 <span>♡</span>
                 روزمره
-
             </button>
-
 
             <button
                 class="menu-item"
                 data-category="کودک"
             >
-
                 <span>🧸</span>
                 کودک
-
             </button>
-
 
             <button
                 class="menu-item"
                 data-category="پاپیون"
             >
-
                 <span>🎀</span>
                 پاپیون
-
             </button>
-
 
             <div class="menu-line"></div>
-
-
-            <button
-                class="menu-item"
-                id="pinnedButton"
-            >
-
-                <span>📌</span>
-                محصولات پین‌شده
-
-            </button>
-
 
             <button
                 class="menu-item"
                 id="favoritesButton"
             >
-
-                <span>❤️</span>
+                <span>♡</span>
                 علاقه‌مندی‌ها
-
             </button>
 
+            <button
+                class="menu-item"
+                id="pinnedButton"
+            >
+                <span>📌</span>
+                محصولات پین‌شده
+            </button>
 
             <button
                 class="menu-item"
                 id="menuCartButton"
             >
-
                 <span>🛍️</span>
                 سبد خرید
-
             </button>
 
         </div>
 
     </aside>
-
 
 
     <!-- ================= SEARCH ================= -->
@@ -212,30 +174,23 @@
 
         <div class="search-box">
 
-            <span class="search-icon">
-                🔎
-            </span>
-
+            <span>🔎</span>
 
             <input
-                type="text"
                 id="searchInput"
+                type="text"
                 placeholder="نام محصول را جستجو کنید..."
                 autocomplete="off"
             >
 
-
             <button
                 id="clearSearch"
-                class="clear-search"
+                type="button"
             >
                 ×
             </button>
 
         </div>
-
-
-        <!-- پیشنهادهای جستجو -->
 
         <div
             class="search-results"
@@ -245,27 +200,25 @@
     </section>
 
 
-
-    <!-- ================= HERO ================= -->
-
     <main>
+
+        <!-- ================= HERO ================= -->
 
         <section class="hero">
 
-            <div class="hero-decoration">
-                ✦
-            </div>
+            <div class="hero-star">✦</div>
 
-
-            <h1>
-                Fer Fery
-            </h1>
-
-
-            <p>
-                زیبایی در جزئیات است
+            <p class="hero-small">
+                به دنیای زیبای
             </p>
 
+            <h1>
+                Fer <span>Fery</span>
+            </h1>
+
+            <p class="hero-description">
+                زیبایی در جزئیات است
+            </p>
 
             <div class="hero-buttons">
 
@@ -285,15 +238,14 @@
 
                 <button
                     class="secondary-button"
-                    data-scroll="v"
+                    data-scroll="contact"
                 >
-                    ارطبات با فروشنده
+                    تماس با فروشنده
                 </button>
 
             </div>
 
         </section>
-
 
 
         <!-- ================= CATEGORIES ================= -->
@@ -305,41 +257,24 @@
 
             <div class="section-title">
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
-                <h2>
-                    مجموعه‌ها
-                </h2>
+                <h2>دسته‌بندی‌ها</h2>
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
             </div>
 
 
             <div class="category-cards">
 
-
                 <button
                     class="category-card"
                     data-category="مجلسی"
                 >
-
-                    <div>
-                        ✦
-                    </div>
-
-                    <h3>
-                        مجلسی
-                    </h3>
-
-                    <p>
-                        انتخاب‌های خاص
-                    </p>
-
+                    <div class="category-icon">✦</div>
+                    <h3>مجلسی</h3>
+                    <p>خاص و شیک</p>
                 </button>
 
 
@@ -347,19 +282,9 @@
                     class="category-card"
                     data-category="روزمره"
                 >
-
-                    <div>
-                        ♡
-                    </div>
-
-                    <h3>
-                        روزمره
-                    </h3>
-
-                    <p>
-                        ساده و دوست‌داشتنی
-                    </p>
-
+                    <div class="category-icon">♡</div>
+                    <h3>روزمره</h3>
+                    <p>ساده و زیبا</p>
                 </button>
 
 
@@ -367,19 +292,9 @@
                     class="category-card"
                     data-category="کودک"
                 >
-
-                    <div>
-                        🧸
-                    </div>
-
-                    <h3>
-                        کودک
-                    </h3>
-
-                    <p>
-                        لطیف و فانتزی
-                    </p>
-
+                    <div class="category-icon">🧸</div>
+                    <h3>کودک</h3>
+                    <p>فانتزی و دوست‌داشتنی</p>
                 </button>
 
 
@@ -387,26 +302,14 @@
                     class="category-card"
                     data-category="پاپیون"
                 >
-
-                    <div>
-                        🎀
-                    </div>
-
-                    <h3>
-                        پاپیون
-                    </h3>
-
-                    <p>
-                        کوچک اما خاص
-                    </p>
-
+                    <div class="category-icon">🎀</div>
+                    <h3>پاپیون</h3>
+                    <p>کوچک و خاص</p>
                 </button>
-
 
             </div>
 
         </section>
-
 
 
         <!-- ================= PRODUCTS ================= -->
@@ -418,17 +321,11 @@
 
             <div class="section-title">
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
-                <h2>
-                    محصولات
-                </h2>
+                <h2>محصولات</h2>
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
             </div>
 
@@ -438,21 +335,16 @@
             <section
                 class="product-category"
                 id="category-مجلسی"
-                data-category="مجلسی"
             >
 
                 <div class="category-heading">
 
-                    <h3>
-                        مجلسی
-                    </h3>
-
-                    <span>
-                        انتخاب‌های خاص
-                    </span>
+                    <div>
+                        <h3>مجلسی</h3>
+                        <span>انتخاب‌های خاص</span>
+                    </div>
 
                 </div>
-
 
                 <div
                     class="product-grid"
@@ -462,27 +354,21 @@
             </section>
 
 
-
             <!-- روزمره -->
 
             <section
                 class="product-category"
                 id="category-روزمره"
-                data-category="روزمره"
             >
 
                 <div class="category-heading">
 
-                    <h3>
-                        روزمره
-                    </h3>
-
-                    <span>
-                        برای هر روز
-                    </span>
+                    <div>
+                        <h3>روزمره</h3>
+                        <span>برای هر روز</span>
+                    </div>
 
                 </div>
-
 
                 <div
                     class="product-grid"
@@ -492,27 +378,21 @@
             </section>
 
 
-
             <!-- کودک -->
 
             <section
                 class="product-category"
                 id="category-کودک"
-                data-category="کودک"
             >
 
                 <div class="category-heading">
 
-                    <h3>
-                        کودک
-                    </h3>
-
-                    <span>
-                        فانتزی و دوست‌داشتنی
-                    </span>
+                    <div>
+                        <h3>کودک</h3>
+                        <span>فانتزی و شیرین</span>
+                    </div>
 
                 </div>
-
 
                 <div
                     class="product-grid"
@@ -522,27 +402,21 @@
             </section>
 
 
-
             <!-- پاپیون -->
 
             <section
                 class="product-category"
                 id="category-پاپیون"
-                data-category="پاپیون"
             >
 
                 <div class="category-heading">
 
-                    <h3>
-                        پاپیون
-                    </h3>
-
-                    <span>
-                        جزئیات کوچک
-                    </span>
+                    <div>
+                        <h3>پاپیون</h3>
+                        <span>جزئیات کوچک</span>
+                    </div>
 
                 </div>
-
 
                 <div
                     class="product-grid"
@@ -554,7 +428,6 @@
         </section>
 
 
-
         <!-- ================= PINNED ================= -->
 
         <section
@@ -562,14 +435,11 @@
             id="pinnedSection"
         >
 
-            <div class="saved-title">
-
-                <h2>
-                    📌 محصولات پین‌شده
-                </h2>
-
+            <div class="section-title">
+                <span>✦</span>
+                <h2>محصولات پین‌شده</h2>
+                <span>✦</span>
             </div>
-
 
             <div
                 class="saved-grid"
@@ -579,7 +449,6 @@
         </section>
 
 
-
         <!-- ================= FAVORITES ================= -->
 
         <section
@@ -587,14 +456,11 @@
             id="favoritesSection"
         >
 
-            <div class="saved-title">
-
-                <h2>
-                    ❤️ علاقه‌مندی‌ها
-                </h2>
-
+            <div class="section-title">
+                <span>✦</span>
+                <h2>علاقه‌مندی‌ها</h2>
+                <span>✦</span>
             </div>
-
 
             <div
                 class="saved-grid"
@@ -602,7 +468,6 @@
             ></div>
 
         </section>
-
 
 
         <!-- ================= CART ================= -->
@@ -614,32 +479,22 @@
 
             <div class="section-title">
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
-                <h2>
-                    🛍️ سبد خرید
-                </h2>
+                <h2>🛍️ سبد خرید</h2>
 
-                <span>
-                    ✦
-                </span>
+                <span>✦</span>
 
             </div>
-
 
             <div
                 class="cart-list"
                 id="cartList"
             ></div>
 
-
             <div class="cart-footer">
 
-                <span>
-                    مجموع:
-                </span>
+                <span>مجموع:</span>
 
                 <strong id="cartTotal">
                     ۰ تومان
@@ -650,31 +505,28 @@
         </section>
 
 
-
         <!-- ================= CONTACT ================= -->
 
-        <section class="contact">
+        <section
+            class="contact"
+            id="contact"
+        >
 
-            <div>
+            <div class="contact-decoration">
                 ✦
             </div>
-
 
             <h2>
                 تماس با فروشنده
             </h2>
 
-
             <p>
-                برای سفارش و اطلاعات بیشتر
-                با ما در ارتباط باشید.
+                برای سفارش و اطلاعات بیشتر با ما در ارتباط باشید.
             </p>
-
 
             <a
                 href="tel:09120000000"
                 class="contact-button"
-                id="v"
             >
                 تماس با فروشنده
             </a>
@@ -684,8 +536,7 @@
     </main>
 
 
-
-    <!-- ================= PRODUCT MODAL ================= -->
+    <!-- ================= MODAL ================= -->
 
     <div
         class="modal"
@@ -701,28 +552,21 @@
                 ×
             </button>
 
-
             <img
                 id="modalImage"
                 src=""
                 alt=""
             >
 
-
             <h2 id="modalName"></h2>
-
 
             <p id="modalCategory"></p>
 
-
-            <strong
-                id="modalPrice"
-            ></strong>
-
+            <strong id="modalPrice"></strong>
 
             <button
-                id="modalAddCart"
                 class="modal-cart"
+                id="modalAddCart"
             >
                 افزودن به سبد خرید
             </button>
@@ -732,19 +576,12 @@
     </div>
 
 
-
     <!-- ================= TOAST ================= -->
 
     <div
         class="toast"
         id="toast"
     ></div>
-
-
-
-    <!-- ================= FOOTER ================= -->
-
-
 
 
     <script src="products.js"></script>
