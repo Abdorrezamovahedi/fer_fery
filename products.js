@@ -12,7 +12,6 @@ const products = [
     name: "کلیپس پاپیون",
     category: "مجلسی",
     categoryId: "majlesi",
-    price: 0,
     image: "inges/mahsols/majlesy/m_1.jpg"
   },
 
@@ -21,7 +20,6 @@ const products = [
     name: "کلیپس مجلسی",
     category: "مجلسی",
     categoryId: "majlesi",
-    price: 0,
     image: "inges/mahsols/majlesy/m_2.jpg"
   },
 
@@ -30,7 +28,6 @@ const products = [
     name: "چفتی پروانه",
     category: "مجلسی",
     categoryId: "majlesi",
-    price: 0,
     image: "inges/mahsols/majlesy/m_3.jpg"
   },
 
@@ -39,7 +36,6 @@ const products = [
     name: "تاج کودک",
     category: "مجلسی",
     categoryId: "majlesi",
-    price: 0,
     image: "inges/mahsols/majlesy/m_4.jpg"
   },
 
@@ -48,7 +44,6 @@ const products = [
     name: "کلیپس زربان",
     category: "مجلسی",
     categoryId: "majlesi",
-    price: 0,
     image: "inges/mahsols/majlesy/m_5.jpg"
   },
 
@@ -60,7 +55,6 @@ const products = [
     name: "کش کودک",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_1.jpg"
   },
 
@@ -69,7 +63,6 @@ const products = [
     name: "کلیپس بابونه",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_2.jpg"
   },
 
@@ -78,7 +71,6 @@ const products = [
     name: "کلیپس گل",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_3.jpg"
   },
 
@@ -87,7 +79,6 @@ const products = [
     name: "کلیپس پاپیون",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_4.jpg"
   },
 
@@ -96,7 +87,6 @@ const products = [
     name: "کش کودک",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_5.jpg"
   },
 
@@ -105,7 +95,6 @@ const products = [
     name: "کلیپس با کییفیت",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_6.jpg"
   },
 
@@ -114,7 +103,6 @@ const products = [
     name: "کلیپس اکرولیک",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_7.jpg"
   },
 
@@ -123,7 +111,6 @@ const products = [
     name: "کلیپس ماه",
     category: "روزمره",
     categoryId: "rozmarre",
-    price: 0,
     image: "inges/mahsols/roozmare/r_8.jpg"
   },
 
@@ -135,7 +122,6 @@ const products = [
     name: "انبری آفتاب گردان",
     category: "کودک",
     categoryId: "koodak",
-    price: 0,
     image: "inges/mahsols/koodak/k_1.jpg"
   },
 
@@ -144,7 +130,6 @@ const products = [
     name: "انبری پاپیون",
     category: "کودک",
     categoryId: "koodak",
-    price: 0,
     image: "inges/mahsols/koodak/k_2.jpg"
   },
 
@@ -153,7 +138,6 @@ const products = [
     name: "کلیپس موی رنگی",
     category: "کودک",
     categoryId: "koodak",
-    price: 0,
     image: "inges/mahsols/koodak/k_3.jpg"
   },
 
@@ -162,7 +146,6 @@ const products = [
     name: "موی مصنوعی کرومی",
     category: "کودک",
     categoryId: "koodak",
-    price: 0,
     image: "inges/mahsols/koodak/k_4.jpg"
   },
 
@@ -174,7 +157,6 @@ const products = [
     name: "اسکرانچی پاپیون",
     category: "پاپیون",
     categoryId: "papion",
-    price: 0,
     image: "inges/mahsols/papioon/p_1.jpg"
   },
 
@@ -183,7 +165,6 @@ const products = [
     name: "فرانسوی کیسه ای",
     category: "پاپیون",
     categoryId: "papion",
-    price: 0,
     image: "inges/mahsols/papioon/p_2.jpg"
   },
 
@@ -192,7 +173,6 @@ const products = [
     name: "پاپیون انبری",
     category: "پاپیون",
     categoryId: "papion",
-    price: 0,
     image: "inges/mahsols/papioon/p_3.jpg"
   },
 
@@ -201,23 +181,10 @@ const products = [
     name: "پاپیون مخمل",
     category: "پاپیون",
     categoryId: "papion",
-    price: 0,
     image: "inges/mahsols/papioon/p_4.jpg"
   }
 
-
 ];
-
-
-// ==========================================
-// تبدیل قیمت به فرمت فارسی
-// ==========================================
-
-function formatPrice(price) {
-
-  return Number(price).toLocaleString("fa-IR") + " تومان";
-
-}
 
 
 // ==========================================

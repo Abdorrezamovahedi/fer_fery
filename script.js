@@ -26,19 +26,9 @@ const modalClose = document.getElementById("modalClose");
 const modalImage = document.getElementById("modalImage");
 const modalName = document.getElementById("modalName");
 const modalCategory = document.getElementById("modalCategory");
-const modalPrice = document.getElementById("modalPrice");
 const modalAdd = document.getElementById("modalAdd");
 
 const toast = document.getElementById("toast");
-
-
-/* =========================
-   PRICE
-========================= */
-
-function formatPrice(price) {
-  return Number(price).toLocaleString("fa-IR") + " تومان";
-}
 
 
 /* =========================
@@ -67,51 +57,72 @@ function savePinned() {
 function openMenu() {
   sideMenu.classList.add("active");
   overlay.classList.add("active");
+
   document.body.style.overflow = "hidden";
 }
 
 function closeSideMenu() {
   sideMenu.classList.remove("active");
   overlay.classList.remove("active");
+
   document.body.style.overflow = "";
 }
 
-hamburger.addEventListener("click", openMenu);
-closeMenu.addEventListener("click", closeSideMenu);
-overlay.addEventListener("click", closeSideMenu);
+hamburger.addEventListener(
+  "click",
+  openMenu
+);
+
+closeMenu.addEventListener(
+  "click",
+  closeSideMenu
+);
+
+overlay.addEventListener(
+  "click",
+  closeSideMenu
+);
 
 
 /* =========================
    MENU LINKS
 ========================= */
 
-document.querySelectorAll(".menu-link").forEach(link => {
+document
+  .querySelectorAll(".menu-link")
+  .forEach(link => {
 
-  link.addEventListener("click", event => {
+    link.addEventListener(
+      "click",
+      event => {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const targetId = link.getAttribute("href");
-    const target = document.querySelector(targetId);
+        const targetId =
+          link.getAttribute("href");
 
-    closeSideMenu();
+        const target =
+          document.querySelector(targetId);
 
-    if (target) {
+        closeSideMenu();
 
-      setTimeout(() => {
+        if (target) {
 
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+          setTimeout(() => {
 
-      }, 150);
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
 
-    }
+          }, 150);
+
+        }
+
+      }
+    );
 
   });
-
-});
 
 
 /* =========================
@@ -150,10 +161,6 @@ function createCard(product) {
           ${product.name}
         </div>
 
-        <div class="price">
-          ${formatPrice(product.price)}
-        </div>
-
         <div class="product-actions">
 
           <button
@@ -186,19 +193,11 @@ function createCard(product) {
 function renderProducts() {
 
   const categories = {
-
     "مجلسی": "majlesiGrid",
-
     "روزمره": "rozmarreGrid",
-
     "کودک": "koodakGrid",
-
-    // اصلاح شد:
-    // پاپیون با products.js یکی است
-    "پاپیون": "papionGrid"
-
+    "پاپییون": "papionGrid"
   };
-
 
   Object.entries(categories).forEach(
     ([category, elementId]) => {
@@ -208,13 +207,11 @@ function renderProducts() {
 
       if (!element) return;
 
-
       const categoryProducts =
         products.filter(
           product =>
             product.category === category
         );
-
 
       element.innerHTML =
         categoryProducts
@@ -223,7 +220,6 @@ function renderProducts() {
 
     }
   );
-
 
   renderPinned();
 }
@@ -267,18 +263,22 @@ function togglePin(id) {
 function renderPinned() {
 
   const grid =
-    document.getElementById("pinnedGrid");
+    document.getElementById(
+      "pinnedGrid"
+    );
 
   const empty =
-    document.getElementById("emptyPinned");
+    document.getElementById(
+      "emptyPinned"
+    );
 
+  if (!grid || !empty) return;
 
   const pinnedProducts =
     products.filter(
       product =>
         state.pinned.includes(product.id)
     );
-
 
   if (pinnedProducts.length === 0) {
 
@@ -287,12 +287,9 @@ function renderPinned() {
     empty.style.display = "block";
 
     return;
-
   }
 
-
   empty.style.display = "none";
-
 
   grid.innerHTML =
     pinnedProducts
@@ -314,7 +311,6 @@ function addToCart(id) {
       item => item.id === id
     );
 
-
   if (existing) {
 
     existing.quantity++;
@@ -327,7 +323,6 @@ function addToCart(id) {
     });
 
   }
-
 
   saveCart();
 
@@ -350,9 +345,7 @@ function increaseQuantity(id) {
       product => product.id === id
     );
 
-
   if (!item) return;
-
 
   item.quantity++;
 
@@ -373,12 +366,9 @@ function decreaseQuantity(id) {
       product => product.id === id
     );
 
-
   if (!item) return;
 
-
   item.quantity--;
-
 
   if (item.quantity <= 0) {
 
@@ -388,7 +378,6 @@ function decreaseQuantity(id) {
       );
 
   }
-
 
   saveCart();
 
@@ -407,14 +396,15 @@ function removeFromCart(id) {
       product => product.id !== id
     );
 
-
   saveCart();
 
   renderCart();
 
   updateCartCount();
 
-  showToast("محصول حذف شد");
+  showToast(
+    "محصول حذف شد"
+  );
 }
 
 
@@ -425,14 +415,21 @@ function removeFromCart(id) {
 function renderCart() {
 
   const container =
-    document.getElementById("cartItems");
+    document.getElementById(
+      "cartItems"
+    );
 
   const empty =
-    document.getElementById("emptyCart");
+    document.getElementById(
+      "emptyCart"
+    );
 
   const totalBox =
-    document.getElementById("cartTotalBox");
+    document.getElementById(
+      "cartTotalBox"
+    );
 
+  if (!container || !empty) return;
 
   if (state.cart.length === 0) {
 
@@ -440,17 +437,22 @@ function renderCart() {
 
     empty.style.display = "block";
 
-    totalBox.hidden = true;
+    if (totalBox) {
+      totalBox.hidden = true;
+    }
 
     return;
-
   }
-
 
   empty.style.display = "none";
 
-  totalBox.hidden = false;
+  /*
+    مجموع و قیمت کاملاً غیرفعال شده‌اند.
+  */
 
+  if (totalBox) {
+    totalBox.hidden = true;
+  }
 
   container.innerHTML =
     state.cart
@@ -462,9 +464,9 @@ function renderCart() {
               product.id === item.id
           );
 
-
-        if (!product) return "";
-
+        if (!product) {
+          return "";
+        }
 
         return `
           <div class="cart-item">
@@ -479,10 +481,6 @@ function renderCart() {
               <strong>
                 ${product.name}
               </strong>
-
-              <div class="cart-price">
-                ${formatPrice(product.price)}
-              </div>
 
             </div>
 
@@ -518,56 +516,6 @@ function renderCart() {
 
       })
       .join("");
-
-
-  updateTotal();
-}
-
-
-function updateTotal() {
-
-  let total = 0;
-
-
-  state.cart.forEach(item => {
-
-    const product =
-      products.find(
-        product =>
-          product.id === item.id
-      );
-
-
-    if (product) {
-
-      total +=
-        product.price *
-        item.quantity;
-
-    }
-
-  });
-
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    formatPrice(total);
-}
-
-
-function updateCartCount() {
-
-  const count =
-    state.cart.reduce(
-      (sum, item) =>
-        sum + item.quantity,
-      0
-    );
-
-
-  cartCount.textContent =
-    count.toLocaleString("fa-IR");
 }
 
 
@@ -584,7 +532,6 @@ search.addEventListener(
         .trim()
         .toLowerCase();
 
-
     if (!query) {
 
       searchResults.innerHTML = "";
@@ -595,7 +542,6 @@ search.addEventListener(
 
       return;
     }
-
 
     const results =
       products.filter(product => {
@@ -612,7 +558,6 @@ search.addEventListener(
 
       });
 
-
     if (results.length === 0) {
 
       searchResults.innerHTML = `
@@ -626,6 +571,7 @@ search.addEventListener(
       searchResults.innerHTML =
         results
           .map(product => `
+
             <div
               class="search-result"
               data-search="${product.id}"
@@ -649,11 +595,10 @@ search.addEventListener(
               </div>
 
             </div>
+
           `)
           .join("");
-
     }
-
 
     searchResults.classList.add(
       "active"
@@ -662,6 +607,10 @@ search.addEventListener(
   }
 );
 
+
+/* =========================
+   CLEAR SEARCH
+========================= */
 
 clearSearch.addEventListener(
   "click",
@@ -689,18 +638,14 @@ function openProduct(id) {
 
   id = Number(id);
 
-
   const product =
     products.find(
       item => item.id === id
     );
 
-
   if (!product) return;
 
-
   state.currentProduct = product;
-
 
   modalImage.src =
     product.image;
@@ -714,20 +659,14 @@ function openProduct(id) {
   modalCategory.textContent =
     product.category;
 
-  modalPrice.textContent =
-    formatPrice(product.price);
-
-
   productModal.classList.add(
     "active"
   );
-
 
   productModal.setAttribute(
     "aria-hidden",
     "false"
   );
-
 
   document.body.style.overflow =
     "hidden";
@@ -740,12 +679,10 @@ function closeProduct() {
     "active"
   );
 
-
   productModal.setAttribute(
     "aria-hidden",
     "true"
   );
-
 
   document.body.style.overflow = "";
 
@@ -764,8 +701,7 @@ productModal.addEventListener(
   event => {
 
     if (
-      event.target ===
-      productModal
+      event.target === productModal
     ) {
 
       closeProduct();
@@ -780,9 +716,7 @@ modalAdd.addEventListener(
   "click",
   () => {
 
-    if (
-      state.currentProduct
-    ) {
+    if (state.currentProduct) {
 
       addToCart(
         state.currentProduct.id
@@ -809,7 +743,6 @@ document.addEventListener(
         "[data-pin]"
       );
 
-
     if (pin) {
 
       togglePin(
@@ -824,7 +757,6 @@ document.addEventListener(
       event.target.closest(
         "[data-view]"
       );
-
 
     if (view) {
 
@@ -841,7 +773,6 @@ document.addEventListener(
         "[data-add]"
       );
 
-
     if (add) {
 
       addToCart(
@@ -856,7 +787,6 @@ document.addEventListener(
       event.target.closest(
         "[data-increase]"
       );
-
 
     if (increase) {
 
@@ -873,7 +803,6 @@ document.addEventListener(
         "[data-decrease]"
       );
 
-
     if (decrease) {
 
       decreaseQuantity(
@@ -889,7 +818,6 @@ document.addEventListener(
         "[data-remove]"
       );
 
-
     if (remove) {
 
       removeFromCart(
@@ -904,7 +832,6 @@ document.addEventListener(
       event.target.closest(
         "[data-search]"
       );
-
 
     if (searchItem) {
 
@@ -933,8 +860,11 @@ cartButton.addEventListener(
   () => {
 
     const cartSection =
-      document.getElementById("cart");
+      document.getElementById(
+        "cart"
+      );
 
+    if (!cartSection) return;
 
     cartSection.scrollIntoView({
       behavior: "smooth",
@@ -963,12 +893,12 @@ document
 
         closeSideMenu();
 
-
         const contact =
           document.getElementById(
             "contact"
           );
 
+        if (!contact) return;
 
         contact.scrollIntoView({
           behavior: "smooth",
@@ -987,16 +917,18 @@ document
 
 let toastTimer;
 
-
 function showToast(message) {
 
-  toast.textContent = message;
+  if (!toast) return;
 
-  toast.classList.add("show");
+  toast.textContent =
+    message;
 
+  toast.classList.add(
+    "show"
+  );
 
   clearTimeout(toastTimer);
-
 
   toastTimer =
     setTimeout(() => {
@@ -1006,7 +938,6 @@ function showToast(message) {
       );
 
     }, 2200);
-
 }
 
 
@@ -1039,3 +970,21 @@ renderProducts();
 renderCart();
 
 updateCartCount();
+
+
+/* =========================
+   CART COUNT
+========================= */
+
+function updateCartCount() {
+
+  const count =
+    state.cart.reduce(
+      (sum, item) =>
+        sum + item.quantity,
+      0
+    );
+
+  cartCount.textContent =
+    count.toLocaleString("fa-IR");
+}
