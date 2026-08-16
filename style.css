@@ -1593,3 +1593,23 @@ footer {
   }
 
 }
+
+#con{
+  display: inline-block;
+
+  padding: 14px 28px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fc0c04,
+      #ff1100
+    );
+
+  color: #f9fcf8;
+
+  transition: 0.3s;
+
+}
