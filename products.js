@@ -102,7 +102,7 @@ const products = [
 
   {
     id: 11,
-    name: "کلیپس با کییفیت",
+    name: "کلیپس با کیفیت",
     category: "روزمره",
     categoryId: "rozmarre",
     image: "inges/mahsols/roozmare/r_6.jpg",
@@ -170,40 +170,40 @@ const products = [
   // ================= پاپیون =================
 
   {
-    id: 18,
-    name: "اسکرانچی پاپیون",
-    category: "پاپیون",
-    categoryId: "papion",
-    image: "inges/mahsols/papioon/p_1.jpg",
-    alt: "اسکرانچی پاپیونی مو فر فری"
-  },
+  id: 18,
+  name: "اسکرانچی پاپیون",
+  category: "پاپیون",
+  categoryId: "papion",
+  image: "inges/mahsols/papioon/p_1.jpg",
+  alt: "اسکرانچی پاپیونی مو فر فری"
+},
 
-  {
-    id: 19,
-    name: "فرانسوی کیسه ای",
-    category: "پاپیون",
-    categoryId: "papion",
-    image: "inges/mahsols/papioon/p_2.jpg",
-    alt: "اکسسوری موی فرانسوی کیسه ای فر فری"
-  },
+{
+  id: 19,
+  name: "فرانسوی کیسه ای",
+  category: "پاپیون",
+  categoryId: "papion",
+  image: "inges/mahsols/papioon/p_2.jpg",
+  alt: "اکسسوری موی فرانسوی کیسه ای فر فری"
+},
 
-  {
-    id: 20,
-    name: "پاپیون انبری",
-    category: "پاپیون",
-    categoryId: "papion",
-    image: "inges/mahsols/papioon/p_3.jpg",
-    alt: "پاپیون انبری مو فر فری"
-  },
+{
+  id: 20,
+  name: "پاپیون انبری",
+  category: "پاپیون",
+  categoryId: "papion",
+  image: "inges/mahsols/papioon/p_3.jpg",
+  alt: "پاپیون انبری مو فر فری"
+},
 
-  {
-    id: 21,
-    name: "پاپیون مخمل",
-    category: "پاپیون",
-    categoryId: "papion",
-    image: "inges/mahsols/papioon/p_4.jpg",
-    alt: "پاپیون مخمل مو فر فری"
-  }
+{
+  id: 21,
+  name: "پاپیون مخمل",
+  category: "پاپیون",
+  categoryId: "papion",
+  image: "inges/mahsols/papioon/p_4.jpg",
+  alt: "پاپیون مخمل مو فر فری"
+}
 
 ];
 
