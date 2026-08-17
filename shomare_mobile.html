@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ارتباط با فروشنده 🎀</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Tahoma, sans-serif;
+
+            background:
+                radial-gradient(circle at 20% 20%, #ffd6ed 0%, transparent 25%),
+                radial-gradient(circle at 80% 30%, #e9d5ff 0%, transparent 25%),
+                radial-gradient(circle at 50% 90%, #ffdff2 0%, transparent 30%),
+                linear-gradient(135deg, #fff0f8, #f9eaff, #fff7fc);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 182, 218, 0.25);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: moveBlob 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes moveBlob {
+            from {
+                transform: translate(-150px, -100px) scale(1);
+            }
+
+            to {
+                transform: translate(150px, 120px) scale(1.4);
+            }
+        }
+
+        /* قلب‌های شناور */
+
+        .heart {
+            position: fixed;
+            font-size: 25px;
+            opacity: 0;
+            animation: floatHeart linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .h1 {
+            left: 8%;
+            animation-duration: 7s;
+            animation-delay: 1s;
+        }
+
+        .h2 {
+            left: 22%;
+            animation-duration: 9s;
+            animation-delay: 3s;
+        }
+
+        .h3 {
+            left: 40%;
+            animation-duration: 6s;
+            animation-delay: 0s;
+        }
+
+        .h4 {
+            left: 63%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+
+        .h5 {
+            left: 82%;
+            animation-duration: 8s;
+            animation-delay: 4s;
+        }
+
+        .h6 {
+            left: 92%;
+            animation-duration: 7s;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg) scale(.6);
+            }
+
+            20% {
+                opacity: .8;
+            }
+
+            50% {
+                transform: translateX(40px) rotate(15deg) scale(1);
+            }
+
+            100% {
+                bottom: 110%;
+                opacity: 0;
+                transform: translateX(-50px) rotate(-20deg) scale(1.3);
+            }
+        }
+
+        /* کارت اصلی */
+
+        .card {
+            width: min(92%, 700px);
+            padding: 55px 40px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.68);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 2px solid rgba(255, 255, 255, .85);
+            border-radius: 40px;
+
+            box-shadow:
+                0 25px 70px rgba(190, 90, 160, .18),
+                inset 0 0 30px rgba(255,255,255,.5);
+
+            animation:
+                cardAppear 1s ease forwards,
+                cardFloat 5s ease-in-out infinite 1s;
+
+            position: relative;
+            z-index: 5;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes cardFloat {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* پاپیون */
+
+        .bow {
+            font-size: 70px;
+            display: inline-block;
+
+            animation:
+                bowAnimation 2s infinite ease-in-out;
+
+            filter:
+                drop-shadow(
+                    0 8px 12px rgba(220, 80, 160, .2)
+                );
+        }
+
+        @keyframes bowAnimation {
+            0%,100% {
+                transform: rotate(-5deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(5deg) scale(1.12);
+            }
+        }
+
+        /* متن اصلی */
+
+        #p {
+            margin-top: 15px;
+
+            color: #b93683;
+
+            font-size:
+                clamp(25px, 5vw, 45px);
+
+            font-weight: bold;
+
+            line-height: 1.7;
+
+            text-shadow:
+                0 3px 10px rgba(205, 72, 145, .18);
+
+            animation:
+                textGlow 2.5s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow:
+                    0 3px 10px rgba(205,72,145,.15);
+            }
+
+            to {
+                text-shadow:
+                    0 3px 25px rgba(255,105,180,.5);
+            }
+        }
+
+        .subtitle {
+            margin-top: 10px;
+
+            color: #9f76a0;
+
+            font-size: 18px;
+        }
+
+        /* شماره */
+
+        .number-box {
+            margin: 35px auto;
+            padding: 25px 20px;
+
+            width: min(100%, 500px);
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff,
+                    #ffe5f2
+                );
+
+            border: 2px solid #ffc2df;
+
+            box-shadow:
+                0 12px 30px rgba(214, 92, 157, .18),
+                inset 0 0 15px rgba(255,255,255,.9);
+
+            transition: .4s;
+        }
+
+        .number-box:hover {
+            transform:
+                translateY(-7px)
+                scale(1.03);
+
+            box-shadow:
+                0 18px 40px rgba(214, 92, 157, .28);
+        }
+
+        #num {
+            direction: ltr;
+
+            color: #d62f88;
+
+            font-size:
+                clamp(28px, 7vw, 55px);
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            animation:
+                numberPulse 2s infinite;
+        }
+
+        @keyframes numberPulse {
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* دکمه */
+
+        #a {
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff70b7,
+                    #c957d9
+                );
+
+            padding: 16px 35px;
+
+            border-radius: 50px;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 25px rgba(205, 75, 160, .3);
+
+            transition: .35s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        #a::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 60%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.6),
+                    transparent
+                );
+
+            transform: skewX(-20deg);
+
+            animation:
+                shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            45%,100% {
+                left: 150%;
+            }
+        }
+
+        #a:hover {
+            transform:
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+                0 15px 35px rgba(205, 75, 160, .4);
+        }
+
+        #a:active {
+            transform: scale(.95);
+        }
+
+        /* گل‌های گوشه */
+
+        .flower {
+            position: fixed;
+
+            font-size: 35px;
+
+            z-index: 1;
+
+            animation:
+                flowerFloat 4s ease-in-out infinite;
+        }
+
+        .f1 {
+            top: 8%;
+            left: 7%;
+        }
+
+        .f2 {
+            top: 15%;
+            right: 7%;
+            animation-delay: 1s;
+        }
+
+        .f3 {
+            bottom: 8%;
+            left: 9%;
+            animation-delay: 2s;
+        }
+
+        .f4 {
+            bottom: 10%;
+            right: 8%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes flowerFloat {
+            0%,100% {
+                transform:
+                    translateY(0)
+                    rotate(-5deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-15px)
+                    rotate(8deg);
+            }
+        }
+
+        /* ستاره‌ها */
+
+        .sparkle {
+            position: fixed;
+
+            color: #ff8bc7;
+
+            font-size: 22px;
+
+            animation:
+                sparkle 2s infinite alternate;
+
+            pointer-events: none;
+        }
+
+        .s1 {
+            top: 25%;
+            left: 15%;
+        }
+
+        .s2 {
+            top: 35%;
+            right: 14%;
+            animation-delay: .5s;
+        }
+
+        .s3 {
+            bottom: 25%;
+            left: 18%;
+            animation-delay: 1s;
+        }
+
+        .s4 {
+            bottom: 30%;
+            right: 18%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkle {
+            from {
+                opacity: .2;
+                transform:
+                    scale(.6)
+                    rotate(0);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    scale(1.3)
+                    rotate(180deg);
+            }
+        }
+
+        /* موبایل */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 0;
+            }
+
+            .card {
+                padding: 40px 20px;
+                border-radius: 30px;
+            }
+
+            .bow {
+                font-size: 55px;
+            }
+
+            #p {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            #num {
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+
+            #a {
+                font-size: 18px;
+                padding: 14px 25px;
+            }
+
+            .flower {
+                font-size: 25px;
+            }
+
+            .sparkle {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- قلب‌های شناور -->
+
+    <div class="heart h1">💗</div>
+    <div class="heart h2">💕</div>
+    <div class="heart h3">💖</div>
+    <div class="heart h4">💗</div>
+    <div class="heart h5">💞</div>
+    <div class="heart h6">💓</div>
+
+    <!-- گل‌ها -->
+
+    <div class="flower f1">🌸</div>
+    <div class="flower f2">🌷</div>
+    <div class="flower f3">🌺</div>
+    <div class="flower f4">🌸</div>
+
+    <!-- ستاره‌ها -->
+
+    <div class="sparkle s1">✨</div>
+    <div class="sparkle s2">✦</div>
+    <div class="sparkle s3">✨</div>
+    <div class="sparkle s4">✧</div>
+
+    <!-- کارت -->
+
+    <main class="card">
+
+        <div class="bow">🎀</div>
+
+        <p id="p">
+            برای ارتباط با فروشنده
+            <br>
+            با شماره زیر تماس بگیرید 💕
+        </p>
+
+        <div class="subtitle">
+            خوشحال می‌شیم با شما در ارتباط باشیم 🌷
+        </div>
+
+        <div class="number-box">
+            <p id="num">
+                09106197465
+            </p>
+        </div>
+
+        <a id="a" href="index.html">
+            🏠 بازگشت به صفحه اصلی
+        </a>
+
+    </main>
+
+</body>
+</html>
