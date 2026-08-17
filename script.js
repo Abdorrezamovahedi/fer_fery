@@ -1,13 +1,3 @@
-/* ==========================================
-   FER FERY
-   SCRIPT.JS
-========================================== */
-
-
-/* =========================
-   STATE
-========================= */
-
 const state = {
   cart: JSON.parse(localStorage.getItem("ferFeryCart")) || [],
   pinned: JSON.parse(localStorage.getItem("ferFeryPinned")) || [],
@@ -42,7 +32,7 @@ const toast = document.getElementById("toast");
 
 
 /* =========================
-   LOCAL STORAGE
+   STORAGE
 ========================= */
 
 function saveCart() {
@@ -51,7 +41,6 @@ function saveCart() {
     JSON.stringify(state.cart)
   );
 }
-
 
 function savePinned() {
   localStorage.setItem(
@@ -66,84 +55,62 @@ function savePinned() {
 ========================= */
 
 function openMenu() {
+  if (!sideMenu || !overlay) return;
 
-  if (sideMenu) {
-    sideMenu.classList.add("active");
-  }
-
-  if (overlay) {
-    overlay.classList.add("active");
-  }
+  sideMenu.classList.add("active");
+  overlay.classList.add("active");
 
   document.body.style.overflow = "hidden";
 }
 
-
 function closeSideMenu() {
+  if (!sideMenu || !overlay) return;
 
-  if (sideMenu) {
-    sideMenu.classList.remove("active");
-  }
-
-  if (overlay) {
-    overlay.classList.remove("active");
-  }
+  sideMenu.classList.remove("active");
+  overlay.classList.remove("active");
 
   document.body.style.overflow = "";
 }
 
-
-if (hamburger) {
-  hamburger.addEventListener("click", openMenu);
-}
-
-
-if (closeMenu) {
-  closeMenu.addEventListener("click", closeSideMenu);
-}
-
-
-if (overlay) {
-  overlay.addEventListener("click", closeSideMenu);
-}
+hamburger?.addEventListener("click", openMenu);
+closeMenu?.addEventListener("click", closeSideMenu);
+overlay?.addEventListener("click", closeSideMenu);
 
 
 /* =========================
    MENU LINKS
 ========================= */
 
-document
-  .querySelectorAll(".menu-link")
-  .forEach(link => {
+document.querySelectorAll(".menu-link").forEach(link => {
 
-    link.addEventListener("click", event => {
+  link.addEventListener("click", event => {
 
-      event.preventDefault();
+    const href = link.getAttribute("href");
 
-      const targetId =
-        link.getAttribute("href");
+    if (!href || !href.startsWith("#")) return;
 
-      const target =
-        document.querySelector(targetId);
+    event.preventDefault();
 
-      closeSideMenu();
+    const target = document.querySelector(href);
 
-      if (target) {
+    closeSideMenu();
 
-        setTimeout(() => {
+    if (target) {
 
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+      setTimeout(() => {
 
-        }, 150);
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
 
-      }
+      }, 150);
 
-    });
+    }
 
   });
+
+});
 
 
 /* =========================
@@ -152,8 +119,10 @@ document
 
 function createCard(product) {
 
+  const id = Number(product.id);
+
   const isPinned =
-    state.pinned.includes(Number(product.id));
+    state.pinned.includes(id);
 
   return `
     <article class="card">
@@ -164,12 +133,11 @@ function createCard(product) {
           src="${product.image}"
           alt="${product.alt || product.name}"
           loading="lazy"
-          onerror="this.style.display='none';"
         >
 
         <button
           class="pin ${isPinned ? "active" : ""}"
-          data-pin="${product.id}"
+          data-pin="${id}"
           aria-label="پین کردن محصول"
         >
           ${isPinned ? "📌" : "♡"}
@@ -187,14 +155,14 @@ function createCard(product) {
 
           <button
             class="view"
-            data-view="${product.id}"
+            data-view="${id}"
           >
             مشاهده محصول
           </button>
 
           <button
             class="add"
-            data-add="${product.id}"
+            data-add="${id}"
           >
             افزودن به سبد
           </button>
@@ -209,36 +177,17 @@ function createCard(product) {
 
 
 /* =========================
-   NORMALIZE CATEGORY
-========================= */
-
-function normalizeCategory(value) {
-
-  return String(value || "")
-    .trim()
-    .toLowerCase();
-
-}
-
-
-/* =========================
    RENDER PRODUCTS
 ========================= */
 
 function renderProducts() {
 
   const categories = {
-
     majlesi: "majlesiGrid",
-
     rozmarre: "rozmarreGrid",
-
     koodak: "koodakGrid",
-
     papion: "papionGrid"
-
   };
-
 
   Object.entries(categories).forEach(
     ([categoryId, elementId]) => {
@@ -246,63 +195,23 @@ function renderProducts() {
       const element =
         document.getElementById(elementId);
 
-      if (!element) {
-        console.error(
-          "عنصر پیدا نشد:",
-          elementId
-        );
-        return;
-      }
-
+      if (!element) return;
 
       const categoryProducts =
-        products.filter(product => {
-
-          return (
-            normalizeCategory(product.categoryId)
-            ===
-            normalizeCategory(categoryId)
-          );
-
-        });
-
-
-      console.log(
-        `دسته ${categoryId}:`,
-        categoryProducts
-      );
-
+        products.filter(product =>
+          String(product.categoryId).trim().toLowerCase() ===
+          String(categoryId).trim().toLowerCase()
+        );
 
       element.innerHTML =
         categoryProducts
           .map(createCard)
           .join("");
 
-
-      /* اگر محصولی در دسته نبود */
-
-      if (categoryProducts.length === 0) {
-
-        element.innerHTML = `
-          <div class="empty">
-            <div class="empty-icon">
-              🎀
-            </div>
-
-            <p>
-              محصولی در این دسته وجود ندارد.
-            </p>
-          </div>
-        `;
-
-      }
-
     }
   );
 
-
   renderPinned();
-
 }
 
 
@@ -314,35 +223,24 @@ function togglePin(id) {
 
   id = Number(id);
 
-
   if (state.pinned.includes(id)) {
 
     state.pinned =
-      state.pinned.filter(
-        item => Number(item) !== id
-      );
+      state.pinned.filter(item => item !== id);
 
-    showToast(
-      "محصول از پین‌شده‌ها حذف شد"
-    );
+    showToast("محصول از پین‌شده‌ها حذف شد");
 
-  }
-
-  else {
+  } else {
 
     state.pinned.push(id);
 
-    showToast(
-      "محصول به پین‌شده‌ها اضافه شد 📌"
-    );
+    showToast("محصول به پین‌شده‌ها اضافه شد 📌");
 
   }
-
 
   savePinned();
 
   renderProducts();
-
 }
 
 
@@ -354,21 +252,12 @@ function renderPinned() {
   const empty =
     document.getElementById("emptyPinned");
 
-
-  if (!grid || !empty) {
-    return;
-  }
-
+  if (!grid || !empty) return;
 
   const pinnedProducts =
-    products.filter(product => {
-
-      return state.pinned.includes(
-        Number(product.id)
-      );
-
-    });
-
+    products.filter(product =>
+      state.pinned.includes(Number(product.id))
+    );
 
   if (pinnedProducts.length === 0) {
 
@@ -377,18 +266,14 @@ function renderPinned() {
     empty.style.display = "block";
 
     return;
-
   }
 
-
   empty.style.display = "none";
-
 
   grid.innerHTML =
     pinnedProducts
       .map(createCard)
       .join("");
-
 }
 
 
@@ -400,20 +285,23 @@ function addToCart(id) {
 
   id = Number(id);
 
+  const product =
+    products.find(
+      item => Number(item.id) === id
+    );
+
+  if (!product) return;
 
   const existing =
     state.cart.find(
       item => Number(item.id) === id
     );
 
-
   if (existing) {
 
     existing.quantity++;
 
-  }
-
-  else {
+  } else {
 
     state.cart.push({
       id: id,
@@ -422,17 +310,13 @@ function addToCart(id) {
 
   }
 
-
   saveCart();
 
   renderCart();
 
   updateCartCount();
 
-  showToast(
-    "محصول به سبد خرید اضافه شد 🛍️"
-  );
-
+  showToast("محصول به سبد خرید اضافه شد 🛍️");
 }
 
 
@@ -440,27 +324,20 @@ function increaseQuantity(id) {
 
   id = Number(id);
 
-
   const item =
     state.cart.find(
-      product => Number(product.id) === id
+      item => Number(item.id) === id
     );
 
-
-  if (!item) {
-    return;
-  }
-
+  if (!item) return;
 
   item.quantity++;
-
 
   saveCart();
 
   renderCart();
 
   updateCartCount();
-
 }
 
 
@@ -468,37 +345,29 @@ function decreaseQuantity(id) {
 
   id = Number(id);
 
-
   const item =
     state.cart.find(
-      product => Number(product.id) === id
+      item => Number(item.id) === id
     );
 
-
-  if (!item) {
-    return;
-  }
-
+  if (!item) return;
 
   item.quantity--;
-
 
   if (item.quantity <= 0) {
 
     state.cart =
       state.cart.filter(
-        product => Number(product.id) !== id
+        item => Number(item.id) !== id
       );
 
   }
-
 
   saveCart();
 
   renderCart();
 
   updateCartCount();
-
 }
 
 
@@ -506,12 +375,10 @@ function removeFromCart(id) {
 
   id = Number(id);
 
-
   state.cart =
     state.cart.filter(
-      product => Number(product.id) !== id
+      item => Number(item.id) !== id
     );
-
 
   saveCart();
 
@@ -519,11 +386,7 @@ function removeFromCart(id) {
 
   updateCartCount();
 
-
-  showToast(
-    "محصول حذف شد"
-  );
-
+  showToast("محصول حذف شد");
 }
 
 
@@ -539,11 +402,7 @@ function renderCart() {
   const empty =
     document.getElementById("emptyCart");
 
-
-  if (!container || !empty) {
-    return;
-  }
-
+  if (!container || !empty) return;
 
   if (state.cart.length === 0) {
 
@@ -552,12 +411,9 @@ function renderCart() {
     empty.style.display = "block";
 
     return;
-
   }
 
-
   empty.style.display = "none";
-
 
   container.innerHTML =
     state.cart
@@ -566,23 +422,17 @@ function renderCart() {
         const product =
           products.find(
             product =>
-              Number(product.id)
-              ===
-              Number(item.id)
+              Number(product.id) === Number(item.id)
           );
 
-
-        if (!product) {
-          return "";
-        }
-
+        if (!product) return "";
 
         return `
           <div class="cart-item">
 
             <img
               src="${product.image}"
-              alt="${product.alt || product.name}"
+              alt="${product.name}"
             >
 
             <div class="cart-info">
@@ -625,7 +475,6 @@ function renderCart() {
 
       })
       .join("");
-
 }
 
 
@@ -633,271 +482,189 @@ function renderCart() {
    SEARCH
 ========================= */
 
-if (search) {
+search?.addEventListener("input", () => {
 
-  search.addEventListener("input", () => {
+  const query =
+    search.value
+      .trim()
+      .toLowerCase();
 
-    const query =
-      search.value
-        .trim()
-        .toLowerCase();
+  if (!query) {
 
+    searchResults.innerHTML = "";
 
-    if (!query) {
+    searchResults.classList.remove("active");
 
-      searchResults.innerHTML = "";
+    return;
+  }
 
-      searchResults.classList.remove(
-        "active"
+  const results =
+    products.filter(product => {
+
+      const name =
+        String(product.name || "").toLowerCase();
+
+      const category =
+        String(product.category || "").toLowerCase();
+
+      return (
+        name.includes(query) ||
+        category.includes(query)
       );
 
-      return;
+    });
 
-    }
+  if (results.length === 0) {
 
+    searchResults.innerHTML = `
+      <div class="search-result">
+        محصولی پیدا نشد.
+      </div>
+    `;
 
-    const results =
-      products.filter(product => {
+  } else {
 
-        const name =
-          normalizeCategory(product.name);
+    searchResults.innerHTML =
+      results.map(product => `
 
-        const category =
-          normalizeCategory(product.category);
+        <div
+          class="search-result"
+          data-search="${product.id}"
+        >
 
-        return (
-          name.includes(query)
-          ||
-          category.includes(query)
-        );
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+          >
 
-      });
+          <div>
 
+            <strong>
+              ${product.name}
+            </strong>
 
-    if (results.length === 0) {
+            <small>
+              ${product.category}
+            </small>
 
-      searchResults.innerHTML = `
-        <div class="search-result">
-          محصولی پیدا نشد.
+          </div>
+
         </div>
-      `;
 
-    }
+      `).join("");
 
-    else {
+  }
 
-      searchResults.innerHTML =
-        results
-          .map(product => {
+  searchResults.classList.add("active");
 
-            return `
-              <div
-                class="search-result"
-                data-search="${product.id}"
-              >
-
-                <img
-                  src="${product.image}"
-                  alt="${product.alt || product.name}"
-                >
-
-                <div>
-
-                  <strong>
-                    ${product.name}
-                  </strong>
-
-                  <small>
-                    ${product.category}
-                  </small>
-
-                </div>
-
-              </div>
-            `;
-
-          })
-          .join("");
-
-    }
-
-
-    searchResults.classList.add(
-      "active"
-    );
-
-  });
-
-}
+});
 
 
 /* =========================
    CLEAR SEARCH
 ========================= */
 
-if (clearSearch) {
+clearSearch?.addEventListener("click", () => {
 
-  clearSearch.addEventListener("click", () => {
+  search.value = "";
 
-    search.value = "";
+  searchResults.innerHTML = "";
 
-    searchResults.innerHTML = "";
+  searchResults.classList.remove("active");
 
-    searchResults.classList.remove(
-      "active"
-    );
+  search.focus();
 
-    search.focus();
-
-  });
-
-}
+});
 
 
 /* =========================
-   PRODUCT MODAL
+   MODAL
 ========================= */
 
 function openProduct(id) {
 
   id = Number(id);
 
-
   const product =
     products.find(
-      item =>
-        Number(item.id) === id
+      item => Number(item.id) === id
     );
 
-
-  if (!product) {
-    return;
-  }
-
+  if (!product) return;
 
   state.currentProduct = product;
 
+  modalImage.src = product.image;
 
-  if (modalImage) {
+  modalImage.alt =
+    product.alt || product.name;
 
-    modalImage.src =
-      product.image;
+  modalName.textContent =
+    product.name;
 
-    modalImage.alt =
-      product.alt || product.name;
+  modalCategory.textContent =
+    product.category;
 
-  }
+  productModal.classList.add("active");
 
+  productModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-  if (modalName) {
-
-    modalName.textContent =
-      product.name;
-
-  }
-
-
-  if (modalCategory) {
-
-    modalCategory.textContent =
-      product.category;
-
-  }
-
-
-  if (productModal) {
-
-    productModal.classList.add(
-      "active"
-    );
-
-    productModal.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-  }
-
-
-  document.body.style.overflow =
-    "hidden";
-
+  document.body.style.overflow = "hidden";
 }
 
 
 function closeProduct() {
 
-  if (productModal) {
+  if (!productModal) return;
 
-    productModal.classList.remove(
-      "active"
-    );
+  productModal.classList.remove("active");
 
-    productModal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-  }
-
+  productModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
   document.body.style.overflow = "";
 
   state.currentProduct = null;
-
 }
 
 
-if (modalClose) {
-
-  modalClose.addEventListener(
-    "click",
-    closeProduct
-  );
-
-}
+modalClose?.addEventListener(
+  "click",
+  closeProduct
+);
 
 
-if (productModal) {
+productModal?.addEventListener(
+  "click",
+  event => {
 
-  productModal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target === productModal
-      ) {
-
-        closeProduct();
-
-      }
-
+    if (event.target === productModal) {
+      closeProduct();
     }
-  );
 
-}
+  }
+);
 
 
-if (modalAdd) {
+modalAdd?.addEventListener(
+  "click",
+  () => {
 
-  modalAdd.addEventListener(
-    "click",
-    () => {
+    if (!state.currentProduct) return;
 
-      if (state.currentProduct) {
+    addToCart(
+      state.currentProduct.id
+    );
 
-        addToCart(
-          state.currentProduct.id
-        );
+    closeProduct();
 
-        closeProduct();
-
-      }
-
-    }
-  );
-
-}
+  }
+);
 
 
 /* =========================
@@ -908,63 +675,41 @@ document.addEventListener(
   "click",
   event => {
 
-
     const pin =
-      event.target.closest(
-        "[data-pin]"
-      );
-
+      event.target.closest("[data-pin]");
 
     if (pin) {
 
-      togglePin(
-        pin.dataset.pin
-      );
+      togglePin(pin.dataset.pin);
 
       return;
-
     }
 
 
     const view =
-      event.target.closest(
-        "[data-view]"
-      );
-
+      event.target.closest("[data-view]");
 
     if (view) {
 
-      openProduct(
-        view.dataset.view
-      );
+      openProduct(view.dataset.view);
 
       return;
-
     }
 
 
     const add =
-      event.target.closest(
-        "[data-add]"
-      );
-
+      event.target.closest("[data-add]");
 
     if (add) {
 
-      addToCart(
-        add.dataset.add
-      );
+      addToCart(add.dataset.add);
 
       return;
-
     }
 
 
     const increase =
-      event.target.closest(
-        "[data-increase]"
-      );
-
+      event.target.closest("[data-increase]");
 
     if (increase) {
 
@@ -973,15 +718,11 @@ document.addEventListener(
       );
 
       return;
-
     }
 
 
     const decrease =
-      event.target.closest(
-        "[data-decrease]"
-      );
-
+      event.target.closest("[data-decrease]");
 
     if (decrease) {
 
@@ -990,15 +731,11 @@ document.addEventListener(
       );
 
       return;
-
     }
 
 
     const remove =
-      event.target.closest(
-        "[data-remove]"
-      );
-
+      event.target.closest("[data-remove]");
 
     if (remove) {
 
@@ -1007,15 +744,11 @@ document.addEventListener(
       );
 
       return;
-
     }
 
 
     const searchItem =
-      event.target.closest(
-        "[data-search]"
-      );
-
+      event.target.closest("[data-search]");
 
     if (searchItem) {
 
@@ -1023,19 +756,11 @@ document.addEventListener(
         searchItem.dataset.search
       );
 
+      searchResults.classList.remove(
+        "active"
+      );
 
-      if (searchResults) {
-
-        searchResults.classList.remove(
-          "active"
-        );
-
-      }
-
-
-      if (search) {
-        search.value = "";
-      }
+      search.value = "";
 
     }
 
@@ -1047,30 +772,22 @@ document.addEventListener(
    CART BUTTON
 ========================= */
 
-if (cartButton) {
+cartButton?.addEventListener(
+  "click",
+  () => {
 
-  cartButton.addEventListener(
-    "click",
-    () => {
+    const cartSection =
+      document.getElementById("cart");
 
-      const cartSection =
-        document.getElementById("cart");
+    if (!cartSection) return;
 
+    cartSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
 
-      if (!cartSection) {
-        return;
-      }
-
-
-      cartSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-  );
-
-}
+  }
+);
 
 
 /* =========================
@@ -1078,9 +795,7 @@ if (cartButton) {
 ========================= */
 
 document
-  .querySelectorAll(
-    'a[href="#contact"]'
-  )
+  .querySelectorAll('a[href="#contact"]')
   .forEach(link => {
 
     link.addEventListener(
@@ -1091,17 +806,10 @@ document
 
         closeSideMenu();
 
-
         const contact =
-          document.getElementById(
-            "contact"
-          );
+          document.getElementById("contact");
 
-
-        if (!contact) {
-          return;
-        }
-
+        if (!contact) return;
 
         contact.scrollIntoView({
           behavior: "smooth",
@@ -1120,32 +828,20 @@ document
 
 let toastTimer;
 
-
 function showToast(message) {
 
-  if (!toast) {
-    return;
-  }
+  if (!toast) return;
 
+  toast.textContent = message;
 
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
+  toast.classList.add("show");
 
   clearTimeout(toastTimer);
-
 
   toastTimer =
     setTimeout(() => {
 
-      toast.classList.remove(
-        "show"
-      );
+      toast.classList.remove("show");
 
     }, 2200);
 
@@ -1181,46 +877,18 @@ function updateCartCount() {
   const count =
     state.cart.reduce(
       (sum, item) =>
-        sum +
-        Number(
-          item.quantity || 0
-        ),
+        sum + Number(item.quantity || 0),
       0
     );
-
 
   if (cartCount) {
 
     cartCount.textContent =
-      count.toLocaleString(
-        "fa-IR"
-      );
+      count.toLocaleString("fa-IR");
 
   }
 
 }
-
-
-/* =========================
-   DEBUG
-   بررسی محصولات
-========================= */
-
-console.log(
-  "تعداد کل محصولات:",
-  products.length
-);
-
-
-console.log(
-  "محصولات پاپیون:",
-  products.filter(
-    product =>
-      normalizeCategory(
-        product.categoryId
-      ) === "papion"
-  )
-);
 
 
 /* =========================
