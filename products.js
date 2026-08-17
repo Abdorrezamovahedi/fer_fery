@@ -12,7 +12,8 @@ const products = [
     name: "کلیپس پاپیون",
     category: "مجلسی",
     categoryId: "majlesi",
-    image: "inges/mahsols/majlesy/m_1.jpg"
+    image: "inges/mahsols/majlesy/m_1.jpg",
+    alt: "کلیپس پاپیون مجلسی فر فری"
   },
 
   {
@@ -20,7 +21,8 @@ const products = [
     name: "کلیپس مجلسی",
     category: "مجلسی",
     categoryId: "majlesi",
-    image: "inges/mahsols/majlesy/m_2.jpg"
+    image: "inges/mahsols/majlesy/m_2.jpg",
+    alt: "کلیپس موی مجلسی فر فری"
   },
 
   {
@@ -28,7 +30,8 @@ const products = [
     name: "چفتی پروانه",
     category: "مجلسی",
     categoryId: "majlesi",
-    image: "inges/mahsols/majlesy/m_3.jpg"
+    image: "inges/mahsols/majlesy/m_3.jpg",
+    alt: "چفتی موی طرح پروانه مجلسی فر فری"
   },
 
   {
@@ -36,7 +39,8 @@ const products = [
     name: "تاج کودک",
     category: "مجلسی",
     categoryId: "majlesi",
-    image: "inges/mahsols/majlesy/m_4.jpg"
+    image: "inges/mahsols/majlesy/m_4.jpg",
+    alt: "تاج موی کودک مجلسی فر فری"
   },
 
   {
@@ -44,7 +48,8 @@ const products = [
     name: "کلیپس زربان",
     category: "مجلسی",
     categoryId: "majlesi",
-    image: "inges/mahsols/majlesy/m_5.jpg"
+    image: "inges/mahsols/majlesy/m_5.jpg",
+    alt: "کلیپس زربان مجلسی فر فری"
   },
 
 
@@ -55,7 +60,8 @@ const products = [
     name: "کش کودک",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_1.jpg"
+    image: "inges/mahsols/roozmare/r_1.jpg",
+    alt: "کش موی کودک روزمره فر فری"
   },
 
   {
@@ -63,7 +69,8 @@ const products = [
     name: "کلیپس بابونه",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_2.jpg"
+    image: "inges/mahsols/roozmare/r_2.jpg",
+    alt: "کلیپس موی طرح بابونه روزمره فر فری"
   },
 
   {
@@ -71,7 +78,8 @@ const products = [
     name: "کلیپس گل",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_3.jpg"
+    image: "inges/mahsols/roozmare/r_3.jpg",
+    alt: "کلیپس موی طرح گل روزمره فر فری"
   },
 
   {
@@ -79,7 +87,8 @@ const products = [
     name: "کلیپس پاپیون",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_4.jpg"
+    image: "inges/mahsols/roozmare/r_4.jpg",
+    alt: "کلیپس موی پاپیونی روزمره فر فری"
   },
 
   {
@@ -87,7 +96,8 @@ const products = [
     name: "کش کودک",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_5.jpg"
+    image: "inges/mahsols/roozmare/r_5.jpg",
+    alt: "کش موی کودک روزمره فر فری"
   },
 
   {
@@ -95,7 +105,8 @@ const products = [
     name: "کلیپس با کییفیت",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_6.jpg"
+    image: "inges/mahsols/roozmare/r_6.jpg",
+    alt: "کلیپس موی با کیفیت روزمره فر فری"
   },
 
   {
@@ -103,7 +114,8 @@ const products = [
     name: "کلیپس اکرولیک",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_7.jpg"
+    image: "inges/mahsols/roozmare/r_7.jpg",
+    alt: "کلیپس موی اکرولیک روزمره فر فری"
   },
 
   {
@@ -111,7 +123,8 @@ const products = [
     name: "کلیپس ماه",
     category: "روزمره",
     categoryId: "rozmarre",
-    image: "inges/mahsols/roozmare/r_8.jpg"
+    image: "inges/mahsols/roozmare/r_8.jpg",
+    alt: "کلیپس موی طرح ماه روزمره فر فری"
   },
 
 
@@ -122,7 +135,8 @@ const products = [
     name: "انبری آفتاب گردان",
     category: "کودک",
     categoryId: "koodak",
-    image: "inges/mahsols/koodak/k_1.jpg"
+    image: "inges/mahsols/koodak/k_1.jpg",
+    alt: "گیره موی انبری طرح آفتابگردان کودک فر فری"
   },
 
   {
@@ -130,7 +144,8 @@ const products = [
     name: "انبری پاپیون",
     category: "کودک",
     categoryId: "koodak",
-    image: "inges/mahsols/koodak/k_2.jpg"
+    image: "inges/mahsols/koodak/k_2.jpg",
+    alt: "گیره موی انبری پاپیونی کودک فر فری"
   },
 
   {
@@ -138,7 +153,8 @@ const products = [
     name: "کلیپس موی رنگی",
     category: "کودک",
     categoryId: "koodak",
-    image: "inges/mahsols/koodak/k_3.jpg"
+    image: "inges/mahsols/koodak/k_3.jpg",
+    alt: "کلیپس موی رنگی کودک فر فری"
   },
 
   {
@@ -146,7 +162,8 @@ const products = [
     name: "موی مصنوعی کرومی",
     category: "کودک",
     categoryId: "koodak",
-    image: "inges/mahsols/koodak/k_4.jpg"
+    image: "inges/mahsols/koodak/k_4.jpg",
+    alt: "موی مصنوعی کرومی کودک فر فری"
   },
 
 
@@ -157,7 +174,8 @@ const products = [
     name: "اسکرانچی پاپیون",
     category: "پاپیون",
     categoryId: "papion",
-    image: "inges/mahsols/papioon/p_1.jpg"
+    image: "inges/mahsols/papioon/p_1.jpg",
+    alt: "اسکرانچی پاپیونی مو فر فری"
   },
 
   {
@@ -165,7 +183,8 @@ const products = [
     name: "فرانسوی کیسه ای",
     category: "پاپیون",
     categoryId: "papion",
-    image: "inges/mahsols/papioon/p_2.jpg"
+    image: "inges/mahsols/papioon/p_2.jpg",
+    alt: "اکسسوری موی فرانسوی کیسه ای فر فری"
   },
 
   {
@@ -173,7 +192,8 @@ const products = [
     name: "پاپیون انبری",
     category: "پاپیون",
     categoryId: "papion",
-    image: "inges/mahsols/papioon/p_3.jpg"
+    image: "inges/mahsols/papioon/p_3.jpg",
+    alt: "پاپیون انبری مو فر فری"
   },
 
   {
@@ -181,7 +201,8 @@ const products = [
     name: "پاپیون مخمل",
     category: "پاپیون",
     categoryId: "papion",
-    image: "inges/mahsols/papioon/p_4.jpg"
+    image: "inges/mahsols/papioon/p_4.jpg",
+    alt: "پاپیون مخمل مو فر فری"
   }
 
 ];
