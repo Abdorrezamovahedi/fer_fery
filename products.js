@@ -1,4 +1,4 @@
-```js
+
 // ==========================================
 // FER FERY
 // اطلاعات محصولات
@@ -461,5 +461,5 @@ function getProductsByCategory(categoryId) {
 function getProductById(id) {
   return products.find((product) => product.id === Number(id));
 }
-```
+
 
