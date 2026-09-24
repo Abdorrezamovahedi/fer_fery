@@ -1,422 +1,465 @@
+```js
+// ==========================================
+// FER FERY
+// اطلاعات محصولات
+// ==========================================
+
 const products = [
-  // =========================
-  // مجلسی
-  // =========================
+  // ================= مجلسی =================
 
   {
     id: 1,
+    name: "کلیپس پاپیون",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گل سر مجلسی نگین‌دار",
-    price: 85000,
-    image: "inges/mahsols/mojlesi/mojlesi1.jpg",
-    alt: "گل سر مجلسی نگین‌دار فر فری"
+    image: "inges/mahsols/majlesy/m_1.jpg",
+    alt: "کلیپس پاپیون مجلسی فر فری",
   },
+
   {
     id: 2,
+    name: "کلیپس مجلسی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره موی مجلسی طرح ظریف",
-    price: 75000,
-    image: "inges/mahsols/mojlesi/mojlesi2.jpg",
-    alt: "گیره موی مجلسی فر فری"
+    image: "inges/mahsols/majlesy/m_2.jpg",
+    alt: "کلیپس موی مجلسی فر فری",
   },
+
   {
     id: 3,
+    name: "چفتی پروانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس موی مجلسی دخترانه",
-    price: 95000,
-    image: "inges/mahsols/mojlesi/mojlesi3.jpg",
-    alt: "کلیپس موی مجلسی دخترانه"
+    image: "inges/mahsols/majlesy/m_3.jpg",
+    alt: "چفتی موی طرح پروانه مجلسی فر فری",
   },
+
   {
     id: 4,
+    name: "تاج کودک",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی مناسب مهمانی",
-    price: 90000,
-    image: "inges/mahsols/mojlesi/mojlesi4.jpg",
-    alt: "اکسسوری موی مناسب مهمانی"
+    image: "inges/mahsols/majlesy/m_4.jpg",
+    alt: "تاج موی کودک مجلسی فر فری",
   },
+
   {
     id: 5,
+    name: "کلیپس زربان",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گل سر دخترانه برای استایل رسمی",
-    price: 80000,
-    image: "inges/mahsols/mojlesi/mojlesi5.jpg",
-    alt: "گل سر دخترانه برای استایل رسمی"
+    image: "inges/mahsols/majlesy/m_5.jpg",
+    alt: "کلیپس زربان مجلسی فر فری",
   },
 
   {
     id: 6,
+    name: "اکسسوری موی دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی دخترانه با طراحی زیبا",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo1.jpg",
-    alt: "اکسسوری موی دخترانه با طراحی زیبا"
+    alt: "اکسسوری موی دخترانه فر فری",
   },
+
   {
     id: 7,
+    name: "گیره موی شیک",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره موی شیک برای استفاده روزانه",
-    price: 65000,
     image: "inges/mahsols/mokhtalef/mo2.jpg",
-    alt: "گیره موی شیک دخترانه"
+    alt: "گیره موی شیک دخترانه",
   },
+
   {
     id: 8,
+    name: "کلیپس موی دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس مو با ظاهر ساده و جذاب",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo3.jpg",
-    alt: "کلیپس مو با طراحی ساده"
+    alt: "کلیپس موی دخترانه فر فری",
   },
+
   {
     id: 9,
+    name: "اکسسوری مو برای مهمانی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری مو برای تکمیل استایل",
-    price: 80000,
     image: "inges/mahsols/mokhtalef/mo4.jpg",
-    alt: "اکسسوری مو برای تکمیل استایل"
+    alt: "اکسسوری مو مناسب مهمانی",
   },
+
   {
     id: 10,
+    name: "گیره موی ظریف",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره دخترانه مناسب مدل‌های مختلف مو",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo5.jpg",
-    alt: "گیره دخترانه مناسب مو"
+    alt: "گیره موی ظریف دخترانه",
   },
+
   {
     id: 11,
+    name: "کلیپس موی مجلسی دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی ظریف و کاربردی",
-    price: 65000,
     image: "inges/mahsols/mokhtalef/mo7.jpg",
-    alt: "اکسسوری موی ظریف و کاربردی"
+    alt: "کلیپس موی مجلسی دخترانه",
   },
+
   {
     id: 12,
+    name: "گیره مو با طراحی خاص",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس دخترانه مناسب استایل‌های مختلف",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo8.jpg",
-    alt: "کلیپس دخترانه برای استایل‌های مختلف"
+    alt: "گیره مو با طراحی خاص",
   },
+
   {
     id: 13,
+    name: "اکسسوری موی زیبا",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره مو با طراحی دخترانه",
-    price: 60000,
     image: "inges/mahsols/mokhtalef/mo9.jpg",
-    alt: "گیره مو با طراحی دخترانه"
+    alt: "اکسسوری موی زیبا دخترانه",
   },
+
   {
     id: 14,
+    name: "کلیپس مو برای استایل دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری مو برای استایل‌های خاص",
-    price: 80000,
     image: "inges/mahsols/mokhtalef/mo10.jpg",
-    alt: "اکسسوری مو برای استایل خاص"
+    alt: "کلیپس مو برای استایل دخترانه",
   },
+
   {
     id: 15,
-    categoryId: "majlesi",
     name: "گیره موی کوچک و کاربردی",
-    price: 55000,
+    category: "مجلسی",
+    categoryId: "majlesi",
     image: "inges/mahsols/mokhtalef/mo11.jpg",
-    alt: "گیره موی کوچک دخترانه"
+    alt: "گیره موی کوچک و کاربردی",
   },
+
   {
     id: 16,
+    name: "اکسسوری مو برای استایل خاص",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس موی دخترانه با ظاهر متفاوت",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo12.jpg",
-    alt: "کلیپس موی دخترانه با ظاهر متفاوت"
+    alt: "اکسسوری مو برای استایل خاص",
   },
+
   {
     id: 17,
+    name: "کلیپس موی شیک دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری مو مناسب هدیه دادن",
-    price: 85000,
     image: "inges/mahsols/mokhtalef/mo13.jpg",
-    alt: "اکسسوری مو مناسب هدیه"
+    alt: "کلیپس موی شیک دخترانه",
   },
+
   {
     id: 18,
+    name: "گیره موی مناسب مهمانی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گل سر دخترانه با طراحی چشمگیر",
-    price: 90000,
     image: "inges/mahsols/mokhtalef/mo14.jpg",
-    alt: "گل سر دخترانه با طراحی زیبا"
+    alt: "گیره موی مناسب مهمانی",
   },
+
   {
     id: 19,
+    name: "اکسسوری موی ظریف دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره مو برای استفاده در مهمانی",
-    price: 80000,
     image: "inges/mahsols/mokhtalef/mo15.jpg",
-    alt: "گیره مو مناسب مهمانی"
+    alt: "اکسسوری موی ظریف دخترانه",
   },
+
   {
     id: 20,
+    name: "کلیپس مو با ظاهر متفاوت",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی دخترانه با ظاهر شیک",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo16.jpg",
-    alt: "اکسسوری موی دخترانه شیک"
+    alt: "کلیپس مو با ظاهر متفاوت",
   },
+
   {
     id: 21,
+    name: "گیره دخترانه برای استایل رسمی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس مو مناسب آرایش‌های دخترانه",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo17.jpg",
-    alt: "کلیپس مو مناسب استایل دخترانه"
+    alt: "گیره دخترانه برای استایل رسمی",
   },
+
   {
     id: 22,
+    name: "اکسسوری مو برای استفاده روزانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره موی مناسب استایل روزمره",
-    price: 60000,
     image: "inges/mahsols/mokhtalef/mo18.jpg",
-    alt: "گیره موی مناسب استفاده روزانه"
+    alt: "اکسسوری مو برای استفاده روزانه",
   },
+
   {
     id: 23,
+    name: "کلیپس دخترانه با طراحی زیبا",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری مو با طراحی ساده و شیک",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo19.jpg",
-    alt: "اکسسوری مو با طراحی ساده"
+    alt: "کلیپس دخترانه با طراحی زیبا",
   },
+
   {
     id: 24,
+    name: "گیره مو مناسب استایل مجلسی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گل سر مناسب استایل دخترانه",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo20.jpg",
-    alt: "گل سر مناسب استایل دخترانه"
+    alt: "گیره مو مناسب استایل مجلسی",
   },
+
   {
     id: 25,
+    name: "اکسسوری مو با ظاهر ساده",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس مو برای جمع کردن موها",
-    price: 65000,
     image: "inges/mahsols/mokhtalef/mo21.jpg",
-    alt: "کلیپس مو برای جمع کردن مو"
+    alt: "اکسسوری مو با ظاهر ساده",
   },
+
   {
     id: 26,
+    name: "کلیپس موی مناسب استایل‌های مختلف",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره مو با فرم متفاوت",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo22.jpg",
-    alt: "گیره مو با طراحی متفاوت"
+    alt: "کلیپس موی مناسب استایل‌های مختلف",
   },
+
   {
     id: 27,
+    name: "گیره موی دخترانه با طراحی متفاوت",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی دخترانه برای استایل خاص",
-    price: 80000,
     image: "inges/mahsols/mokhtalef/mo23.jpg",
-    alt: "اکسسوری موی دخترانه برای استایل خاص"
+    alt: "گیره موی دخترانه با طراحی متفاوت",
   },
+
   {
     id: 28,
+    name: "اکسسوری موی مناسب استایل رسمی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "کلیپس دخترانه با ظاهر جذاب",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo24.jpg",
-    alt: "کلیپس دخترانه با ظاهر جذاب"
+    alt: "اکسسوری موی مناسب استایل رسمی",
   },
+
   {
     id: 29,
+    name: "کلیپس موی ظریف دخترانه",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گیره موی دخترانه برای استفاده آسان",
-    price: 60000,
     image: "inges/mahsols/mokhtalef/mo25.jpg",
-    alt: "گیره موی دخترانه کاربردی"
+    alt: "کلیپس موی ظریف دخترانه",
   },
+
   {
     id: 30,
+    name: "گیره مو برای تکمیل استایل",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری مو برای ظاهر مرتب‌تر",
-    price: 70000,
     image: "inges/mahsols/mokhtalef/mo26.jpg",
-    alt: "اکسسوری مو برای ظاهر مرتب"
+    alt: "گیره مو برای تکمیل استایل",
   },
+
   {
     id: 31,
+    name: "اکسسوری موی دخترانه برای مهمانی",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "گل سر دخترانه با سبک متفاوت",
-    price: 80000,
     image: "inges/mahsols/mokhtalef/mo27.jpg",
-    alt: "گل سر دخترانه با سبک متفاوت"
+    alt: "اکسسوری موی دخترانه برای مهمانی",
   },
+
   {
     id: 32,
+    name: "کلیپس مو با طراحی جذاب",
+    category: "مجلسی",
     categoryId: "majlesi",
-    name: "اکسسوری موی فر فری برای استایل دخترانه",
-    price: 75000,
     image: "inges/mahsols/mokhtalef/mo28.jpg",
-    alt: "اکسسوری موی فر فری دخترانه"
+    alt: "کلیپس مو با طراحی جذاب",
   },
 
-
-  // =========================
-  // روزمره
-  // =========================
+  // ================= روزمره =================
 
   {
-    id: 33,
+    id: 6,
+    name: "کش کودک",
+    category: "روزمره",
     categoryId: "rozmarre",
-    name: "کش موی کودکانه رنگی",
-    price: 45000,
-    image: "inges/mahsols/rozmarre/r_1.jpg",
-    alt: "کش موی کودکانه رنگی"
-  },
-  {
-    id: 34,
-    categoryId: "rozmarre",
-    name: "کلیپس بابونه دخترانه",
-    price: 55000,
-    image: "inges/mahsols/rozmarre/r_2.jpg",
-    alt: "کلیپس بابونه دخترانه"
-  },
-  {
-    id: 35,
-    categoryId: "rozmarre",
-    name: "کلیپس گل دخترانه",
-    price: 55000,
-    image: "inges/mahsols/rozmarre/r_3.jpg",
-    alt: "کلیپس گل دخترانه"
-  },
-  {
-    id: 36,
-    categoryId: "rozmarre",
-    name: "کلیپس پاپیون کوچک",
-    price: 60000,
-    image: "inges/mahsols/rozmarre/r_4.jpg",
-    alt: "کلیپس پاپیون کوچک"
-  },
-  {
-    id: 37,
-    categoryId: "rozmarre",
-    name: "کش موی مناسب استفاده روزانه",
-    price: 45000,
-    image: "inges/mahsols/rozmarre/r_5.jpg",
-    alt: "کش موی مناسب استفاده روزانه"
-  },
-  {
-    id: 38,
-    categoryId: "rozmarre",
-    name: "گیره موی ساده دخترانه",
-    price: 50000,
-    image: "inges/mahsols/rozmarre/r_6.jpg",
-    alt: "گیره موی ساده دخترانه"
-  },
-  {
-    id: 39,
-    categoryId: "rozmarre",
-    name: "اکسسوری مو برای استفاده روزمره",
-    price: 55000,
-    image: "inges/mahsols/rozmarre/r_7.jpg",
-    alt: "اکسسوری مو برای استفاده روزمره"
-  },
-  {
-    id: 40,
-    categoryId: "rozmarre",
-    name: "کلیپس موی کاربردی دخترانه",
-    price: 60000,
-    image: "inges/mahsols/rozmarre/r_8.jpg",
-    alt: "کلیپس موی کاربردی دخترانه"
+    image: "inges/mahsols/roozmare/r_1.jpg",
+    alt: "کش موی کودک روزمره فر فری",
   },
 
-
-  // =========================
-  // کودک
-  // =========================
+  {
+    id: 7,
+    name: "کلیپس بابونه",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_2.jpg",
+    alt: "کلیپس موی طرح بابونه روزمره فر فری",
+  },
 
   {
-    id: 41,
-    categoryId: "koodak",
+    id: 8,
+    name: "کلیپس گل",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_3.jpg",
+    alt: "کلیپس موی طرح گل روزمره فر فری",
+  },
+
+  {
+    id: 9,
+    name: "کلیپس پاپیون",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_4.jpg",
+    alt: "کلیپس موی پاپیونی روزمره فر فری",
+  },
+
+  {
+    id: 10,
+    name: "کش کودک",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_5.jpg",
+    alt: "کش موی کودک روزمره فر فری",
+  },
+
+  {
+    id: 11,
+    name: "کلیپس با کیفیت",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_6.jpg",
+    alt: "کلیپس موی با کیفیت روزمره فر فری",
+  },
+
+  {
+    id: 12,
+    name: "کلیپس اکریلیک",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_7.jpg",
+    alt: "کلیپس موی اکریلیک روزمره فر فری",
+  },
+
+  {
+    id: 13,
+    name: "کلیپس ماه",
+    category: "روزمره",
+    categoryId: "rozmarre",
+    image: "inges/mahsols/roozmare/r_8.jpg",
+    alt: "کلیپس موی طرح ماه روزمره فر فری",
+  },
+
+  // ================= کودک =================
+
+  {
+    id: 14,
     name: "گیره انبری آفتابگردان",
-    price: 55000,
+    category: "کودک",
+    categoryId: "koodak",
     image: "inges/mahsols/koodak/k_1.jpg",
-    alt: "گیره انبری آفتابگردان کودکانه"
+    alt: "گیره موی انبری طرح آفتابگردان کودک فر فری",
   },
+
   {
-    id: 42,
-    categoryId: "koodak",
+    id: 15,
     name: "گیره انبری پاپیون",
-    price: 55000,
+    category: "کودک",
+    categoryId: "koodak",
     image: "inges/mahsols/koodak/k_2.jpg",
-    alt: "گیره انبری پاپیون کودکانه"
+    alt: "گیره موی انبری پاپیونی کودک فر فری",
   },
+
   {
-    id: 43,
+    id: 16,
+    name: "کلیپس موی رنگی",
+    category: "کودک",
     categoryId: "koodak",
-    name: "کلیپس موی رنگی کودکانه",
-    price: 50000,
     image: "inges/mahsols/koodak/k_3.jpg",
-    alt: "کلیپس موی رنگی کودکانه"
+    alt: "کلیپس موی رنگی کودک فر فری",
   },
+
   {
-    id: 44,
-    categoryId: "koodak",
+    id: 17,
     name: "موی مصنوعی کرومی",
-    price: 85000,
+    category: "کودک",
+    categoryId: "koodak",
     image: "inges/mahsols/koodak/k_4.jpg",
-    alt: "موی مصنوعی کرومی کودکانه"
+    alt: "موی مصنوعی کرومی کودک فر فری",
   },
 
-
-  // =========================
-  // پاپیون
-  // =========================
+  // ================= پاپیون =================
 
   {
-    id: 45,
+    id: 18,
+    name: "اسکرانچی پاپیون",
+    category: "پاپیون",
     categoryId: "papion",
-    name: "اسکرانچی پاپیونی دخترانه",
-    price: 65000,
-    image: "inges/mahsols/papion/p_1.jpg",
-    alt: "اسکرانچی پاپیونی دخترانه"
+    image: "inges/mahsols/papioon/p_1.jpg",
+    alt: "اسکرانچی پاپیونی مو فر فری",
   },
+
   {
-    id: 46,
+    id: 19,
+    name: "فرانسوی کیسه‌ای",
+    category: "پاپیون",
     categoryId: "papion",
-    name: "پاپیون فرانسوی کیسه‌ای",
-    price: 75000,
-    image: "inges/mahsols/papion/p_2.jpg",
-    alt: "پاپیون فرانسوی کیسه‌ای"
+    image: "inges/mahsols/papioon/p_2.jpg",
+    alt: "اکسسوری موی فرانسوی کیسه‌ای فر فری",
   },
+
   {
-    id: 47,
+    id: 20,
+    name: "پاپیون انبری",
+    category: "پاپیون",
     categoryId: "papion",
-    name: "پاپیون انبری دخترانه",
-    price: 65000,
-    image: "inges/mahsols/papion/p_3.jpg",
-    alt: "پاپیون انبری دخترانه"
+    image: "inges/mahsols/papioon/p_3.jpg",
+    alt: "پاپیون انبری مو فر فری",
   },
+
   {
-    id: 48,
+    id: 21,
+    name: "پاپیون مخمل",
+    category: "پاپیون",
     categoryId: "papion",
-    name: "پاپیون مخمل مو",
-    price: 75000,
-    image: "inges/mahsols/papion/p_4.jpg",
-    alt: "پاپیون مخمل مو"
-  }
+    image: "inges/mahsols/papioon/p_4.jpg",
+    alt: "پاپیون مخمل مو فر فری",
+  },
 ];
 
-
-// =========================
-// توابع محصولات
-// =========================
+// ==========================================
+// گرفتن محصولات یک دسته
+// ==========================================
 
 function getProductsByCategory(categoryId) {
   return products.filter((product) => product.categoryId === categoryId);
 }
 
+// ==========================================
+// پیدا کردن محصول با ID
+// ==========================================
+
 function getProductById(id) {
   return products.find((product) => product.id === Number(id));
-    }
+}
+```
+
