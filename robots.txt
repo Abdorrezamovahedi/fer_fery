@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdorrezamovahedi.github.io/fer_fery/sitemap.xml

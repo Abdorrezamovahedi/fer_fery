@@ -1,6 +1,15 @@
+function readStorageArray(key) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch {
+    return [];
+  }
+}
+
 const state = {
-  cart: JSON.parse(localStorage.getItem("ferFeryCart")) || [],
-  pinned: JSON.parse(localStorage.getItem("ferFeryPinned")) || [],
+  cart: readStorageArray("ferFeryCart"),
+  pinned: readStorageArray("ferFeryPinned"),
   currentProduct: null
 };
 
@@ -133,6 +142,7 @@ function createCard(product) {
           src="${product.image}"
           alt="${product.alt || product.name}"
           loading="lazy"
+          decoding="async"
         >
 
         <button
