@@ -157,9 +157,9 @@ function createCard(product) {
 
       <div class="product-info">
 
-        <div class="product-name">
+        <h3 class="product-name">
           ${product.name}
-        </div>
+        </h3>
 
         <div class="product-actions">
 
