@@ -1,0 +1,18 @@
+/* Shared styles for the static Persian category landing pages. */
+:root { color-scheme: light; font-family: Tahoma, Arial, sans-serif; color: #33232b; background: #fffafd; }
+* { box-sizing: border-box; }
+body { max-width: 1080px; margin: 0 auto; padding: 20px; line-height: 2; }
+a { color: #8d2457; text-underline-offset: .2em; }
+a:focus-visible { outline: 3px solid #a52c67; outline-offset: 3px; }
+.site-header, main, footer { margin-block: 1.5rem; }
+.breadcrumbs, .category-nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.hero { padding: clamp(1.25rem, 5vw, 3rem); border-radius: 1.25rem; background: linear-gradient(135deg,#fff0f7,#f8eaff); }
+h1 { line-height: 1.55; }
+.cta { display: inline-block; margin-block: .5rem; padding: .65rem 1rem; border-radius: .65rem; background: #b93683; color: white; text-decoration: none; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,190px),1fr)); gap: 1rem; }
+.card { min-width: 0; padding: .85rem; border: 1px solid #f0d7e3; border-radius: .9rem; background: white; }
+.card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .6rem; }
+.card h3 { margin-block: .6rem 0; font-size: 1rem; }
+section { margin-block: 2rem; }
+footer { padding-block: 1rem; border-top: 1px solid #f0d7e3; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
