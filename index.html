@@ -68,10 +68,6 @@
 </head>
 
   <body>
-    <!-- =========================
-       HEADER
-  ========================== -->
-
     <header class="header">
       <nav class="nav">
         <div class="nav-buttons">
@@ -100,10 +96,6 @@
       </nav>
     </header>
 
-    <!-- =========================
-       SIDE MENU
-  ========================== -->
-
     <div class="overlay" id="overlay"></div>
 
     <aside class="side-menu" id="sideMenu">
@@ -115,40 +107,23 @@
 
       <div class="menu-links">
         <a class="menu-link" href="#majlesi"> 🎀 مجلسی </a>
-
         <a class="menu-link" href="#rozmarre"> 🌸 روزمره </a>
-
         <a class="menu-link" href="#koodak"> 🧸 کودک </a>
-
         <a class="menu-link" href="#papion"> 🎀 پاپیون </a>
-
         <div class="menu-divider"></div>
-
         <a class="menu-link" href="#pinned"> 📌 پین شده‌ها </a>
-
         <a class="menu-link" href="#cart"> 🛍️ سبد خرید </a>
-
         <div class="menu-divider"></div>
-
         <a class="menu-link" href="#address"> 📍 آدرس مغازه </a>
-
         <a class="menu-link" href="#contact"> 💌 تماس با فروشنده </a>
-
         <a class="menu-link" href="#eitaa"> 📱 کانال ایتا </a>
-
         <a class="menu-link" href="#sz"> ارتباط با سازنده </a>
       </div>
     </aside>
 
-    <!-- =========================
-       HERO
-  ========================== -->
-
     <section class="hero">
       <div class="decor decor-one">✦</div>
-
       <div class="decor decor-two">♡</div>
-
       <div class="decor decor-three">✧</div>
 
       <div class="hero-content">
@@ -159,34 +134,26 @@
         <p>اکسسوری‌های دخترانه برای لحظه‌هایی که می‌خواهی خاص‌تر باشی.</p>
 
         <div class="hero-buttons">
-          <a href="#majlesi" class="hero-btn primary"> مشاهده محصولات </a>
-
-          <a href="#contact" class="hero-btn secondary"> تماس با فروشنده </a>
-
-          <a href="#address" class="hero-btn secondary"> 📍 آدرس مغازه </a>
-
-          <a href="#eitaa" class="hero-btn secondary"> مشاهده کانال ایتا </a>
-
-          <a href="#ens" class="hero-btn secondary"> مشاهده پیج اینستا گرام </a>
+          <a href="#majlesi" class="hero-btn primary">مشاهده محصولات</a>
+          <a href="#contact" class="hero-btn secondary">تماس با فروشنده</a>
+        </div>
+        <div class="hero-links">
+          <a href="#address">📍 آدرس</a>
+          <a href="#eitaa">کانال ایتا</a>
+          <a href="#ens">اینستاگرام</a>
         </div>
       </div>
     </section>
 
-    <!-- =========================
-       SEARCH
-  ========================== -->
-
     <section class="search-section">
       <div class="search-box">
         <span class="search-icon"> 🔎 </span>
-
         <input
           id="search"
           type="search"
           placeholder="نام محصول یا دسته را جستجو کنید..."
           autocomplete="off"
         />
-
         <button
           class="clear-search"
           id="clearSearch"
@@ -195,122 +162,71 @@
           ✕
         </button>
       </div>
-
       <div class="search-results" id="searchResults"></div>
     </section>
 
-    <!-- =========================
-       MAIN
-  ========================== -->
-
     <main>
-      <!-- =========================
-         مجلسی
-    ========================== -->
-
       <section class="products-section" id="majlesi">
         <div class="section-title">
           <small> مجموعه اول </small>
-
           <h2>مجلسی</h2>
         </div>
-
         <div class="products-grid" id="majlesiGrid"></div>
       </section>
-
-      <!-- =========================
-         روزمره
-    ========================== -->
 
       <section class="products-section" id="rozmarre">
         <div class="section-title">
           <small> مجموعه دوم </small>
-
           <h2>روزمره</h2>
         </div>
-
         <div class="products-grid" id="rozmarreGrid"></div>
       </section>
-
-      <!-- =========================
-         کودک
-    ========================== -->
 
       <section class="products-section" id="koodak">
         <div class="section-title">
           <small> مجموعه سوم </small>
-
           <h2>کودک</h2>
         </div>
-
         <div class="products-grid" id="koodakGrid"></div>
       </section>
-
-      <!-- =========================
-         پاپیون
-    ========================== -->
 
       <section class="products-section" id="papion">
         <div class="section-title">
           <small> مجموعه چهارم </small>
-
           <h2>پاپیون</h2>
         </div>
-
         <div class="products-grid" id="papionGrid"></div>
       </section>
-
-      <!-- =========================
-         PINNED
-    ========================== -->
 
       <section class="special-section" id="pinned">
         <div class="section-title">
           <small> انتخاب‌های شما </small>
-
           <h2>📌 پین شده‌ها</h2>
         </div>
-
         <div class="products-grid" id="pinnedGrid"></div>
-
         <div class="empty" id="emptyPinned">
           <div class="empty-icon">📌</div>
-
           <p>هنوز محصولی را پین نکرده‌اید.</p>
         </div>
       </section>
 
-      <!-- =========================
-         CART
-    ========================== -->
-
       <section class="special-section" id="cart">
         <div class="section-title">
           <small> محصولات انتخابی </small>
-
           <h2>🛍️ سبد خرید</h2>
-
           <div class="cart-contact">
             <span> برای مشاهده قیمت محصولات با فروشنده در ارتباط باشید </span>
-
             <a href="#contact" class="cart-contact-button">
               ارتباط با فروشنده
             </a>
           </div>
         </div>
-
         <div class="cart-items" id="cartItems"></div>
-
         <div class="empty" id="emptyCart">
           <div class="empty-icon">🛍️</div>
-
           <p>سبد خرید شما خالی است.</p>
         </div>
       </section>
-
-      <!-- =========================
-         SEO CONTENT
-    ========================== -->
 
       <section class="seo-content" id="seo">
         <div class="section-title">
@@ -331,136 +247,66 @@
       </section>
     </main>
 
-    <!-- =========================
-       ADDRESS
-  ========================== -->
+    <section class="info-section" id="contact">
+      <div class="section-title">
+        <small>ارتباط با فروشگاه</small>
+        <h2>تماس و شبکه‌های اجتماعی</h2>
+      </div>
 
-    <section class="contact" id="address">
-      <span class="contact-small"> 📍 آدرس فروشگاه </span>
+      <div class="info-grid">
+        <div class="info-card" id="address">
+          <span class="info-icon">📍</span>
+          <h3>آدرس مغازه</h3>
+          <p>خیابان محلاتی، کوچه یک، چهارراه اول، سمت چپ<br>اکسسوری مو فر فری — قم</p>
+        </div>
 
-      <h2>آدرس مغازه</h2>
+        <div class="info-card">
+          <span class="info-icon">📞</span>
+          <h3>تماس با فروشنده</h3>
+          <p><a href="tel:+989106197465">0910 619 7465</a></p>
+          <a class="info-btn" href="shomare_mobile.html">تماس مستقیم</a>
+        </div>
 
-      <h3>خیابان محلاتی، کوچه یک، چهارراه اول، سمت چپ، اکسسوری مو فر فری</h3>
+        <div class="info-card" id="eitaa">
+          <span class="info-icon">📱</span>
+          <h3>کانال ایتا</h3>
+          <p>جدیدترین محصولات و اطلاعیه‌ها</p>
+          <a class="info-btn" href="https://web.eitaa.com/#@ferfery_accessory" target="_blank" rel="noopener noreferrer">ورود به ایتا</a>
+        </div>
 
-      <p>استان قم</p>
+        <div class="info-card" id="ens">
+          <span class="info-icon">📸</span>
+          <h3>اینستاگرام</h3>
+          <p>پیج رسمی فر فری</p>
+          <a class="info-btn" href="https://www.instagram.com/_ferfery_accessory/" target="_blank" rel="noopener noreferrer">مشاهده پیج</a>
+        </div>
+      </div>
     </section>
 
-    <!-- =========================
-       EITAA
-  ========================== -->
-
-    <section class="contact" id="eitaa">
-      <span class="contact-small"> 📱 مشاهده محصولات بیشتر در سایت داخلی </span>
-
-      <h2>کانال ایتا ما</h2>
-
-      <p>برای مشاهده جدیدترین محصولات و اطلاعیه‌ها وارد کانال ایتای ما شوید.</p>
-
-      <a
-        class="contact-button"
-        href="https://web.eitaa.com/#@ferfery_accessory"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ورود به کانال ایتا
-      </a>
+    <section class="contact contact-builder" id="sz">
+      <span class="contact-small">سفارش ساخت سایت</span>
+      <h2>ارتباط با سازنده</h2>
+      <p>برای ساخت سایت با قیمت مناسب کلیک کنید.</p>
+      <a id="con" href="sz.html" target="_blank" rel="noopener noreferrer">ارتباط با سازنده</a>
     </section>
 
-    <!-- =========================
-       INSTAGRAM
-  ========================== -->
-
-    <section class="contact" id="ens">
-      <span class="contact-small"> 📱 مشاهده محصولات بیشتر در سایت خارجی </span>
-
-      <h2>پیج اینستاگرام ما</h2>
-
-      <p>
-        برای مشاهده جدیدترین محصولات و اطلاعیه‌ها وارد پیج اینستاگرام ما شوید.
-      </p>
-
-      <a
-        class="contact-button"
-        href="https://www.instagram.com/_ferfery_accessory/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ورود به پیج اینستاگرام
-      </a>
-    </section>
-
-    <!-- =========================
-       CONTACT
-  ========================== -->
-
-    <section class="contact" id="contact">
-      <span class="contact-small"> 💌 ارتباط با ما </span>
-
-      <h2>ارتباط با فروشنده</h2>
-
-      <p>
-        برای دریافت اطلاعات بیشتر درباره محصولات با فروشنده در ارتباط باشید:
-        <a href="tel:+989106197465">0910 619 7465</a>
-      </p>
-
-      <a class="contact-button" href="shomare_mobile.html"> تماس با فروشنده </a>
-    </section>
-
-    <!-- =========================
-       سازنده
-  ========================== -->
-
-    <section class="contact" id="sz">
-      <span class="contact-small">
-        📱 ارتباط با سازنده سایت برای ثبت سفارش سایت
-      </span>
-
-      <h2>ارتباط با سازنده سایت در روبیکا</h2>
-
-      <p>برای ساخت و سفارش سایت مدنظر با اقتصادی‌ترین قیمت ممکن کلیک کنید.</p>
-
-      <a id="con" href="sz.html" target="_blank" rel="noopener noreferrer">
-        ارتباط با سازنده
-      </a>
-    </section>
-
-    <!-- =========================
-       FOOTER
-  ========================== -->
-
-    <footer>fer fery</footer>
-
-    <!-- =========================
-       PRODUCT MODAL
-  ========================== -->
+    <footer><span class="footer-brand">fer fery</span><span class="footer-note">فروشگاه اکسسوری مو در قم</span></footer>
 
     <div class="modal" id="productModal" aria-hidden="true">
       <div class="modal-box">
         <button class="modal-close" id="modalClose" aria-label="بستن">✕</button>
-
         <div class="modal-image">
           <img id="modalImage" src="" alt="" />
         </div>
-
         <div class="modal-info">
           <span class="modal-category" id="modalCategory"></span>
-
           <h2 id="modalName">pass</h2>
-
           <button class="modal-add" id="modalAdd">افزودن به سبد خرید</button>
         </div>
       </div>
     </div>
 
-    <!-- =========================
-       TOAST
-  ========================== -->
-
     <div class="toast" id="toast"></div>
-
-    <!-- =========================
-       JAVASCRIPT
-  ========================== -->
 
     <script src="products.js"></script>
     <script src="script.js"></script>
