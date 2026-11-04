@@ -386,11 +386,11 @@ button {
 .hero {
   max-width: 1250px;
 
-  min-height: 510px;
+  min-height: 420px;
 
   margin: auto;
 
-  padding: 80px 20px;
+  padding: 60px 20px 40px;
 
   display: flex;
   align-items: center;
@@ -537,6 +537,28 @@ button {
   border: 1px solid #eda2b9;
 }
 
+.hero-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.hero-links a {
+  color: #b95c7c;
+  font-size: 14px;
+  opacity: 0.9;
+  transition: 0.25s;
+  border-bottom: 1px solid transparent;
+}
+
+.hero-links a:hover {
+  opacity: 1;
+  border-bottom-color: #ef6f9d;
+  color: #c63f73;
+}
+
 
 /* =========================
    DECORATIONS
@@ -600,7 +622,7 @@ button {
 .search-section {
   max-width: 900px;
 
-  margin: 0 auto 55px;
+  margin: 0 auto 40px;
 
   padding: 0 20px;
 }
@@ -735,7 +757,7 @@ main {
 }
 
 .products-section {
-  margin: 70px 0;
+  margin: 55px 0;
 
   scroll-margin-top: 95px;
 }
@@ -945,7 +967,7 @@ main {
 ========================= */
 
 .special-section {
-  margin: 80px 0;
+  margin: 55px 0;
 
   scroll-margin-top: 95px;
 }
@@ -1147,6 +1169,102 @@ footer {
   font-size: 22px;
 
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-brand {
+  font-size: 22px;
+  font-weight: bold;
+  color: #c63f73;
+}
+
+.footer-note {
+  font-size: 13px;
+  color: #9a7a88;
+  font-weight: normal;
+}
+
+
+/* =========================
+   INFO GRID
+========================= */
+
+.info-section {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+  scroll-margin-top: 90px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.info-card {
+  background: #ffffff;
+  border: 1px solid #f1d5df;
+  border-radius: 18px;
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(80, 30, 50, 0.06);
+  transition: 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(198, 63, 115, 0.12);
+}
+
+.info-icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.info-card h3 {
+  font-size: 17px;
+  color: #573641;
+  margin-bottom: 8px;
+}
+
+.info-card p {
+  color: #806a73;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.info-card a {
+  color: #c63f73;
+}
+
+.info-btn {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ef6f9d, #c63f73);
+  color: #ffffff !important;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.info-btn:hover {
+  transform: translateY(-2px);
+}
+
+.contact-builder {
+  padding: 40px 20px !important;
+  background: #fff8fb !important;
+}
+
+.contact-builder h2 {
+  font-size: 24px !important;
 }
 
 
@@ -1373,13 +1491,13 @@ footer {
   }
 
   .hero {
-    min-height: 460px;
+    min-height: 380px;
 
-    padding: 55px 15px;
+    padding: 45px 15px 30px;
   }
 
   .hero h1 {
-    font-size: 44px;
+    font-size: 38px;
   }
 
   .hero p {
@@ -1392,6 +1510,14 @@ footer {
     font-size: 13px;
   }
 
+  .hero-links {
+    gap: 6px 12px;
+  }
+
+  .hero-links a {
+    font-size: 13px;
+  }
+
   main {
     padding: 0 12px 50px;
   }
@@ -1399,12 +1525,6 @@ footer {
   .search-section {
     padding: 0 12px;
   }
-
-
-  /* =========================
-     MOBILE PRODUCT SLIDER
-     دو محصول در صفحه
-  ========================= */
 
   .products-grid {
     display: flex;
@@ -1429,18 +1549,11 @@ footer {
     scroll-snap-type: x mandatory;
 
     touch-action: pan-x;
-
-    animation:
-      mobileSliderHint
-      3.5s
-      ease-in-out
-      2;
   }
 
   .products-grid::-webkit-scrollbar {
     display: none;
   }
-
 
   .card {
     flex: 0 0
@@ -1467,32 +1580,6 @@ footer {
     scroll-snap-stop: always;
   }
 
-
-  @keyframes mobileSliderHint {
-
-    0% {
-      transform: translateX(0);
-    }
-
-    25% {
-      transform: translateX(-28px);
-    }
-
-    50% {
-      transform: translateX(0);
-    }
-
-    75% {
-      transform: translateX(28px);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
-
-  }
-
-
   .product-info {
     padding: 8px 3px 4px;
   }
@@ -1510,8 +1597,6 @@ footer {
   .price {
     font-size: 12px;
   }
-
-  /* فقط در موبایل: دکمه‌ها زیر هم */
 
   .product-actions {
     grid-template-columns: 1fr;
@@ -1538,6 +1623,23 @@ footer {
 
   .section-title h2 {
     font-size: 26px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .info-card {
+    padding: 16px 12px;
+  }
+
+  .info-card h3 {
+    font-size: 15px;
+  }
+
+  .info-card p {
+    font-size: 12px;
   }
 
   .modal-box {
